@@ -7,9 +7,11 @@
 
 class GSAPDevUtils {
     static isDevelopment() {
-        return process.env.NODE_ENV === 'development' ||
-               window.location.hostname === 'localhost' ||
-               window.location.hostname === '127.0.0.1';
+        return (
+            process.env.NODE_ENV === 'development' ||
+            window.location.hostname === 'localhost' ||
+            window.location.hostname === '127.0.0.1'
+        );
     }
 
     /**
@@ -20,12 +22,13 @@ class GSAPDevUtils {
      */
     static createScrollTriggerConfig(config, showMarkers = false) {
         const baseConfig = {
-            trigger: config.trigger || ".scroll-container",
-            start: config.start || "top top",
+            trigger: config.trigger || '.scroll-container',
+            start: config.start || 'top top',
             end: config.end,
             scrub: config.scrub !== undefined ? config.scrub : true,
             pin: config.pin,
-            invalidateOnRefresh: config.invalidateOnRefresh !== undefined ? config.invalidateOnRefresh : true,
+            invalidateOnRefresh:
+                config.invalidateOnRefresh !== undefined ? config.invalidateOnRefresh : true,
             ...config
         };
 
@@ -64,6 +67,7 @@ class GSAPDevUtils {
                 trigger.vars.markers = !trigger.vars.markers;
                 trigger.refresh();
             });
+            // eslint-disable-next-line no-console
             console.log(`GSAP markers ${triggers[0]?.vars.markers ? 'enabled' : 'disabled'}`);
         }
     }
@@ -74,8 +78,10 @@ class GSAPDevUtils {
     static debugScrollTriggers() {
         if (typeof ScrollTrigger !== 'undefined') {
             const triggers = ScrollTrigger.getAll();
+            // eslint-disable-next-line no-console
             console.log('Active ScrollTriggers:', triggers);
             triggers.forEach((trigger, index) => {
+                // eslint-disable-next-line no-console
                 console.log(`Trigger ${index}:`, {
                     trigger: trigger.vars.trigger,
                     start: trigger.vars.start,
@@ -96,6 +102,7 @@ class GSAPDevUtils {
                 trigger.vars.markers = true;
                 trigger.refresh();
             });
+            // eslint-disable-next-line no-console
             console.log('Development mode enabled - GSAP markers visible');
         }
     }
@@ -110,6 +117,7 @@ class GSAPDevUtils {
                 trigger.vars.markers = false;
                 trigger.refresh();
             });
+            // eslint-disable-next-line no-console
             console.log('Development mode disabled - GSAP markers hidden');
         }
     }

@@ -12,7 +12,14 @@
     "serve": "webpack serve --mode development --open",
     "test": "jest",
     "lint": "eslint src/**/*.js",
-    "format": "prettier --write src/**/*.js"
+    "lint:fix": "eslint src/**/*.js --fix",
+    "format": "prettier --write src/**/*.js",
+    "format:check": "prettier --check src/**/*.js",
+    "vercel-build": "npm run lint:fix && npm run format && NODE_ENV=production node src/index.js",
+    "deploy": "vercel --prod",
+    "preview": "vercel",
+    "check": "npm run lint && npm run format:check",
+    "precommit": "npm run check"
   },
   "keywords": ["mvc", "website", "gsap", "animations", "responsive"],
   "author": "OGM Team",

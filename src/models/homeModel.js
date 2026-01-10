@@ -6,7 +6,7 @@ const homeModel = {
                 {
                     id: 'premium',
                     name: 'Premium Reposado',
-                    description: 'Small batch reposado tequila made with passion, served with pride',
+                    description: 'Small batch reposado tequila made with passion',
                     color: '#d4af37',
                     frontImage: '/images/OGM_Labels_Premium_Full Front.png',
                     backImage: '/images/OGM_Labels_Full Back.png',
@@ -32,8 +32,8 @@ const homeModel = {
                 }
             ],
             meta: {
-                description: 'Premium OGM reposado tequilas with unique flavor profiles and artisanal quality',
-                keywords: 'OGM, tequila, reposado, premium, ginger lime, jalapeño, small batch, artisanal'
+                description: 'Premium OGM reposado tequilas with unique flavor profiles',
+                keywords: 'OGM, tequila, reposado, premium, ginger lime, jalapeño, artisanal'
             }
         };
     }

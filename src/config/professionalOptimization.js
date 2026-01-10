@@ -6,7 +6,6 @@
  */
 
 const ProfessionalOptimization = {
-
     // =============================================================================
     // FONT LOADING OPTIMIZATION
     // =============================================================================
@@ -119,12 +118,7 @@ const ProfessionalOptimization = {
 
     performance: {
         // Critical rendering path optimization
-        criticalCSS: [
-            'typography',
-            'layout',
-            'hero-section',
-            'navigation'
-        ],
+        criticalCSS: ['typography', 'layout', 'hero-section', 'navigation'],
 
         // Image optimization
         images: {

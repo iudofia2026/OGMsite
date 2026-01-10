@@ -10,6 +10,7 @@ const homeController = {
                 ...pageData
             });
         } catch (error) {
+            // eslint-disable-next-line no-console
             console.error('Error loading homepage:', error);
             res.status(500).render('error', {
                 title: 'Server Error',

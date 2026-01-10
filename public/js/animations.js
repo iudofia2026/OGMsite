@@ -220,3 +220,34 @@ window.addEventListener("resize", () => {
 if (isDevelopment() && window.location.search.includes('debug=true')) {
     console.log('🎯 Debug mode enabled - GSAP markers will be visible');
 }
+
+// Hero Section - Smooth Scroll to Collection
+document.addEventListener('DOMContentLoaded', () => {
+    const heroBtn = document.querySelector('.hero-btn');
+    const scrollArrow = document.querySelector('.scroll-arrow');
+
+    if (heroBtn) {
+        heroBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const target = document.querySelector('#collection');
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    }
+
+    if (scrollArrow) {
+        scrollArrow.addEventListener('click', () => {
+            const target = document.querySelector('#collection');
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    }
+});

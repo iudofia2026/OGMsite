@@ -6,8 +6,13 @@
       "src": "src/index.js",
       "use": "@vercel/node",
       "config": {
-        "includeFiles": ["src/**", "public/**"]
+        "includeFiles": ["src/**", "public/**"],
+        "maxLambdaSize": "50mb"
       }
+    },
+    {
+      "src": "public/**",
+      "use": "@vercel/static"
     }
   ],
   "routes": [
@@ -30,11 +35,6 @@
   ],
   "env": {
     "NODE_ENV": "production"
-  },
-  "functions": {
-    "src/index.js": {
-      "maxDuration": 10
-    }
   },
   "headers": [
     {

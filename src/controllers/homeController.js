@@ -6,7 +6,7 @@ const homeController = {
         try {
             const pageData = homeModel.getHomePageData();
             res.render('home', {
-                title: 'OGM - Premium Craft Beverages',
+                title: 'OGM Tequila - Coming Soon',
                 ...pageData
             });
         } catch (error) {

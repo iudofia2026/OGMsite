@@ -531,8 +531,8 @@ a:hover {
 
 .scroll-container {
     position: relative;
-    z-index: 2;
-    height: 300vh;
+    z-index: 1;
+    height: 200vh;
 }
 
 .sticky-container {
@@ -709,6 +709,8 @@ a:hover {
     align-items: center;
     justify-content: center;
     padding: 60px 20px;
+    z-index: 2;
+    margin-top: -50px;
 }
 
 .signup-container {

@@ -112,6 +112,7 @@ const authController = {
             // 3. Send confirmation email
             // 4. Create a pending subscription record
 
+            // eslint-disable-next-line no-console
             console.log('Email signup:', email);
 
             // For now, return success
@@ -122,6 +123,7 @@ const authController = {
             });
 
         } catch (error) {
+            // eslint-disable-next-line no-console
             console.error('Email signup error:', error);
             res.status(500).json({
                 success: false,
@@ -136,7 +138,9 @@ const authController = {
         res.json({
             google: {
                 enabled: !!process.env.GOOGLE_CLIENT_ID,
-                clientId: process.env.GOOGLE_CLIENT_ID ? '****' + process.env.GOOGLE_CLIENT_ID.slice(-4) : null
+                clientId: process.env.GOOGLE_CLIENT_ID
+                    ? '****' + process.env.GOOGLE_CLIENT_ID.slice(-4)
+                    : null
             }
         });
     }

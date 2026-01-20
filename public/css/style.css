@@ -1,37 +1,214 @@
-/* Professional Premium Font Loading - Based on 818 Tequila Analysis */
-@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600&family=Crimson+Pro:wght@400;600&display=swap");
+/* =============================================================================
+   OGM BRAND - COLOR SCHEME & TYPOGRAPHY
+   Premium White & Gold Theme
+============================================================================= */
 
-/* CSS Custom Properties for Typography Hierarchy */
+/* OGM Official Fonts - Goldenbook (Primary) & Raleway (Secondary) */
+@font-face {
+    font-family: 'Goldenbook';
+    src: url('/fonts/Goldenbook-Light.otf') format('opentype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Goldenbook';
+    src: url('/fonts/Goldenbook-Regular.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Goldenbook';
+    src: url('/fonts/Goldenbook-ExtraBold.otf') format('opentype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Goldenbook';
+    src: url('/fonts/Goldenbook-Heavy.otf') format('opentype');
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Goldenbook';
+    src: url('/fonts/Goldenbook-Black.otf') format('opentype');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Raleway';
+    src: url('/fonts/Raleway-Thin.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Raleway';
+    src: url('/fonts/Raleway-ExtraLight.ttf') format('truetype');
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Raleway';
+    src: url('/fonts/Raleway-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Raleway';
+    src: url('/fonts/Raleway-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Raleway';
+    src: url('/fonts/Raleway-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Raleway';
+    src: url('/fonts/Raleway-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Raleway';
+    src: url('/fonts/Raleway-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Raleway';
+    src: url('/fonts/Raleway-ExtraBold.ttf') format('truetype');
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Raleway';
+    src: url('/fonts/Raleway-Heavy.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* OGM Brand Color Palette */
 :root {
-    /* Premium Font Stacks */
-    --font-primary-serif: "Playfair Display", "Times New Roman", Georgia, serif;
-    --font-secondary-sans: "Inter", "Helvetica Neue", Arial, sans-serif;
-    --font-body-serif: "Crimson Pro", "Times New Roman", Georgia, serif;
-    --font-monospace: "SF Mono", Monaco, "Cascadia Code", monospace;
+    /* Primary Colors - White & Gold */
+    --color-white: #FFFFFF;
+    --color-cream: #F8F6F2;
+    --color-off-white: #FEFEFE;
+    --color-gold-dark: #C9A227;
+    --color-gold-primary: #D4AF37;
+    --color-gold-light: #F4E77C;
+    --color-gold-pale: #F9F1C8;
+
+    /* Metallic Variations */
+    --color-champagne: #F7E7CE;
+    --color-bronze: #CD7F32;
+    --color-copper: #B87333;
+
+    /* Warm Grays */
+    --color-warm-gray-100: #F5F5F0;
+    --color-warm-gray-200: #E8E8E0;
+    --color-warm-gray-300: #D4D4C8;
+    --color-warm-gray-400: #A8A898;
+    --color-warm-gray-500: #8B8B7A;
+    --color-warm-gray-600: #6B6B5A;
+    --color-warm-gray-700: #4A4A3E;
+    --color-warm-gray-800: #2D2D25;
+    --color-warm-gray-900: #1A1A18;
+
+    /* Accent Colors */
+    --color-agave-green: #7A8B6E;
+    --color-aged-brown: #8B7355;
+    --color-rich-brown: #6B5B4F;
+    --color-deep-brown: #4A3728;
+
+    /* Typography Colors */
+    --color-heading-primary: #D4AF37;
+    --color-heading-secondary: #8B7355;
+    --color-text-primary: #4A4A3E;
+    --color-text-secondary: #6B6B5A;
+
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, #FFFFFF 0%, #F8F6F2 50%, #FFFFFF 100%);
+    --gradient-hero-title: linear-gradient(135deg, #C9A227 0%, #D4AF37 25%, #F4E77C 50%, #D4AF37 75%, #C9A227 100%);
+    --gradient-button: linear-gradient(135deg, #C9A227 0%, #D4AF37 50%, #C9A227 100%);
+    --gradient-button-hover: linear-gradient(135deg, #D4AF37 0%, #F4E77C 50%, #D4AF37 100%);
+
+    /* Shadows */
+    --shadow-gold-subtle: 0 2px 10px rgba(212, 175, 55, 0.2);
+    --shadow-gold-medium: 0 4px 20px rgba(212, 175, 55, 0.3);
+    --shadow-gold-strong: 0 8px 30px rgba(212, 175, 55, 0.4);
+
+    /* OGM Official Font Families */
+    --font-primary: "Goldenbook", "Times New Roman", Georgia, serif;
+    --font-secondary: "Raleway", "Helvetica Neue", Arial, sans-serif;
+    --font-body: "Raleway", "Helvetica Neue", Arial, sans-serif;
+    --font-accent: "Raleway", "Helvetica Neue", Arial, sans-serif;
 
     /* Typography Scale */
     --font-size-hero: clamp(4rem, 12vw, 12rem);
     --font-size-h1: clamp(2.5rem, 6vw, 4rem);
     --font-size-h2: clamp(1.8rem, 4vw, 2.5rem);
+    --font-size-h3: clamp(1.5rem, 3vw, 2rem);
     --font-size-subtitle: clamp(1.2rem, 3vw, 2rem);
     --font-size-body: clamp(1rem, 2.5vw, 1.25rem);
     --font-size-caption: clamp(0.875rem, 2vw, 1rem);
+    --font-size-small: clamp(0.75rem, 1.5vw, 0.875rem);
 
     /* Line Heights */
     --line-height-hero: 0.9;
     --line-height-h1: 1.1;
     --line-height-h2: 1.2;
+    --line-height-h3: 1.3;
     --line-height-subtitle: 1.3;
     --line-height-body: 1.6;
     --line-height-caption: 1.4;
+    --line-height-small: 1.4;
 
     /* Letter Spacing */
     --letter-spacing-hero: 0.05em;
     --letter-spacing-h1: 0.02em;
     --letter-spacing-h2: 0.01em;
+    --letter-spacing-h3: 0.02em;
     --letter-spacing-subtitle: 0.2em;
     --letter-spacing-body: 0.01em;
     --letter-spacing-caption: 0.05em;
+    --letter-spacing-small: 0.03em;
+
+    /* Font Weights */
+    --font-weight-light: 300;
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+    --font-weight-black: 900;
 }
 
 * {
@@ -41,42 +218,56 @@
 }
 
 body {
-    background-color: #000;
-    font-family: var(--font-secondary-sans);
-    color: #333;
+    background-color: var(--color-white);
+    font-family: var(--font-body);
+    color: var(--color-text-primary);
     font-size: var(--font-size-body);
     line-height: var(--line-height-body);
 }
 
 h1,
 h2 {
-    color: #fff;
+    color: var(--color-heading-primary);
     margin-top: 20px;
     margin-bottom: 10px;
-    font-family: var(--font-primary-serif);
+    font-family: var(--font-primary);
 }
 
 h1 {
     font-size: var(--font-size-h1);
     line-height: var(--line-height-h1);
-    font-weight: 700;
+    font-weight: var(--font-weight-bold);
     letter-spacing: var(--letter-spacing-h1);
 }
 
 h2 {
     font-size: var(--font-size-h2);
     line-height: var(--line-height-h2);
-    font-weight: 600;
+    font-weight: var(--font-weight-semibold);
     letter-spacing: var(--letter-spacing-h2);
+}
+
+h3 {
+    font-size: var(--font-size-h3);
+    line-height: var(--line-height-h3);
+    font-weight: var(--font-weight-medium);
+    letter-spacing: var(--letter-spacing-h3);
+    font-family: var(--font-secondary);
+    color: var(--color-heading-secondary);
 }
 
 a {
     margin-top: 5px;
-    font-family: "Arimo", sans-serif;
-    color: #bdbdbd;
+    font-family: var(--font-secondary);
+    color: var(--color-text-secondary);
     font-size: 37px;
     line-height: 40px;
     text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--color-gold-primary);
 }
 
 /* Reusable Background Image Filters */
@@ -146,12 +337,12 @@ a {
     z-index: 2;
 }
 
-/* Hero Section */
+/* Hero Section - Cool White & Silver Theme */
 .hero-section {
     position: relative;
     width: 100%;
     height: 100vh;
-    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
+    background: linear-gradient(135deg, #F8F9FA 0%, #E9ECEF 50%, #F8F9FA 100%);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -165,9 +356,9 @@ a {
     left: 0;
     right: 0;
     bottom: 0;
-    background: radial-gradient(circle at 30% 70%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 70% 30%, rgba(0, 128, 128, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 50% 50%, rgba(197, 48, 48, 0.05) 0%, transparent 70%);
+    background: radial-gradient(circle at 30% 70%, rgba(108, 117, 125, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 70% 30%, rgba(173, 181, 189, 0.06) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(206, 212, 218, 0.04) 0%, transparent 70%);
     pointer-events: none;
 }
 
@@ -177,23 +368,39 @@ a {
     text-align: center;
     max-width: 800px;
     padding: 0 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
-.hero-title {
-    font-family: var(--font-primary-serif);
-    font-size: var(--font-size-hero);
-    line-height: var(--line-height-hero);
-    color: #fff;
-    margin: 0;
-    font-weight: 900;
-    letter-spacing: var(--letter-spacing-hero);
-    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-    background: linear-gradient(45deg, #d4af37, #f4e77c, #d4af37);
-    background-size: 200% 200%;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    animation: gradientShift 3s ease-in-out infinite alternate;
+.hero-logo-container {
+    margin-bottom: 2rem;
+    animation: logoFloat 6s ease-in-out infinite;
+}
+
+@keyframes logoFloat {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.hero-logo {
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+    display: block;
+    transition: all 0.3s ease;
+    object-fit: contain;
+    object-position: center;
+    transform: scale(1.5);
+}
+
+.hero-logo:hover {
+    transform: scale(1.55);
 }
 
 @keyframes gradientShift {
@@ -202,22 +409,22 @@ a {
 }
 
 .hero-subtitle {
-    font-family: var(--font-secondary-sans);
+    font-family: var(--font-secondary);
     font-size: var(--font-size-subtitle);
-    color: rgba(255, 255, 255, 0.9);
-    margin: 1.5rem 0 1rem;
-    font-weight: 300;
+    color: #4A4A4A;
+    margin: 2.5rem 0 1rem;
+    font-weight: var(--font-weight-normal);
     line-height: var(--line-height-subtitle);
     letter-spacing: var(--letter-spacing-subtitle);
     text-transform: uppercase;
 }
 
 .hero-description {
-    font-family: var(--font-body-serif);
+    font-family: var(--font-body);
     font-size: var(--font-size-body);
-    color: rgba(255, 255, 255, 0.7);
-    margin: 0 auto 2rem;
-    font-weight: 400;
+    color: #6B6B6B;
+    margin: 0 auto 1rem;
+    font-weight: var(--font-weight-normal);
     line-height: var(--line-height-body);
     letter-spacing: var(--letter-spacing-body);
     max-width: 600px;
@@ -231,19 +438,20 @@ a {
 .hero-btn {
     display: inline-block;
     padding: 1rem 2.5rem;
-    background: linear-gradient(45deg, #d4af37, #f4e77c);
-    color: #1a1a1a;
+    background: linear-gradient(135deg, #2C2C2C 0%, #1A1A1A 50%, #2C2C2C 100%);
+    color: #FFFFFF;
     text-decoration: none;
-    font-family: var(--font-secondary-sans);
-    font-weight: 500;
+    font-family: var(--font-secondary);
+    font-weight: var(--font-weight-semibold);
     font-size: 1.1rem;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.15em;
     text-transform: uppercase;
-    border-radius: 0;
-    border: 2px solid transparent;
-    transition: all 0.3s ease;
+    border-radius: 4px;
+    border: 2px solid #1A1A1A;
+    transition: all 0.4s ease;
     position: relative;
     overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .hero-btn::before {
@@ -253,8 +461,8 @@ a {
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-    transition: left 0.5s ease;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+    transition: left 0.6s ease;
 }
 
 .hero-btn:hover::before {
@@ -262,9 +470,10 @@ a {
 }
 
 .hero-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
-    background: linear-gradient(45deg, #f4e77c, #d4af37);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(135deg, #1A1A1A 0%, #000000 50%, #1A1A1A 100%);
+    border-color: #000000;
 }
 
 .hero-scroll-indicator {
@@ -278,7 +487,7 @@ a {
 .scroll-arrow {
     width: 40px;
     height: 40px;
-    border: 2px solid rgba(255, 255, 255, 0.5);
+    border: 2px solid #C0C0C0;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -286,21 +495,25 @@ a {
     animation: bounce 2s infinite;
     cursor: pointer;
     transition: all 0.3s ease;
+    background: rgba(192, 192, 192, 0.1);
+    box-shadow: 0 2px 10px rgba(192, 192, 192, 0.2);
 }
 
 .scroll-arrow:hover {
-    border-color: #d4af37;
-    background: rgba(212, 175, 55, 0.1);
+    border-color: #A9A9A9;
+    background: rgba(192, 192, 192, 0.2);
+    box-shadow: 0 4px 15px rgba(192, 192, 192, 0.3);
+    transform: scale(1.1);
 }
 
 .scroll-arrow i {
-    color: rgba(255, 255, 255, 0.7);
+    color: #C0C0C0;
     font-size: 1.2rem;
     transition: color 0.3s ease;
 }
 
 .scroll-arrow:hover i {
-    color: #d4af37;
+    color: #A9A9A9;
 }
 
 @keyframes bounce {
@@ -402,7 +615,7 @@ a {
 .bg-text {
     position: absolute;
     z-index: 0;
-    font-family: var(--font-primary-serif);
+    font-family: var(--font-primary);
     color: hsla(0, 0%, 100%, 0.6);
     font-size: 18vw;
     line-height: 180px;
@@ -429,7 +642,7 @@ a {
 
 .text-ani {
     width: 30vw;
-    font-family: var(--font-body-serif);
+    font-family: var(--font-body);
     color: #fff;
     font-size: 3vw;
     line-height: 3.5vw;
@@ -480,11 +693,21 @@ a {
 
 .arrow {
     margin-top: 10px;
+    opacity: 0.3;
+    pointer-events: none;
 }
 
 @media (max-width: 767.98px) {
     .hero-content {
         padding: 0 1rem;
+    }
+
+    .hero-logo {
+        max-width: 300px;
+    }
+
+    .hero-logo-container {
+        margin-bottom: 1.5rem;
     }
 
     .hero-title {

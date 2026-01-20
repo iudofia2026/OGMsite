@@ -690,6 +690,7 @@ a:hover {
 
 .sub-title {
     font-size: 40px;
+    color: #ffffff;
 }
 
 .arrow {
@@ -698,17 +699,149 @@ a:hover {
     pointer-events: none;
 }
 
+/* Signup Form Section */
+.signup-section {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #F8F9FA 0%, #E9ECEF 50%, #F8F9FA 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+}
+
+.signup-container {
+    width: 100%;
+    max-width: 400px;
+}
+
+.form {
+    --input-focus: #2d8cf0;
+    --font-color: #323232;
+    --font-color-sub: #666;
+    --bg-color: #fff;
+    --main-color: #323232;
+    padding: 20px;
+    background: lightgrey;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 20px;
+    border-radius: 5px;
+    border: 2px solid var(--main-color);
+    box-shadow: 4px 4px var(--main-color);
+}
+
+.title {
+    color: var(--font-color);
+    font-family: var(--font-primary);
+    font-weight: 700;
+    font-size: 22px;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.input {
+    width: 250px;
+    height: 40px;
+    border-radius: 5px;
+    border: 2px solid var(--main-color);
+    background-color: var(--bg-color);
+    box-shadow: 4px 4px var(--main-color);
+    font-size: 15px;
+    font-weight: 600;
+    font-family: var(--font-secondary);
+    color: var(--font-color);
+    padding: 5px 10px;
+    outline: none;
+}
+
+.input::placeholder {
+    color: var(--font-color-sub);
+    opacity: 0.8;
+}
+
+.input:focus {
+    border: 2px solid var(--input-focus);
+}
+
+.login-with {
+    display: flex;
+    gap: 20px;
+}
+
+.button-log {
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    border: 2px solid var(--main-color);
+    background-color: var(--bg-color);
+    box-shadow: 4px 4px var(--main-color);
+    color: var(--font-color);
+    font-size: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: var(--font-secondary);
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.button-log:hover {
+    transform: translate(-1px, -1px);
+    box-shadow: 5px 5px var(--main-color);
+}
+
+.button-log:active, .button-confirm:active {
+    box-shadow: 0px 0px var(--main-color);
+    transform: translate(3px, 3px);
+}
+
+.button-confirm {
+    margin: 50px auto 0 auto;
+    width: 120px;
+    height: 40px;
+    border-radius: 5px;
+    border: 2px solid var(--main-color);
+    background-color: var(--bg-color);
+    box-shadow: 4px 4px var(--main-color);
+    font-size: 17px;
+    font-weight: 600;
+    font-family: var(--font-secondary);
+    color: var(--font-color);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.button-confirm:hover {
+    transform: translate(-1px, -1px);
+    box-shadow: 5px 5px var(--main-color);
+}
+
+/* =============================================================================
+   MOBILE FIRST CREATIVE LAYOUT
+   Intuitive swipeable card experience for mobile users
+============================================================================= */
 @media (max-width: 767.98px) {
+    /* Hero Section Mobile Optimizations */
     .hero-content {
-        padding: 0 1rem;
+        padding: 0 1.5rem;
     }
 
     .hero-logo {
-        max-width: 300px;
+        max-width: 280px;
+        transform: scale(1.2);
+    }
+
+    .hero-logo:hover {
+        transform: scale(1.25);
     }
 
     .hero-logo-container {
-        margin-bottom: 1.5rem;
+        margin-bottom: 2rem;
     }
 
     .hero-title {
@@ -717,49 +850,272 @@ a:hover {
 
     .hero-subtitle {
         font-size: clamp(1rem, 4vw, 1.5rem);
-        margin: 1rem 0 0.5rem;
+        margin: 1.5rem 0 0.75rem;
+        letter-spacing: 0.15em;
     }
 
     .hero-description {
-        font-size: clamp(0.9rem, 3vw, 1.1rem);
-        padding: 0 1rem;
+        font-size: clamp(0.95rem, 3vw, 1.15rem);
+        padding: 0 0.5rem;
+        line-height: 1.7;
     }
 
+    .hero-btn {
+        padding: 1rem 2rem;
+        font-size: 0.95rem;
+        min-width: 200px;
+        text-align: center;
+    }
+
+    .scroll-arrow {
+        width: 44px;
+        height: 44px;
+    }
+
+    /* Scroll Container - Full height scroll snap */
     .scroll-container {
-        height: 100vh;
+        height: auto;
+        scroll-snap-type: y mandatory;
+        overflow-y: scroll;
+        -webkit-overflow-scrolling: touch;
     }
 
+    /* Sticky Container becomes scrollable cards */
     .sticky-container {
+        position: relative;
+        display: flex;
         flex-direction: column;
+        height: auto;
+        overflow: visible;
     }
 
-    .left-side-col,
-    .section-1-l,
-    .section-2-l,
-    .section-3-l {
-        height: 50vh;
-    }
-
-    .right-side-col,
-    .section-3-r,
-    .section-2-r,
-    .section-1-r {
-        height: 50vh;
-    }
-
+    /* Both columns become single column stack */
     .left-side-col,
     .right-side-col {
         display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: auto;
     }
 
-    .left-side-col > div,
-    .right-side-col > div {
-        flex: 0 0 100%;
+    /* All sections become full-screen cards */
+    .section-1-l,
+    .section-2-l,
+    .section-3-l,
+    .section-3-r,
+    .section-2-r,
+    .section-1-r {
+        position: relative;
+        height: 100vh;
+        width: 100%;
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transform: none !important;
+        translate: none !important;
+        rotate: none !important;
+        scale: none !important;
     }
 
-    .bottle-back,
-    .bottle {
-        height: 90%;
+    /* Background images for cards - applied directly to sections */
+    .section-1-l {
+        background-image: url("/images/backgrounds/agave.png");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        position: relative;
+    }
+
+    .section-1-l::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1;
+    }
+
+    .section-3-l {
+        background-image: url("/images/backgrounds/jalapeno.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        position: relative;
+    }
+
+    .section-3-l::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1;
+    }
+
+    .section-2-r {
+        background-image: url("/images/backgrounds/gingerlime.png");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        position: relative;
+    }
+
+    .section-2-r::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1;
+    }
+
+    /* Hide the original bg-img elements on mobile since we use backgrounds */
+    .section-1-l .bg-img-1,
+    .section-3-l .bg-img-2,
+    .section-2-r .bg-img-3 {
+        display: none;
+    }
+
+    /* Bottle sections */
+    .section-2-l,
+    .section-3-r,
+    .section-1-r {
+        background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    }
+
+    /* Content positioning for cards */
+    .content-parent {
+        position: relative;
+        z-index: 10;
+        padding: 2rem 1.5rem 6rem;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-end;
+        height: 100%;
+        width: 100%;
+        transform: none !important;
+    }
+
+    /* Typography for mobile cards */
+    .sub-title {
+        font-size: clamp(1.5rem, 6vw, 2rem);
+        font-weight: 700;
+        color: #ffffff;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 1rem;
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+        transform: none !important;
+    }
+
+    .text-ani {
+        width: 100%;
+        max-width: 350px;
+        font-size: clamp(1.2rem, 4vw, 1.5rem);
+        line-height: 1.4;
+        color: #ffffff;
+        font-weight: 500;
+        text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+        transform: none !important;
+    }
+
+    .link-block {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-decoration: none;
+        transform: none !important;
+    }
+
+    /* Bottle styling for mobile */
+    .bottle,
+    .bottle-back {
+        height: 60vh;
         width: auto;
+        max-width: 90vw;
+        object-fit: contain;
+    }
+
+    .bottle-back {
+        opacity: 0.3;
+        transform: translateX(10px);
+    }
+
+    .bg-text {
+        font-size: 15vw;
+        line-height: 1;
+        opacity: 0.15;
+        text-align: center;
+    }
+
+    /* Arrow indicator */
+    .arrow {
+        margin-top: 1.5rem;
+        font-size: 1.5rem;
+        color: #D4AF37;
+    }
+
+    /* Add swipe indicator */
+    .section-1-l::after,
+    .section-2-l::after,
+    .section-3-l::after,
+    .section-3-r::after,
+    .section-2-r::after,
+    .section-1-r::after {
+        content: '';
+        position: absolute;
+        bottom: 2rem;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 40px;
+        height: 40px;
+        border: 2px solid rgba(212, 175, 55, 0.5);
+        border-radius: 50%;
+        z-index: 5;
+        animation: swipePulse 2s infinite;
+    }
+
+    @keyframes swipePulse {
+        0%, 100% {
+            opacity: 0.5;
+            transform: translateX(-50%) scale(1);
+        }
+        50% {
+            opacity: 1;
+            transform: translateX(-50%) scale(1.1);
+        }
+    }
+
+    /* Smooth scroll behavior */
+    html {
+        scroll-behavior: smooth;
+    }
+
+    /* Optimize touch interactions */
+    .section-1-l,
+    .section-2-l,
+    .section-3-l,
+    .section-3-r,
+    .section-2-r,
+    .section-1-r {
+        touch-action: pan-y;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Link block touch optimization */
+    .link-block {
+        -webkit-tap-highlight-color: rgba(212, 175, 55, 0.3);
     }
 }

@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const homeController = require('./controllers/homeController');
+const authRoutes = require('./routes/authRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -23,6 +24,9 @@ app.use(express.urlencoded({ extended: true }));
 
 // Routes
 app.get('/', homeController.getHomePage);
+
+// Authentication routes
+app.use('/api/auth', authRoutes);
 
 // 404 handler
 app.use((req, res) => {

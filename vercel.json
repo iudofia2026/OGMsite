@@ -9,10 +9,6 @@
         "includeFiles": ["src/**", "public/**"],
         "maxLambdaSize": "50mb"
       }
-    },
-    {
-      "src": "public/**",
-      "use": "@vercel/static"
     }
   ],
   "rewrites": [
@@ -25,8 +21,16 @@
       "destination": "/public/js/$1"
     },
     {
+      "source": "/fonts/(.*)",
+      "destination": "/public/fonts/$1"
+    },
+    {
       "source": "/images/(.*)",
       "destination": "/public/images/$1"
+    },
+    {
+      "source": "/api/(.*)",
+      "destination": "/api/$1"
     },
     {
       "source": "/(.*)",
@@ -34,7 +38,8 @@
     }
   ],
   "env": {
-    "NODE_ENV": "production"
+    "NODE_ENV": "production",
+    "APP_URL": "https://ogmsite.vercel.app"
   },
   "headers": [
     {

@@ -564,7 +564,7 @@ a:hover {
     height: 100vh;
     justify-content: center;
     align-items: center;
-    background-color: #d4af37;
+    background-color: #1a1a1a;
     cursor: pointer;
 }
 
@@ -583,7 +583,7 @@ a:hover {
     height: 100vh;
     justify-content: center;
     align-items: center;
-    background-color: #008080;
+    background-color: #1a1a1a;
     cursor: pointer;
 }
 
@@ -609,7 +609,7 @@ a:hover {
     height: 100vh;
     justify-content: center;
     align-items: center;
-    background-color: #c53030;
+    background-color: #1a1a1a;
     cursor: pointer;
 }
 
@@ -665,7 +665,7 @@ a:hover {
     background-position: 50% 50%;
     background-size: cover;
     background-repeat: no-repeat;
-    filter: brightness(0.7) contrast(1.1);
+    filter: brightness(0.7) contrast(1.1) grayscale(100%);
 }
 
 .bg-img-2 {
@@ -675,7 +675,7 @@ a:hover {
     background-position: 50% 50%;
     background-size: 130%;
     background-repeat: no-repeat;
-    filter: brightness(0.7) contrast(1.1);
+    filter: brightness(0.7) contrast(1.1) grayscale(100%);
 }
 
 .bg-img-3 {
@@ -685,7 +685,7 @@ a:hover {
     background-position: 40% 50%;
     background-size: 120%;
     background-repeat: no-repeat;
-    filter: brightness(0.7) contrast(1.1);
+    filter: brightness(0.7) contrast(1.1) grayscale(100%);
 }
 
 .sub-title {
@@ -992,7 +992,7 @@ a:hover {
     .section-2-l,
     .section-3-r,
     .section-1-r {
-        background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+        background: linear-gradient(135deg, #1a1a1a 0%, #1a1a1a 100%);
     }
 
     /* Content positioning for cards */
@@ -1051,7 +1051,6 @@ a:hover {
     }
 
     .bottle-back {
-        opacity: 0.3;
         transform: translateX(10px);
     }
 

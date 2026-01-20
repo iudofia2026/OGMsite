@@ -89,16 +89,21 @@ const ColorScheme = {
         heroBackground: 'linear-gradient(135deg, #FFFFFF 0%, #F8F6F2 50%, #FFFFFF 100%)',
 
         // Hero title
-        heroTitle: 'linear-gradient(135deg, #C9A227 0%, #D4AF37 25%, #F4E77C 50%, #D4AF37 75%, #C9A227 100%)',
+        heroTitle: 'linear-gradient(135deg, #C9A227 0%, #D4AF37 25%, #F4E77C 50%, ' +
+                   '#D4AF37 75%, #C9A227 100%)',
 
         // Primary button
         buttonPrimary: 'linear-gradient(135deg, #C9A227 0%, #D4AF37 50%, #C9A227 100%)',
-        buttonPrimaryHover: 'linear-gradient(135deg, #D4AF37 0%, #F4E77C 50%, #D4AF37 100%)',
+        buttonPrimaryHover: 'linear-gradient(135deg, #D4AF37 0%, #F4E77C 50%, ' +
+                           '#D4AF37 100%)',
 
         // Subtle overlays
-        overlayGold: 'radial-gradient(circle at 30% 70%, rgba(212, 175, 55, 0.08) 0%, transparent 50%)',
-        overlayGold2: 'radial-gradient(circle at 70% 30%, rgba(212, 175, 55, 0.05) 0%, transparent 50%)',
-        overlayShimmer: 'radial-gradient(circle at 50% 50%, rgba(244, 231, 124, 0.03) 0%, transparent 70%)'
+        overlayGold: 'radial-gradient(circle at 30% 70%, ' +
+                    'rgba(212, 175, 55, 0.08) 0%, transparent 50%)',
+        overlayGold2: 'radial-gradient(circle at 70% 30%, ' +
+                     'rgba(212, 175, 55, 0.05) 0%, transparent 50%)',
+        overlayShimmer: 'radial-gradient(circle at 50% 50%, ' +
+                        'rgba(244, 231, 124, 0.03) 0%, transparent 70%)'
     },
 
     // =============================================================================

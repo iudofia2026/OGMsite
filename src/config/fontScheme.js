@@ -164,10 +164,14 @@ const FontScheme = {
         return `
             :root {
                 /* OGM Font Families */
-                --font-primary: "${this.ogmFonts.primary.family}", ${this.ogmFonts.primary.fallback};
-                --font-secondary: "${this.ogmFonts.secondary.family}", ${this.ogmFonts.secondary.fallback};
-                --font-body: "${this.ogmFonts.body.family}", ${this.ogmFonts.body.fallback};
-                --font-accent: "${this.ogmFonts.accent.family}", ${this.ogmFonts.accent.fallback};
+                --font-primary: "${this.ogmFonts.primary.family}", ` +
+                               `${this.ogmFonts.primary.fallback};
+                --font-secondary: "${this.ogmFonts.secondary.family}", ` +
+                                 `${this.ogmFonts.secondary.fallback};
+                --font-body: "${this.ogmFonts.body.family}", ` +
+                             `${this.ogmFonts.body.fallback};
+                --font-accent: "${this.ogmFonts.accent.family}", ` +
+                              `${this.ogmFonts.accent.fallback};
 
                 /* Typography Scale */
                 --font-size-hero: ${this.scale.hero.fontSize};

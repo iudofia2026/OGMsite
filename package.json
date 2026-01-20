@@ -15,7 +15,7 @@
     "lint:fix": "eslint src/**/*.js --fix",
     "format": "prettier --write src/**/*.js",
     "format:check": "prettier --check src/**/*.js",
-    "vercel-build": "npm run lint:fix && npm run format",
+    "vercel-build": "echo 'Express app - no build needed'",
     "deploy": "vercel --prod",
     "preview": "vercel",
     "check": "npm run lint && npm run format:check",

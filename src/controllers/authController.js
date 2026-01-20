@@ -76,6 +76,7 @@ const authController = {
             });
 
         } catch (error) {
+            // eslint-disable-next-line no-console
             console.error('Google OAuth error:', error);
             res.status(500).json({
                 success: false,

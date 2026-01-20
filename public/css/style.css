@@ -693,6 +693,19 @@ a:hover {
     color: #ffffff;
 }
 
+/* Flavor-specific subtitle colors */
+.sub-title-beige {
+    color: #C9A55B; /* Beige for Premium Reposado */
+}
+
+.sub-title-red {
+    color: #CC071E; /* Red for Jalapeño */
+}
+
+.sub-title-teal {
+    color: #02BBB7; /* Teal for Ginger Lime */
+}
+
 .arrow {
     margin-top: 10px;
     opacity: 0.3;
@@ -1020,6 +1033,19 @@ a:hover {
         margin-bottom: 1rem;
         text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
         transform: none !important;
+    }
+
+    /* Mobile flavor-specific colors */
+    .sub-title-beige {
+        color: #C9A55B;
+    }
+
+    .sub-title-red {
+        color: #CC071E;
+    }
+
+    .sub-title-teal {
+        color: #02BBB7;
     }
 
     .text-ani {

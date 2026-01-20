@@ -118,7 +118,7 @@ document
         gsap.to(bottle, {
             x: 0,
             y: 0,
-            autoAlpha: 1,
+            autoAlpha: 0.75,
             duration: 0.8,
             ease: "power3.out"
         });
@@ -151,7 +151,7 @@ document
                     y: 0,
                     scale: 1,
                     rotationZ: 0,
-                    autoAlpha: 1,
+                    autoAlpha: 0.75,
                     duration: 0.9,
                     ease: "elastic.out(1, 0.6)"
                 },
@@ -179,7 +179,7 @@ document
                     y: 0,
                     x: 0,
                     rotationZ: 0,
-                    autoAlpha: 1,
+                    autoAlpha: 0.75,
                     duration: 0.7,
                     ease: "power3.out"
                 },

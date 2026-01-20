@@ -420,14 +420,15 @@ a:hover {
 }
 
 .hero-description {
-    font-family: var(--font-body);
+    font-family: var(--font-secondary);
     font-size: var(--font-size-body);
     color: #6B6B6B;
     margin: 0 auto 1rem;
     font-weight: var(--font-weight-normal);
     line-height: var(--line-height-body);
-    letter-spacing: var(--letter-spacing-body);
+    letter-spacing: 0.3em;
     max-width: 600px;
+    text-transform: uppercase;
 }
 
 

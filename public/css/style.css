@@ -409,11 +409,11 @@ a:hover {
 }
 
 .hero-subtitle {
-    font-family: var(--font-secondary);
+    font-family: var(--font-primary);
     font-size: var(--font-size-subtitle);
     color: #4A4A4A;
     margin: 2.5rem 0 1rem;
-    font-weight: var(--font-weight-normal);
+    font-weight: var(--font-weight-bold);
     line-height: var(--line-height-subtitle);
     letter-spacing: var(--letter-spacing-subtitle);
     text-transform: uppercase;

@@ -433,7 +433,7 @@ a:hover {
 .hero-description {
     font-family: var(--font-secondary);
     font-size: var(--font-size-body);
-    color: #8A7B5F;
+    color: #D4AF37;
     margin: 0 auto 1rem;
     font-weight: var(--font-weight-normal);
     line-height: var(--line-height-body);
@@ -647,11 +647,10 @@ a:hover {
 .content-parent {
     position: absolute;
     left: 0%;
-    top: auto;
+    top: 50%;
     right: 0%;
-    bottom: 0%;
+    transform: translateY(-50%);
     width: 100%;
-    padding-bottom: 60px;
     padding-left: 60px;
 }
 
@@ -659,10 +658,11 @@ a:hover {
     width: 30vw;
     font-family: var(--font-body);
     color: #fff;
-    font-size: 2vw; /* Smaller font size */
-    line-height: 2.5vw;
+    font-size: 2.5vw; /* Increased from 2vw for better readability */
+    line-height: 3vw;
     font-weight: 400;
     letter-spacing: var(--letter-spacing-body);
+    padding: 0 2rem; /* Add horizontal cushion */
 }
 
 .bottle-back {
@@ -734,6 +734,7 @@ a:hover {
 .sub-title {
     font-size: 40px;
     color: #ffffff;
+    padding: 0 2rem; /* Add horizontal cushion */
 }
 
 /* Flavor-specific subtitle colors */
@@ -753,6 +754,7 @@ a:hover {
     margin-top: 10px;
     opacity: 0.3;
     pointer-events: none;
+    padding: 0 2rem; /* Add horizontal cushion */
 }
 
 /* Signup Form Section */

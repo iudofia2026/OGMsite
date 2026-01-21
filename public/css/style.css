@@ -930,16 +930,16 @@ a:hover {
     z-index: 1;
 }
 
-/* White divider line at top of blank section */
+/* Blue divider line at bottom of blank section */
 .blank-spacer-section::before {
     content: '';
     position: absolute;
-    top: 50px; /* Moved down from 0 */
+    bottom: 0; /* At bottom */
     left: 0;
     right: 0;
     width: 100%;
-    height: 1px;
-    background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.3) 50%, transparent 100%);
+    height: 3px; /* Thicker line */
+    background: linear-gradient(90deg, transparent 0%, rgba(0, 123, 255, 1) 50%, transparent 100%); /* Bright blue */
     z-index: 2;
 }
 

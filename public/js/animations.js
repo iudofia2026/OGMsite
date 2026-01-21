@@ -47,7 +47,7 @@ function setupScrollAnimations() {
                 scrub: true,
                 pin: ".sticky-container",
                 invalidateOnRefresh: true,
-                markers: isDevelopment() // Only show markers in development
+                markers: false // Disable debug markers
             }
         });
 
@@ -61,7 +61,7 @@ function setupScrollAnimations() {
                 end: () => "+=" + getScrollLength(),
                 scrub: true,
                 invalidateOnRefresh: true,
-                markers: isDevelopment() // Only show markers in development
+                markers: false // Disable debug markers
             }
         });
     });
@@ -94,7 +94,7 @@ function setupScrollAnimations() {
                 scrub: true,
                 pin: ".sticky-container",
                 invalidateOnRefresh: true,
-                markers: isDevelopment() // Only show markers in development
+                markers: false // Disable debug markers
             }
         });
 
@@ -108,7 +108,7 @@ function setupScrollAnimations() {
                 end: () => "+=" + getScrollLength(),
                 scrub: true,
                 invalidateOnRefresh: true,
-                markers: isDevelopment() // Only show markers in development
+                markers: false // Disable debug markers
             }
         });
 

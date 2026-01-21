@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "name": "ogm-tequila-site",
+  "name": "ogm-tequila-clean-deploy",
   "builds": [
     {
       "src": "src/index.js",
@@ -11,12 +11,11 @@
       }
     }
   ],
-  "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/src/index.js"
+  "functions": {
+    "src/index.js": {
+      "includeFiles": "public/**"
     }
-  ],
+  },
   "env": {
     "NODE_ENV": "production",
     "APP_URL": "https://ogmsite.vercel.app"
@@ -27,7 +26,15 @@
       "headers": [
         {
           "key": "Cache-Control",
-          "value": "no-cache, no-store, must-revalidate"
+          "value": "no-cache, no-store, must-revalidate, max-age=0"
+        },
+        {
+          "key": "Pragma",
+          "value": "no-cache"
+        },
+        {
+          "key": "Expires",
+          "value": "0"
         },
         {
           "key": "X-Frame-Options",

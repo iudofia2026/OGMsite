@@ -11,11 +11,6 @@
       }
     }
   ],
-  "functions": {
-    "src/index.js": {
-      "includeFiles": "public/**"
-    }
-  },
   "env": {
     "NODE_ENV": "production",
     "APP_URL": "https://ogmsite.vercel.app"

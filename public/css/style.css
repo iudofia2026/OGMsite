@@ -921,4 +921,26 @@ a:hover {
     }
 }
 
+/* Blank spacer section underneath scroll container */
+.blank-spacer-section {
+    position: relative;
+    width: 100%;
+    height: 200vh; /* Allow proper scrolling past the animation */
+    background: #000;
+    z-index: 1;
+}
+
+/* White divider line at top of blank section */
+.blank-spacer-section::before {
+    content: '';
+    position: absolute;
+    top: 50px; /* Moved down from 0 */
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.3) 50%, transparent 100%);
+    z-index: 2;
+}
+
 /* Signup Form Section */

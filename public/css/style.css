@@ -925,22 +925,31 @@ a:hover {
 .blank-spacer-section {
     position: relative;
     width: 100%;
-    height: 200vh; /* Allow proper scrolling past the animation */
+    height: calc(200vh - 830px); /* Reduced to end where blue line was */
     background: #000;
     z-index: 1;
 }
 
-/* Blue divider line at bottom of blank section */
-.blank-spacer-section::before {
+/* Blue divider line at bottom of first blank section */
+.blank-spacer-section::after {
     content: '';
     position: absolute;
-    bottom: 0; /* At bottom */
+    bottom: 0; /* At bottom of this section */
     left: 0;
     right: 0;
     width: 100%;
-    height: 3px; /* Thicker line */
-    background: linear-gradient(90deg, transparent 0%, rgba(0, 123, 255, 1) 50%, transparent 100%); /* Bright blue */
+    height: 3px;
+    background: linear-gradient(90deg, transparent 0%, rgba(0, 123, 255, 1) 50%, transparent 100%);
     z-index: 2;
+}
+
+/* New section starting where blue line is */
+.new-section-after-line {
+    position: relative;
+    width: 100%;
+    height: 830px; /* Remaining space from original 200vh */
+    background: #000;
+    z-index: 1;
 }
 
 /* Signup Form Section */

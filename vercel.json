@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "name": "ogm-tequila-clean-deploy",
+  "name": "ogmsite",
   "builds": [
     {
       "src": "src/index.js",

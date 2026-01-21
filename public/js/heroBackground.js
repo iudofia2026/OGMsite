@@ -70,7 +70,7 @@ class VerticalBarsNoise {
         const dpr = window.devicePixelRatio || 1;
         this.dpr = dpr;
         const displayWidth = window.innerWidth;
-        const displayHeight = window.innerHeight;
+        const displayHeight = Math.max(window.innerHeight * 6, document.body.scrollHeight); // Cover all sections
         this.canvas.width = displayWidth * dpr;
         this.canvas.height = displayHeight * dpr;
         this.canvas.style.width = displayWidth + 'px';
@@ -117,6 +117,7 @@ class VerticalBarsNoise {
         const currentTime = Date.now();
         const canvasWidth = this.canvas.clientWidth;
         const canvasHeight = this.canvas.clientHeight;
+        const viewportHeight = window.innerHeight;
         const numLines = Math.floor(canvasHeight / 11);
         const lineSpacing = canvasHeight / numLines;
 

@@ -342,7 +342,7 @@ a:hover {
     position: relative;
     width: 100%;
     height: 100vh;
-    background: #1a1a1a;
+    background: transparent; /* Let canvas show through */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -357,6 +357,18 @@ a:hover {
     width: 100%;
     height: 100%;
     z-index: 1;
+}
+
+/* Global continuous canvas */
+.global-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh; /* Start with viewport height */
+    min-height: 600vh; /* Extend much further to cover all scroll sections */
+    z-index: 0; /* Behind everything */
+    pointer-events: none; /* Let clicks pass through */
 }
 
 
@@ -564,7 +576,7 @@ a:hover {
     height: 100vh;
     justify-content: center;
     align-items: center;
-    background-color: #1a1a1a;
+    background-color: transparent; /* Let canvas show through */
     cursor: pointer;
 }
 
@@ -583,7 +595,7 @@ a:hover {
     height: 100vh;
     justify-content: center;
     align-items: center;
-    background-color: #1a1a1a;
+    background-color: transparent; /* Let canvas show through */
     cursor: pointer;
 }
 
@@ -609,7 +621,7 @@ a:hover {
     height: 100vh;
     justify-content: center;
     align-items: center;
-    background-color: #1a1a1a;
+    background-color: transparent; /* Let canvas show through */
     cursor: pointer;
 }
 
@@ -663,33 +675,48 @@ a:hover {
 }
 
 .bg-img-1 {
-    width: 100%;
-    height: 100%;
+    width: 70%;
+    height: 70%;
     background-image: url("/images/backgrounds/agave.png");
     background-position: 50% 50%;
     background-size: cover;
     background-repeat: no-repeat;
-    filter: brightness(0.7) contrast(1.1) grayscale(100%);
+    opacity: 1; /* 100% opacity */
+    filter: brightness(0.5) contrast(1.1) grayscale(100%);
+    position: absolute;
+    top: 15%;
+    left: 15%;
+    z-index: 1;
 }
 
 .bg-img-2 {
-    width: 100%;
-    height: 100%;
+    width: 70%;
+    height: 70%;
     background-image: url("/images/backgrounds/jalapeno.jpg");
     background-position: 50% 50%;
-    background-size: 130%;
+    background-size: cover;
     background-repeat: no-repeat;
-    filter: brightness(0.7) contrast(1.1) grayscale(100%);
+    opacity: 1; /* 100% opacity */
+    filter: brightness(0.5) contrast(1.1) grayscale(100%);
+    position: absolute;
+    top: 15%;
+    left: 15%;
+    z-index: 1;
 }
 
 .bg-img-3 {
-    width: 100%;
-    height: 100%;
+    width: 70%;
+    height: 70%;
     background-image: url("/images/backgrounds/gingerlime.png");
-    background-position: 40% 50%;
-    background-size: 120%;
+    background-position: 50% 50%;
+    background-size: cover;
     background-repeat: no-repeat;
-    filter: brightness(0.7) contrast(1.1) grayscale(100%);
+    opacity: 1; /* 100% opacity */
+    filter: brightness(0.5) contrast(1.1) grayscale(100%);
+    position: absolute;
+    top: 15%;
+    left: 15%;
+    z-index: 1;
 }
 
 .sub-title {
@@ -936,7 +963,7 @@ a:hover {
     position: relative;
     width: 100%;
     height: calc(200vh - 830px); /* Reduced to end where blue line was */
-    background: #000;
+    background: transparent; /* Let canvas show through */
     z-index: 1;
 }
 

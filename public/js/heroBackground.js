@@ -1,12 +1,12 @@
-// Vertical Bars Noise Animation - Vanilla JS for OGM
+// Vertical Bars Noise Animation - Default Original
 // Converted from React to vanilla JavaScript
 
 class VerticalBarsNoise {
     constructor(options = {}) {
         // OGM Color Scheme defaults
-        this.backgroundColor = options.backgroundColor || '#141414'; // Hero black
-        this.lineColor = options.lineColor || '#C9A55B'; // OGM gold
-        this.barColor = options.barColor || '#C9A55B'; // OGM gold
+        this.backgroundColor = options.backgroundColor || '#141414'; // Hero background
+        this.lineColor = options.lineColor || '#8B7355'; // Darker muted gold
+        this.barColor = options.barColor || '#8B7355';
         this.lineWidth = options.lineWidth || 1;
         this.animationSpeed = options.animationSpeed || 0.0005;
         this.removeWaveLine = options.removeWaveLine !== undefined ? options.removeWaveLine : true;
@@ -75,8 +75,9 @@ class VerticalBarsNoise {
         this.canvas.height = displayHeight * dpr;
         this.canvas.style.width = displayWidth + 'px';
         this.canvas.style.height = displayHeight + 'px';
-        if (this.ctx) {
-            this.ctx.scale(dpr, dpr);
+        const ctx = this.canvas.getContext('2d');
+        if (ctx) {
+            ctx.scale(dpr, dpr);
         }
     }
 
@@ -119,11 +120,9 @@ class VerticalBarsNoise {
         const numLines = Math.floor(canvasHeight / 11);
         const lineSpacing = canvasHeight / numLines;
 
-        // Clear canvas with background color
         this.ctx.fillStyle = this.backgroundColor;
         this.ctx.fillRect(0, 0, canvasWidth, canvasHeight);
 
-        // Draw horizontal lines
         for (let i = 0; i < numLines; i++) {
             const y = i * lineSpacing + lineSpacing / 2;
             const mouseInfluence = this.getMouseInfluence(canvasWidth / 2, y);
@@ -137,7 +136,6 @@ class VerticalBarsNoise {
             this.ctx.lineTo(canvasWidth, y);
             this.ctx.stroke();
 
-            // Draw vertical bars
             for (let x = 0; x < canvasWidth; x += 8) {
                 const noiseVal = this.noise(x, y, this.time);
                 const mouseInfl = this.getMouseInfluence(x, y);
@@ -176,7 +174,6 @@ class VerticalBarsNoise {
             }
         }
 
-        // Draw ripple waves (if enabled)
         if (!this.removeWaveLine) {
             this.ripples.forEach((ripple) => {
                 const age = currentTime - ripple.time;
@@ -235,14 +232,14 @@ class VerticalBarsNoise {
 document.addEventListener('DOMContentLoaded', () => {
     const heroCanvas = document.getElementById('hero-canvas');
     if (heroCanvas) {
-        const heroBackground = new VerticalBarsNoise({
+        const verticalBackground = new VerticalBarsNoise({
             backgroundColor: '#141414', // Hero background
-            lineColor: '#8B7355', // Darker muted gold
-            barColor: '#8B7355', // Darker muted gold
+            lineColor: '#6B5535', // Even darker muted gold
+            barColor: '#6B5535',
             lineWidth: 1,
             animationSpeed: 0.0005,
             removeWaveLine: true
         });
-        heroBackground.init(heroCanvas);
+        verticalBackground.init(heroCanvas);
     }
 });

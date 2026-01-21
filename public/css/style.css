@@ -659,8 +659,8 @@ a:hover {
     width: 30vw;
     font-family: var(--font-body);
     color: #fff;
-    font-size: 3vw;
-    line-height: 3.5vw;
+    font-size: 2vw; /* Smaller font size */
+    line-height: 2.5vw;
     font-weight: 400;
     letter-spacing: var(--letter-spacing-body);
 }
@@ -717,6 +717,18 @@ a:hover {
     top: 15%;
     left: 15%;
     z-index: 1;
+}
+
+/* Desktop: Make background images wider */
+@media (min-width: 768px) {
+    .bg-img-1,
+    .bg-img-2,
+    .bg-img-3 {
+        width: 85%; /* A bit wider */
+        height: 85%;
+        top: 7.5%; /* Center adjustment */
+        left: 7.5%;
+    }
 }
 
 .sub-title {

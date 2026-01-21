@@ -1,9 +1,19 @@
 gsap.registerPlugin(ScrollTrigger);
 
+console.log('🚀 GSAP animations.js loaded');
+console.log('🚀 Window width:', window.innerWidth, 'height:', window.innerHeight);
+
 const leftSections = gsap.utils.toArray(".left-side-col > div");
 const rightSections = gsap.utils.toArray(".right-side-col > div");
 const rightContainer = document.querySelector(".right-side-col");
 const sectionCount = leftSections.length;
+
+console.log('🚀 Found sections:', {
+    leftSections: leftSections.length,
+    rightSections: rightSections.length,
+    sectionCount: sectionCount,
+    rightContainer: !!rightContainer
+});
 
 const mm = gsap.matchMedia();
 
@@ -14,25 +24,10 @@ const isDevelopment = () => {
            window.location.search.includes('debug=true');
 };
 
-// Helper function to create ScrollTrigger config
-const createScrollTriggerConfig = (config, showMarkers = false) => {
-    return {
-        trigger: config.trigger || ".scroll-container",
-        start: config.start || "top top",
-        end: config.end,
-        scrub: config.scrub !== undefined ? config.scrub : true,
-        pin: config.pin,
-        invalidateOnRefresh: config.invalidateOnRefresh !== undefined ? config.invalidateOnRefresh : true,
-        markers: showMarkers && isDevelopment(), // Only show markers in development
-        ...config
-    };
-};
-
 function setupScrollAnimations() {
     // DESKTOP + TABLET (vertical behaviour)
     mm.add("(min-width: 768px)", () => {
         ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-        // gsap.killTweensOf([leftSections, rightContainer]);
         const getSectionSize = () => window.innerHeight;
         const getScrollLength = () => getSectionSize() * sectionCount;
 
@@ -45,28 +40,40 @@ function setupScrollAnimations() {
         gsap.to(leftSections, {
             yPercent: -100 * (sectionCount - 1),
             ease: "none",
-            scrollTrigger: createScrollTriggerConfig({
+            scrollTrigger: {
+                trigger: ".scroll-container",
+                start: "top top",
                 end: () => "+=" + getScrollLength(),
-                pin: ".sticky-container"
-            })
+                scrub: true,
+                pin: ".sticky-container",
+                invalidateOnRefresh: true,
+                markers: isDevelopment() // Only show markers in development
+            }
         });
 
         // right column moves back to 0 on scroll
         gsap.to(rightContainer, {
             y: 0,
             ease: "none",
-            scrollTrigger: createScrollTriggerConfig({
-                end: () => "+=" + getScrollLength()
-            })
+            scrollTrigger: {
+                trigger: ".scroll-container",
+                start: "top top",
+                end: () => "+=" + getScrollLength(),
+                scrub: true,
+                invalidateOnRefresh: true,
+                markers: isDevelopment() // Only show markers in development
+            }
         });
     });
 
     // MOBILE (horizontal behaviour)
     mm.add("(max-width: 767.98px)", () => {
+        console.log('📱 Mobile GSAP breakpoint triggered!');
         ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-        // gsap.killTweensOf([leftSections, rightContainer]);
         const getSectionSize = () => window.innerWidth;
         const getScrollLength = () => getSectionSize() * sectionCount;
+
+        console.log('📱 Mobile section size:', getSectionSize(), 'Scroll length:', getScrollLength());
 
         // right column starts shifted to the left
         gsap.set(rightContainer, {
@@ -74,24 +81,38 @@ function setupScrollAnimations() {
             x: () => -getSectionSize() * (sectionCount - 1)
         });
 
+        console.log('📱 Right container shifted to:', -getSectionSize() * (sectionCount - 1));
+
         // left column slides horizontally
         gsap.to(leftSections, {
             xPercent: -100 * (sectionCount - 1),
             ease: "none",
-            scrollTrigger: createScrollTriggerConfig({
+            scrollTrigger: {
+                trigger: ".scroll-container",
+                start: "top top",
                 end: () => "+=" + getScrollLength(),
-                pin: ".sticky-container"
-            })
+                scrub: true,
+                pin: ".sticky-container",
+                invalidateOnRefresh: true,
+                markers: isDevelopment() // Only show markers in development
+            }
         });
 
         // right column slides back to x: 0
         gsap.to(rightContainer, {
             x: 0,
             ease: "none",
-            scrollTrigger: createScrollTriggerConfig({
-                end: () => "+=" + getScrollLength()
-            })
+            scrollTrigger: {
+                trigger: ".scroll-container",
+                start: "top top",
+                end: () => "+=" + getScrollLength(),
+                scrub: true,
+                invalidateOnRefresh: true,
+                markers: isDevelopment() // Only show markers in development
+            }
         });
+
+        console.log('📱 Mobile GSAP animations set up complete');
     });
 }
 
@@ -108,22 +129,21 @@ document
 
         if (!bottle || !bottleBack) return;
 
-        // Force reset any existing transforms
-        gsap.set([bottle, bottleBack], { clearProps: "all" });
-
-        // Set initial positions
         gsap.set(bottle, { y: 0, x: 100, autoAlpha: 0 });
-        gsap.set(bottleBack, { y: 80, x: 0, scale: 0.95, rotation: -8, autoAlpha: 0 });
+        gsap.set(bottleBack, { y: 0, x: 100, autoAlpha: 0 });
 
         gsap.to(bottle, {
             x: 0,
             y: 0,
-            autoAlpha: 0.75,
+            autoAlpha: 1,
             duration: 0.8,
             ease: "power3.out"
         });
 
-        // Back bottle is positioned below and ready for hover animation
+        gsap.to(bottleBack, {
+            x: 0,
+            y: 100
+        });
 
         section.addEventListener("mouseenter", () => {
             gsap.killTweensOf([bottle, bottleBack]);
@@ -151,7 +171,7 @@ document
                     y: 0,
                     scale: 1,
                     rotationZ: 0,
-                    autoAlpha: 0.75,
+                    autoAlpha: 1,
                     duration: 0.9,
                     ease: "elastic.out(1, 0.6)"
                 },
@@ -179,7 +199,7 @@ document
                     y: 0,
                     x: 0,
                     rotationZ: 0,
-                    autoAlpha: 0.75,
+                    autoAlpha: 1,
                     duration: 0.7,
                     ease: "power3.out"
                 },
@@ -198,24 +218,6 @@ window.addEventListener("resize", () => {
 });
 
 // Development utilities
-// To enable debug markers, add ?debug=true to the URL or run these commands in the console:
-//
-// Enable markers for all animations:
-// window.enableGSAPMarkers = () => {
-//     ScrollTrigger.getAll().forEach(trigger => {
-//         trigger.vars.markers = true;
-//         trigger.refresh();
-//     });
-// };
-//
-// Disable markers for all animations:
-// window.disableGSAPMarkers = () => {
-//     ScrollTrigger.getAll().forEach(trigger => {
-//         trigger.vars.markers = false;
-//         trigger.refresh();
-//     });
-// };
-
 // Auto-enable markers in development with debug parameter
 if (isDevelopment() && window.location.search.includes('debug=true')) {
     console.log('🎯 Debug mode enabled - GSAP markers will be visible');

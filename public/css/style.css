@@ -342,7 +342,7 @@ a:hover {
     position: relative;
     width: 100%;
     height: 100vh;
-    background: linear-gradient(135deg, #0F0F0F 0%, #1A1A1A 50%, #0F0F0F 100%);
+    background: linear-gradient(135deg, #050505 0%, #0A0A0A 50%, #050505 100%);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -533,8 +533,8 @@ a:hover {
 
 .scroll-container {
     position: relative;
-    z-index: 1;
-    height: 200vh;
+    z-index: 2;
+    height: 300vh;
 }
 
 .sticky-container {
@@ -845,7 +845,7 @@ a:hover {
    Intuitive swipeable card experience for mobile users
 ============================================================================= */
 @media (max-width: 767.98px) {
-    /* Hero Section Mobile Optimizations */
+    /* Hero Section Mobile Optimizations - Keep these */
     .hero-content {
         padding: 0 1.5rem;
     }
@@ -891,263 +891,44 @@ a:hover {
         height: 44px;
     }
 
-    /* Scroll Container - Full height scroll snap */
+    /* EXACT CODEPEN MOBILE CSS - No custom overrides */
     .scroll-container {
-        height: auto;
-        scroll-snap-type: y mandatory;
-        overflow-y: scroll;
-        -webkit-overflow-scrolling: touch;
+        height: 100vh; /* CodePen uses 100vh for mobile, not 300vh */
     }
 
-    /* Sticky Container becomes scrollable cards */
     .sticky-container {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        height: auto;
-        overflow: visible;
+        flex-direction: column; /* CodePen has this, but GSAP still works */
     }
 
-    /* Both columns become single column stack */
+    .left-side-col,
+    .section-1-l,
+    .section-2-l,
+    .section-3-l {
+        height: 50vh;
+    }
+
+    .right-side-col,
+    .section-3-r,
+    .section-2-r,
+    .section-1-r {
+        height: 50vh;
+    }
+
     .left-side-col,
     .right-side-col {
         display: flex;
-        flex-direction: column;
-        width: 100%;
-        height: auto;
     }
 
-    /* All sections become full-screen cards */
-    .section-1-l,
-    .section-2-l,
-    .section-3-l,
-    .section-3-r,
-    .section-2-r,
-    .section-1-r {
-        position: relative;
-        height: 100vh;
-        width: 100%;
-        scroll-snap-align: start;
-        scroll-snap-stop: always;
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        transform: none !important;
-        translate: none !important;
-        rotate: none !important;
-        scale: none !important;
+    .left-side-col > div,
+    .right-side-col > div {
+        flex: 0 0 100%;
     }
 
-    /* Background images for cards - applied directly to sections */
-    .section-1-l {
-        background-image: url("/images/backgrounds/agave.png");
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        position: relative;
-    }
-
-    .section-1-l::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(0, 0, 0, 0.5);
-        z-index: 1;
-    }
-
-    .section-3-l {
-        background-image: url("/images/backgrounds/jalapeno.jpg");
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        position: relative;
-    }
-
-    .section-3-l::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(0, 0, 0, 0.5);
-        z-index: 1;
-    }
-
-    .section-2-r {
-        background-image: url("/images/backgrounds/gingerlime.png");
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        position: relative;
-    }
-
-    .section-2-r::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(0, 0, 0, 0.5);
-        z-index: 1;
-    }
-
-    /* Hide the original bg-img elements on mobile since we use backgrounds */
-    .section-1-l .bg-img-1,
-    .section-3-l .bg-img-2,
-    .section-2-r .bg-img-3 {
-        display: none;
-    }
-
-    /* Bottle sections */
-    .section-2-l,
-    .section-3-r,
-    .section-1-r {
-        background: linear-gradient(135deg, #1a1a1a 0%, #1a1a1a 100%);
-    }
-
-    /* Content positioning for cards */
-    .content-parent {
-        position: relative;
-        z-index: 10;
-        padding: 2rem 1.5rem 6rem;
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-end;
-        height: 100%;
-        width: 100%;
-        transform: none !important;
-    }
-
-    /* Typography for mobile cards */
-    .sub-title {
-        font-size: clamp(1.5rem, 6vw, 2rem);
-        font-weight: 700;
-        color: #ffffff;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-        margin-bottom: 1rem;
-        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
-        transform: none !important;
-    }
-
-    /* Mobile flavor-specific colors */
-    .sub-title-beige {
-        color: #C9A55B;
-    }
-
-    .sub-title-red {
-        color: #CC071E;
-    }
-
-    .sub-title-teal {
-        color: #02BBB7;
-    }
-
-    .text-ani {
-        width: 100%;
-        max-width: 350px;
-        font-size: clamp(1.2rem, 4vw, 1.5rem);
-        line-height: 1.4;
-        color: #ffffff;
-        font-weight: 500;
-        text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
-        transform: none !important;
-    }
-
-    .link-block {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-decoration: none;
-        transform: none !important;
-    }
-
-    /* Bottle styling for mobile */
-    .bottle,
-    .bottle-back {
-        height: 60vh;
+    .bottle-back,
+    .bottle {
+        height: 90%;
         width: auto;
-        max-width: 90vw;
-        object-fit: contain;
-        filter: drop-shadow(0 0 10px rgba(201, 165, 91, 0.2));
-    }
-
-    .bottle-back {
-        transform: translateX(10px);
-    }
-
-    .bg-text {
-        font-size: 15vw;
-        line-height: 1;
-        opacity: 0.15;
-        text-align: center;
-    }
-
-    /* Arrow indicator */
-    .arrow {
-        margin-top: 1.5rem;
-        font-size: 1.5rem;
-        color: #D4AF37;
-    }
-
-    /* Add swipe indicator */
-    .section-1-l::after,
-    .section-2-l::after,
-    .section-3-l::after,
-    .section-3-r::after,
-    .section-2-r::after,
-    .section-1-r::after {
-        content: '';
-        position: absolute;
-        bottom: 2rem;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 40px;
-        height: 40px;
-        border: 2px solid rgba(212, 175, 55, 0.5);
-        border-radius: 50%;
-        z-index: 5;
-        animation: swipePulse 2s infinite;
-    }
-
-    @keyframes swipePulse {
-        0%, 100% {
-            opacity: 0.5;
-            transform: translateX(-50%) scale(1);
-        }
-        50% {
-            opacity: 1;
-            transform: translateX(-50%) scale(1.1);
-        }
-    }
-
-    /* Smooth scroll behavior */
-    html {
-        scroll-behavior: smooth;
-    }
-
-    /* Optimize touch interactions */
-    .section-1-l,
-    .section-2-l,
-    .section-3-l,
-    .section-3-r,
-    .section-2-r,
-    .section-1-r {
-        touch-action: pan-y;
-        -webkit-tap-highlight-color: transparent;
-    }
-
-    /* Link block touch optimization */
-    .link-block {
-        -webkit-tap-highlight-color: rgba(212, 175, 55, 0.3);
     }
 }
+
+/* Signup Form Section */

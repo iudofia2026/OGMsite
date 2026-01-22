@@ -989,6 +989,11 @@ a:hover {
         font-size: 28px !important;
         padding: 0 1rem !important;
     }
+
+    /* Mobile: Make spacer section taller to delay gold line appearance */
+    .blank-spacer-section {
+        height: calc(250vh - 830px) !important; /* Moderate increase from 200vh for mobile */
+    }
 }
 
 /* Blank spacer section underneath scroll container */

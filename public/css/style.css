@@ -970,6 +970,25 @@ a:hover {
         height: 90%;
         width: auto;
     }
+
+    /* Mobile: Make text containers align with bg-img elements (70% width, 15% left) */
+    .content-parent {
+        width: 70% !important;
+        left: 15% !important;
+        padding-left: 0 !important;
+    }
+
+    .text-ani {
+        width: 100% !important;
+        font-size: 5.5vw !important;
+        line-height: 6.5vw !important;
+        padding: 0 1rem !important;
+    }
+
+    .sub-title {
+        font-size: 28px !important;
+        padding: 0 1rem !important;
+    }
 }
 
 /* Blank spacer section underneath scroll container */

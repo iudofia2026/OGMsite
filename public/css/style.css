@@ -1208,8 +1208,8 @@ a:hover {
     display: block;
     position: relative;
     overflow: hidden;
-    /* Prevent layout shift - maintain aspect ratio (2:1 crop, but display more vertically) */
-    aspect-ratio: 3 / 4;
+    /* Prevent layout shift - maintain aspect ratio (slightly cropped from original) */
+    aspect-ratio: 9 / 11;
     min-height: 250px;
     /* Performance optimization */
     contain: layout style paint;

@@ -1098,7 +1098,7 @@ a:hover {
 
 .about-text {
     font-family: var(--font-primary);
-    font-size: 1.5rem;
+    font-size: 1.875rem;
     line-height: 1.8;
     color: rgba(255, 255, 255, 0.9);
     font-weight: 400;
@@ -1106,6 +1106,24 @@ a:hover {
     margin: 0;
     padding: 0;
     max-width: 100%;
+    /* Elegant hover animation */
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                color 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    display: inline-block;
+    will-change: transform;
+    cursor: default;
+    transform-origin: left center;
+}
+
+/* Right-aligned text containers */
+.about-2 .about-right .about-text,
+.about-4 .about-right .about-text {
+    transform-origin: right center;
+}
+
+.about-text:hover {
+    transform: scale(1.025);
+    color: rgba(255, 255, 255, 1);
 }
 
 .about-1,
@@ -1190,9 +1208,9 @@ a:hover {
     display: block;
     position: relative;
     overflow: hidden;
-    /* Prevent layout shift - maintain aspect ratio */
-    aspect-ratio: 2 / 3;
-    min-height: 250px;
+    /* Prevent layout shift - maintain aspect ratio (4:3 - less vertical) */
+    aspect-ratio: 4 / 3;
+    min-height: 200px;
     /* Performance optimization */
     contain: layout style paint;
     background-color: transparent;
@@ -1203,6 +1221,9 @@ a:hover {
     height: 100%;
     object-fit: cover;
     display: block;
+    /* Ensure image is visible */
+    opacity: 1;
+    visibility: visible;
     /* Performance optimizations */
     image-rendering: auto; /* Let browser optimize */
     /* Smooth loading transition */
@@ -1267,8 +1288,12 @@ a:hover {
     }
 
     .about-text {
-        font-size: 1.35rem;
+        font-size: 1.5rem;
         line-height: 1.7;
+    }
+    
+    .about-text:hover {
+        transform: scale(1.02);
     }
 }
 

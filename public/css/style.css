@@ -445,7 +445,7 @@ a:hover {
 
 
 .hero-cta {
-    margin-top: 2rem;
+    margin-top: 0;
 }
 
 /* === removing default button style ===*/
@@ -467,30 +467,51 @@ a:hover {
     letter-spacing: 3px;
     text-decoration: none;
     font-size: var(--fs-size);
-    font-family: var(--font-primary);
+    font-family: "Goldenbook", "Times New Roman", Georgia, serif;
     position: relative;
     text-transform: uppercase;
     color: transparent;
     -webkit-text-stroke: 1px var(--text-stroke-color);
+    text-stroke: 1px var(--text-stroke-color); /* Standard property fallback */
+    /* Ensure font loads properly */
+    font-weight: 400;
+    line-height: 1.2;
 }
 
 .actual-text {
     position: relative;
     display: inline-block;
+    font-family: "Goldenbook", "Times New Roman", Georgia, serif; /* Explicit font for consistency */
+    font-size: inherit;
+    letter-spacing: inherit;
+    text-transform: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    white-space: nowrap;
 }
 
 /* this is the text, when you hover on button */
 .hover-text {
     position: absolute;
     box-sizing: border-box;
-    content: attr(data-text);
     color: var(--animation-color);
     width: 0%;
-    inset: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     border-right: var(--border-right) solid var(--animation-color);
     overflow: hidden;
-    transition: 0.5s;
+    transition: width 0.5s ease;
     -webkit-text-stroke: 1px var(--animation-color);
+    text-stroke: 1px var(--animation-color); /* Standard property fallback */
+    font-family: "Goldenbook", "Times New Roman", Georgia, serif; /* Explicit font for consistency */
+    font-size: inherit;
+    letter-spacing: inherit;
+    text-transform: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    white-space: nowrap;
 }
 
 /* hover */
@@ -1077,7 +1098,7 @@ a:hover {
 
 .about-text {
     font-family: var(--font-primary);
-    font-size: 1.1rem;
+    font-size: 1.25rem;
     line-height: 1.8;
     color: rgba(255, 255, 255, 0.9);
     font-weight: 400;
@@ -1207,7 +1228,7 @@ a:hover {
     }
 
     .about-text {
-        font-size: 1rem;
+        font-size: 1.15rem;
         line-height: 1.7;
     }
 }

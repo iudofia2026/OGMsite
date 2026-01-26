@@ -1066,6 +1066,18 @@ a:hover {
     margin-top: 0.5rem;
 }
 
+.about-text {
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 400;
+    letter-spacing: var(--letter-spacing-body);
+    margin: 0;
+    padding: 0;
+    max-width: 100%;
+}
+
 .about-1,
 .about-2,
 .about-3,
@@ -1090,6 +1102,10 @@ a:hover {
     transform: translateZ(0);
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    padding: 2rem;
+    box-sizing: border-box;
 }
 
 .about-1 .about-right,
@@ -1125,6 +1141,10 @@ a:hover {
     transform: translateZ(0);
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    padding: 2rem;
+    box-sizing: border-box;
 }
 
 /* Mobile responsive */
@@ -1172,6 +1192,12 @@ a:hover {
     .about-5 .about-right {
         min-height: 300px;
         flex: 1; /* Equal size on mobile */
+        padding: 1.5rem;
+    }
+
+    .about-text {
+        font-size: 1rem;
+        line-height: 1.7;
     }
 }
 

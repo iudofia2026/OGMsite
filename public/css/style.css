@@ -371,7 +371,7 @@ a:hover {
 
 .line {
     fill: none;
-    stroke: white;
+    stroke: var(--color-gold-primary);
     stroke-linecap: round;
     stroke-linejoin: round;
     stroke-width: 2;

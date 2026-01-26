@@ -1064,7 +1064,9 @@ a:hover {
 }
 
 .about-1,
-.about-2 {
+.about-2,
+.about-3,
+.about-4 {
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -1073,27 +1075,31 @@ a:hover {
     gap: 2rem; /* Margin between the two containers */
 }
 
-/* about-1: Left side bigger */
-.about-1 .about-left {
+/* about-1 & about-3: Left side bigger */
+.about-1 .about-left,
+.about-3 .about-left {
     flex: 2; /* 2/3 of the space */
     min-height: 400px;
     background: transparent;
 }
 
-.about-1 .about-right {
+.about-1 .about-right,
+.about-3 .about-right {
     flex: 1; /* 1/3 of the space */
     min-height: 400px;
     background: transparent;
 }
 
-/* about-2: Right side bigger (opposite) */
-.about-2 .about-left {
+/* about-2 & about-4: Right side bigger (opposite) */
+.about-2 .about-left,
+.about-4 .about-left {
     flex: 1; /* 1/3 of the space */
     min-height: 400px;
     background: transparent;
 }
 
-.about-2 .about-right {
+.about-2 .about-right,
+.about-4 .about-right {
     flex: 2; /* 2/3 of the space */
     min-height: 400px;
     background: transparent;
@@ -1118,7 +1124,9 @@ a:hover {
     }
 
     .about-1,
-    .about-2 {
+    .about-2,
+    .about-3,
+    .about-4 {
         flex-direction: column;
         gap: 1.5rem;
         margin-bottom: 3rem;
@@ -1127,7 +1135,11 @@ a:hover {
     .about-1 .about-left,
     .about-1 .about-right,
     .about-2 .about-left,
-    .about-2 .about-right {
+    .about-2 .about-right,
+    .about-3 .about-left,
+    .about-3 .about-right,
+    .about-4 .about-left,
+    .about-4 .about-right {
         min-height: 300px;
         flex: 1; /* Equal size on mobile */
     }

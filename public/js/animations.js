@@ -253,3 +253,107 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+// About Section Animations - Minimalist & Elegant
+function setupAboutSectionAnimations() {
+    // Animation for bigger boxes (more prominent)
+    const biggerBoxAnimation = (element) => {
+        if (!element) return;
+        
+        gsap.set(element, {
+            opacity: 0,
+            y: 40,
+            scale: 0.95
+        });
+
+        ScrollTrigger.create({
+            trigger: element,
+            start: 'top 85%',
+            onEnter: () => {
+                gsap.to(element, {
+                    opacity: 1,
+                    y: 0,
+                    scale: 1,
+                    duration: 1,
+                    ease: 'power2.out'
+                });
+            },
+            onEnterBack: () => {
+                gsap.to(element, {
+                    opacity: 1,
+                    y: 0,
+                    scale: 1,
+                    duration: 1,
+                    ease: 'power2.out'
+                });
+            }
+        });
+    };
+
+    // Animation for smaller boxes (more subtle)
+    const smallerBoxAnimation = (element) => {
+        if (!element) return;
+        
+        gsap.set(element, {
+            opacity: 0,
+            x: -30
+        });
+
+        ScrollTrigger.create({
+            trigger: element,
+            start: 'top 85%',
+            onEnter: () => {
+                gsap.to(element, {
+                    opacity: 1,
+                    x: 0,
+                    duration: 0.8,
+                    ease: 'power2.out',
+                    delay: 0.2
+                });
+            },
+            onEnterBack: () => {
+                gsap.to(element, {
+                    opacity: 1,
+                    x: 0,
+                    duration: 0.8,
+                    ease: 'power2.out',
+                    delay: 0.2
+                });
+            }
+        });
+    };
+
+    // Apply animations to all about sections
+    const aboutSections = [
+        { selector: '.about-1', leftBigger: true },
+        { selector: '.about-2', leftBigger: false },
+        { selector: '.about-3', leftBigger: true },
+        { selector: '.about-4', leftBigger: false },
+        { selector: '.about-5', leftBigger: true }
+    ];
+
+    aboutSections.forEach(({ selector, leftBigger }) => {
+        const section = document.querySelector(selector);
+        if (!section) return;
+
+        const leftBox = section.querySelector('.about-left');
+        const rightBox = section.querySelector('.about-right');
+
+        if (leftBigger) {
+            // Left is bigger, right is smaller
+            biggerBoxAnimation(leftBox);
+            smallerBoxAnimation(rightBox);
+        } else {
+            // Right is bigger, left is smaller
+            smallerBoxAnimation(leftBox);
+            biggerBoxAnimation(rightBox);
+        }
+    });
+}
+
+// Initialize about section animations after DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupAboutSectionAnimations);
+} else {
+    setupAboutSectionAnimations();
+}

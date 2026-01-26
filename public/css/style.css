@@ -1070,7 +1070,7 @@ a:hover {
 
 .about-title {
     font-family: var(--font-primary);
-    font-size: 3rem;
+    font-size: 4rem;
     font-weight: 700;
     color: #ffffff;
     margin: 0;
@@ -1084,7 +1084,7 @@ a:hover {
 
 .about-subtitle {
     font-family: var(--font-primary);
-    font-size: 1.25rem;
+    font-size: 2rem;
     color: rgba(255, 255, 255, 0.8);
     font-weight: 400;
     letter-spacing: var(--letter-spacing-body);
@@ -1098,7 +1098,7 @@ a:hover {
 
 .about-text {
     font-family: var(--font-primary);
-    font-size: 1.5rem;
+    font-size: 1.75rem;
     line-height: 1.8;
     color: rgba(255, 255, 255, 0.9);
     font-weight: 400;
@@ -1255,11 +1255,11 @@ a:hover {
     }
 
     .about-title {
-        font-size: 2rem;
+        font-size: 2.5rem;
     }
 
     .about-subtitle {
-        font-size: 1rem;
+        font-size: 1.5rem;
     }
 
     .about-1,
@@ -1288,7 +1288,7 @@ a:hover {
     }
 
     .about-text {
-        font-size: 1.25rem;
+        font-size: 1.5rem;
         line-height: 1.7;
     }
     

@@ -219,7 +219,7 @@
 
 body {
     background-color: #FFFFFF !important;
-    font-family: var(--font-body);
+    font-family: var(--font-primary);
     color: var(--color-text-primary);
     font-size: var(--font-size-body);
     line-height: var(--line-height-body);
@@ -252,13 +252,13 @@ h3 {
     line-height: var(--line-height-h3);
     font-weight: var(--font-weight-medium);
     letter-spacing: var(--letter-spacing-h3);
-    font-family: var(--font-secondary);
+    font-family: var(--font-primary);
     color: var(--color-heading-secondary);
 }
 
 a {
     margin-top: 5px;
-    font-family: var(--font-secondary);
+    font-family: var(--font-primary);
     color: var(--color-text-secondary);
     font-size: 37px;
     line-height: 40px;
@@ -431,7 +431,7 @@ a:hover {
 }
 
 .hero-description {
-    font-family: var(--font-secondary);
+    font-family: var(--font-primary);
     font-size: var(--font-size-body);
     color: #D4AF37;
     margin: 0 auto 1rem;
@@ -448,46 +448,57 @@ a:hover {
     margin-top: 2rem;
 }
 
-.hero-btn {
-    display: inline-block;
-    padding: 1rem 2.5rem;
-    background: linear-gradient(135deg, #C9A227 0%, #D4AF37 50%, #C9A227 100%);
-    color: #1A1A1A;
+/* === removing default button style ===*/
+.button {
+    margin: 0;
+    height: auto;
+    background: transparent;
+    padding: 0;
+    border: none;
+    cursor: pointer;
+}
+
+/* button styling */
+.button {
+    --border-right: 6px;
+    --text-stroke-color: rgba(255,255,255,0.6);
+    --animation-color: #D4AF37;
+    --fs-size: 1.2em;
+    letter-spacing: 3px;
     text-decoration: none;
-    font-family: var(--font-secondary);
-    font-weight: var(--font-weight-semibold);
-    font-size: 1.1rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    border-radius: 4px;
-    border: 2px solid #D4AF37;
-    transition: all 0.4s ease;
+    font-size: var(--fs-size);
+    font-family: var(--font-primary);
     position: relative;
-    overflow: hidden;
-    box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);
+    text-transform: uppercase;
+    color: transparent;
+    -webkit-text-stroke: 1px var(--text-stroke-color);
 }
 
-.hero-btn::before {
-    content: '';
+.actual-text {
+    position: relative;
+    display: inline-block;
+}
+
+/* this is the text, when you hover on button */
+.hover-text {
     position: absolute;
-    top: 0;
-    left: -100%;
+    box-sizing: border-box;
+    content: attr(data-text);
+    color: var(--animation-color);
+    width: 0%;
+    inset: 0;
+    border-right: var(--border-right) solid var(--animation-color);
+    overflow: hidden;
+    transition: 0.5s;
+    -webkit-text-stroke: 1px var(--animation-color);
+}
+
+/* hover */
+.button:hover .hover-text {
     width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
-    transition: left 0.6s ease;
+    filter: drop-shadow(0 0 23px var(--animation-color));
 }
 
-.hero-btn:hover::before {
-    left: 100%;
-}
-
-.hero-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 35px rgba(212, 175, 55, 0.5);
-    background: linear-gradient(135deg, #D4AF37 0%, #F4E77C 50%, #D4AF37 100%);
-    border-color: #F4E77C;
-}
 
 .hero-scroll-indicator {
     position: absolute;
@@ -656,7 +667,7 @@ a:hover {
 
 .text-ani {
     width: 30vw;
-    font-family: var(--font-body);
+    font-family: var(--font-primary);
     color: #fff;
     font-size: 2.5vw; /* Increased from 2vw for better readability */
     line-height: 3vw;
@@ -812,7 +823,7 @@ a:hover {
     box-shadow: 4px 4px var(--main-color);
     font-size: 15px;
     font-weight: 600;
-    font-family: var(--font-secondary);
+    font-family: var(--font-primary);
     color: var(--font-color);
     padding: 5px 10px;
     outline: none;
@@ -845,7 +856,7 @@ a:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: var(--font-secondary);
+    font-family: var(--font-primary);
     font-weight: 600;
     transition: all 0.2s ease;
 }
@@ -870,7 +881,7 @@ a:hover {
     box-shadow: 4px 4px var(--main-color);
     font-size: 17px;
     font-weight: 600;
-    font-family: var(--font-secondary);
+    font-family: var(--font-primary);
     color: var(--font-color);
     cursor: pointer;
     transition: all 0.2s ease;
@@ -920,11 +931,9 @@ a:hover {
         line-height: 1.7;
     }
 
-    .hero-btn {
-        padding: 1rem 2rem;
-        font-size: 0.95rem;
-        min-width: 200px;
-        text-align: center;
+    .button {
+        --fs-size: 1em;
+        letter-spacing: 2px;
     }
 
     .scroll-arrow {
@@ -1053,7 +1062,7 @@ a:hover {
 }
 
 .about-subtitle {
-    font-family: var(--font-body);
+    font-family: var(--font-primary);
     font-size: 1.25rem;
     color: rgba(255, 255, 255, 0.8);
     font-weight: 400;
@@ -1067,7 +1076,7 @@ a:hover {
 }
 
 .about-text {
-    font-family: var(--font-body);
+    font-family: var(--font-primary);
     font-size: 1.1rem;
     line-height: 1.8;
     color: rgba(255, 255, 255, 0.9);
@@ -1242,7 +1251,7 @@ a:hover {
 }
 
 .age-verification-question {
-    font-family: var(--font-body);
+    font-family: var(--font-primary);
     font-size: 1.5rem;
     color: #000000;
     margin-bottom: 2.5rem;
@@ -1258,7 +1267,7 @@ a:hover {
 
 .age-btn {
     padding: 1rem 3rem;
-    font-family: var(--font-body);
+    font-family: var(--font-primary);
     font-size: 1.2rem;
     font-weight: 600;
     border: 2px solid #000000;

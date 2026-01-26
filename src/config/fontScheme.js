@@ -130,10 +130,10 @@ const FontScheme = {
     loading: {
         // Font display strategies
         display: {
-            critical: 'swap',     // Hero fonts
-            important: 'swap',    // Headings
-            body: 'swap',         // Body text
-            optional: 'optional'  // Accent fonts
+            critical: 'swap', // Hero fonts
+            important: 'swap', // Headings
+            body: 'swap', // Body text
+            optional: 'optional' // Accent fonts
         },
 
         // Preload configuration
@@ -160,18 +160,19 @@ const FontScheme = {
     // CSS CUSTOM PROPERTIES
     // =============================================================================
 
-    getCSSVariables: function() {
-        return `
+    getCSSVariables: function () {
+        return (
+            `
             :root {
                 /* OGM Font Families */
                 --font-primary: "${this.ogmFonts.primary.family}", ` +
-                               `${this.ogmFonts.primary.fallback};
+            `${this.ogmFonts.primary.fallback};
                 --font-secondary: "${this.ogmFonts.secondary.family}", ` +
-                                 `${this.ogmFonts.secondary.fallback};
+            `${this.ogmFonts.secondary.fallback};
                 --font-body: "${this.ogmFonts.body.family}", ` +
-                             `${this.ogmFonts.body.fallback};
+            `${this.ogmFonts.body.fallback};
                 --font-accent: "${this.ogmFonts.accent.family}", ` +
-                              `${this.ogmFonts.accent.fallback};
+            `${this.ogmFonts.accent.fallback};
 
                 /* Typography Scale */
                 --font-size-hero: ${this.scale.hero.fontSize};
@@ -211,14 +212,15 @@ const FontScheme = {
                 --font-weight-bold: 700;
                 --font-weight-black: 900;
             }
-        `;
+        `
+        );
     },
 
     // =============================================================================
     // FONT FACE DECLARATIONS (To be used with local fonts)
     // =============================================================================
 
-    getFontFaceCSS: function() {
+    getFontFaceCSS: function () {
         return `
             /* OGM Primary Font */
             @font-face {

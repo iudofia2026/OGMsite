@@ -20,15 +20,15 @@ const authController = {
             const tokenResponse = await fetch('https://oauth2.googleapis.com/token', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'Content-Type': 'application/x-www-form-urlencoded'
                 },
                 body: new URLSearchParams({
                     code,
                     client_id: process.env.GOOGLE_CLIENT_ID,
                     client_secret: process.env.GOOGLE_CLIENT_SECRET,
                     redirect_uri: `${process.env.APP_URL || 'http://localhost:3000'}/auth/google/callback`,
-                    grant_type: 'authorization_code',
-                }),
+                    grant_type: 'authorization_code'
+                })
             });
 
             if (!tokenResponse.ok) {
@@ -40,8 +40,8 @@ const authController = {
             // Get user information from Google
             const userResponse = await fetch('https://www.googleapis.com/oauth2/v2/userinfo', {
                 headers: {
-                    'Authorization': `Bearer ${tokens.access_token}`,
-                },
+                    Authorization: `Bearer ${tokens.access_token}`
+                }
             });
 
             if (!userResponse.ok) {
@@ -74,7 +74,6 @@ const authController = {
                     expires_in: tokens.expires_in
                 }
             });
-
         } catch (error) {
             // eslint-disable-next-line no-console
             console.error('Google OAuth error:', error);
@@ -122,7 +121,6 @@ const authController = {
                 message: 'Successfully signed up for updates',
                 email: email
             });
-
         } catch (error) {
             // eslint-disable-next-line no-console
             console.error('Email signup error:', error);

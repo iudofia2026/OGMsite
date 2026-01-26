@@ -225,7 +225,7 @@ if (isDevelopment() && window.location.search.includes('debug=true')) {
 
 // Hero Section - Smooth Scroll to Collection
 document.addEventListener('DOMContentLoaded', () => {
-    const heroBtn = document.querySelector('.hero-btn');
+    const heroBtn = document.querySelector('.button');
     const scrollArrow = document.querySelector('.scroll-arrow');
 
     if (heroBtn) {

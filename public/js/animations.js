@@ -272,6 +272,7 @@ function setupAboutHeaderAnimations() {
     ScrollTrigger.create({
         trigger: aboutHeader,
         start: 'top 80%',
+        end: 'bottom 20%',
         onEnter: () => {
             // Animate in when scrolling down into view
             const tl = gsap.timeline({ defaults: { ease: 'power2.out' } });
@@ -279,15 +280,22 @@ function setupAboutHeaderAnimations() {
             tl.to(aboutTitle, {
                 opacity: 1,
                 y: 0,
-                duration: 0.8,
+                duration: 0.6,
                 force3D: true
             })
             .to(aboutSubtitle, {
                 opacity: 1,
                 y: 0,
-                duration: 0.6,
+                duration: 0.5,
                 force3D: true
-            }, '-=0.4');
+            }, '-=0.3');
+        },
+        onLeave: () => {
+            // Reset when scrolling past
+            gsap.set([aboutTitle, aboutSubtitle], {
+                opacity: 0,
+                y: 30
+            });
         },
         onEnterBack: () => {
             // Animate back in when scrolling back up into view
@@ -296,24 +304,21 @@ function setupAboutHeaderAnimations() {
             tl.to(aboutTitle, {
                 opacity: 1,
                 y: 0,
-                duration: 0.8,
+                duration: 0.6,
                 force3D: true
             })
             .to(aboutSubtitle, {
                 opacity: 1,
                 y: 0,
-                duration: 0.6,
+                duration: 0.5,
                 force3D: true
-            }, '-=0.4');
+            }, '-=0.3');
         },
         onLeaveBack: () => {
-            // Only animate out when scrolling back up past it (before it enters view)
-            gsap.to([aboutTitle, aboutSubtitle], {
+            // Reset when scrolling back up past it
+            gsap.set([aboutTitle, aboutSubtitle], {
                 opacity: 0,
-                y: 30,
-                duration: 0.5,
-                ease: 'power2.in',
-                force3D: true
+                y: 30
             });
         }
     });
@@ -334,13 +339,21 @@ function setupAboutSectionAnimations() {
         ScrollTrigger.create({
             trigger: element,
             start: 'top 85%',
+            end: 'bottom 15%',
             onEnter: () => {
                 gsap.to(element, {
                     opacity: 1,
                     y: 0,
                     scale: 1,
-                    duration: 1,
+                    duration: 0.6,
                     ease: 'power2.out'
+                });
+            },
+            onLeave: () => {
+                gsap.set(element, {
+                    opacity: 0,
+                    y: 40,
+                    scale: 0.95
                 });
             },
             onEnterBack: () => {
@@ -348,8 +361,15 @@ function setupAboutSectionAnimations() {
                     opacity: 1,
                     y: 0,
                     scale: 1,
-                    duration: 1,
+                    duration: 0.6,
                     ease: 'power2.out'
+                });
+            },
+            onLeaveBack: () => {
+                gsap.set(element, {
+                    opacity: 0,
+                    y: 40,
+                    scale: 0.95
                 });
             }
         });
@@ -367,22 +387,35 @@ function setupAboutSectionAnimations() {
         ScrollTrigger.create({
             trigger: element,
             start: 'top 85%',
+            end: 'bottom 15%',
             onEnter: () => {
                 gsap.to(element, {
                     opacity: 1,
                     x: 0,
-                    duration: 0.8,
+                    duration: 0.5,
                     ease: 'power2.out',
-                    delay: 0.2
+                    delay: 0.15
+                });
+            },
+            onLeave: () => {
+                gsap.set(element, {
+                    opacity: 0,
+                    x: -30
                 });
             },
             onEnterBack: () => {
                 gsap.to(element, {
                     opacity: 1,
                     x: 0,
-                    duration: 0.8,
+                    duration: 0.5,
                     ease: 'power2.out',
-                    delay: 0.2
+                    delay: 0.15
+                });
+            },
+            onLeaveBack: () => {
+                gsap.set(element, {
+                    opacity: 0,
+                    x: -30
                 });
             }
         });

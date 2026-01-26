@@ -712,7 +712,7 @@ a:hover {
     background-size: cover;
     background-repeat: no-repeat;
     opacity: 1; /* 100% opacity */
-    filter: brightness(0.5) contrast(1.1) grayscale(100%);
+    filter: brightness(0.5) contrast(1.1);
     position: absolute;
     top: 15%;
     left: 15%;

@@ -1098,7 +1098,7 @@ a:hover {
 
 .about-text {
     font-family: var(--font-primary);
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     line-height: 1.8;
     color: rgba(255, 255, 255, 0.9);
     font-weight: 400;
@@ -1149,6 +1149,8 @@ a:hover {
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
     padding: 0;
+    display: flex;
+    align-items: stretch;
 }
 
 /* about-2 & about-4: Right side bigger (opposite) */
@@ -1162,6 +1164,8 @@ a:hover {
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
     padding: 0;
+    display: flex;
+    align-items: stretch;
 }
 
 .about-2 .about-right,
@@ -1177,6 +1181,41 @@ a:hover {
     align-items: center;
     padding: 0 2rem;
     box-sizing: border-box;
+}
+
+/* About images styling */
+.about-image-wrapper {
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: relative;
+    overflow: hidden;
+    /* Prevent layout shift - maintain aspect ratio */
+    aspect-ratio: 2 / 3;
+    min-height: 250px;
+    /* Performance optimization */
+    contain: layout style paint;
+    background-color: transparent;
+}
+
+.about-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    /* Performance optimizations */
+    image-rendering: auto; /* Let browser optimize */
+    /* Smooth loading transition */
+    transition: opacity 0.3s ease;
+    /* Optimize rendering */
+    will-change: opacity;
+}
+
+/* Hide about images on mobile */
+@media (max-width: 767.98px) {
+    .about-image-wrapper {
+        display: none;
+    }
 }
 
 /* Mobile responsive */
@@ -1228,7 +1267,7 @@ a:hover {
     }
 
     .about-text {
-        font-size: 1.15rem;
+        font-size: 1.35rem;
         line-height: 1.7;
     }
 }

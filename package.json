@@ -19,7 +19,8 @@
     "deploy": "vercel --prod",
     "preview": "vercel",
     "check": "npm run lint && npm run format:check",
-    "precommit": "npm run check"
+    "precommit": "npm run check",
+    "optimize:images": "node optimize-about-images.js"
   },
   "keywords": ["mvc", "website", "gsap", "animations", "responsive"],
   "author": "OGM Team",

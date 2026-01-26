@@ -1069,7 +1069,7 @@ a:hover {
 }
 
 .about-title {
-    font-family: var(--font-primary);
+    font-family: var(--font-primary); /* Goldenbook - for headlines */
     font-size: 5rem;
     font-weight: 700;
     color: #ffffff;
@@ -1084,7 +1084,7 @@ a:hover {
 }
 
 .about-subtitle {
-    font-family: var(--font-primary);
+    font-family: var(--font-secondary); /* Raleway - for subtitles */
     font-size: 2.5rem;
     color: rgba(255, 255, 255, 0.8);
     font-weight: 400;
@@ -1099,7 +1099,7 @@ a:hover {
 }
 
 .about-text {
-    font-family: var(--font-primary);
+    font-family: var(--font-secondary); /* Raleway - for body text */
     font-size: 2rem;
     line-height: 1.8;
     color: rgba(255, 255, 255, 0.9);

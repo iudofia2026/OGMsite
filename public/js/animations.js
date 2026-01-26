@@ -254,6 +254,71 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+// About Header Animations
+function setupAboutHeaderAnimations() {
+    const aboutHeader = document.querySelector('.about-header');
+    const aboutTitle = document.querySelector('.about-title');
+    const aboutSubtitle = document.querySelector('.about-subtitle');
+
+    if (!aboutHeader || !aboutTitle || !aboutSubtitle) return;
+
+    // Set initial state
+    gsap.set([aboutTitle, aboutSubtitle], {
+        opacity: 0,
+        y: 30
+    });
+
+    // Create ScrollTrigger for about-header
+    ScrollTrigger.create({
+        trigger: aboutHeader,
+        start: 'top 80%',
+        onEnter: () => {
+            // Animate in when scrolling down into view
+            const tl = gsap.timeline({ defaults: { ease: 'power2.out' } });
+            
+            tl.to(aboutTitle, {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                force3D: true
+            })
+            .to(aboutSubtitle, {
+                opacity: 1,
+                y: 0,
+                duration: 0.6,
+                force3D: true
+            }, '-=0.4');
+        },
+        onEnterBack: () => {
+            // Animate back in when scrolling back up into view
+            const tl = gsap.timeline({ defaults: { ease: 'power2.out' } });
+            
+            tl.to(aboutTitle, {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                force3D: true
+            })
+            .to(aboutSubtitle, {
+                opacity: 1,
+                y: 0,
+                duration: 0.6,
+                force3D: true
+            }, '-=0.4');
+        },
+        onLeaveBack: () => {
+            // Only animate out when scrolling back up past it (before it enters view)
+            gsap.to([aboutTitle, aboutSubtitle], {
+                opacity: 0,
+                y: 30,
+                duration: 0.5,
+                ease: 'power2.in',
+                force3D: true
+            });
+        }
+    });
+}
+
 // About Section Animations - Minimalist & Elegant
 function setupAboutSectionAnimations() {
     // Animation for bigger boxes (more prominent)
@@ -351,9 +416,13 @@ function setupAboutSectionAnimations() {
     });
 }
 
-// Initialize about section animations after DOM is ready
+// Initialize about animations after DOM is ready
 if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', setupAboutSectionAnimations);
+    document.addEventListener('DOMContentLoaded', () => {
+        setupAboutHeaderAnimations();
+        setupAboutSectionAnimations();
+    });
 } else {
+    setupAboutHeaderAnimations();
     setupAboutSectionAnimations();
 }

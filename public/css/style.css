@@ -1432,34 +1432,30 @@ a:hover {
     z-index: 2;
     text-align: center;
     padding: 3rem 2rem;
-    max-width: 420px;
+    max-width: 600px;
     width: 90%;
 }
 
 .age-verification-title {
     font-family: var(--font-primary);
-    font-size: clamp(2rem, 5vw, 3rem);
+    font-size: clamp(1.8rem, 4.5vw, 2.5rem);
     font-weight: var(--font-weight-normal);
     color: var(--color-gold-primary);
     margin-bottom: 1.5rem;
     line-height: 1.2;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
     white-space: nowrap;
     text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
 }
 
 .ogm-brand {
     font-family: var(--font-primary);
     font-weight: var(--font-weight-black);
     color: #000000;
-    -webkit-text-stroke: 1px var(--color-gold-primary);
-    text-stroke: 1px var(--color-gold-primary);
-    letter-spacing: 0.2em;
+    -webkit-text-stroke: 0.8px var(--color-gold-primary);
+    text-stroke: 0.8px var(--color-gold-primary);
+    letter-spacing: 0.15em;
     position: relative;
     display: inline-block;
 }

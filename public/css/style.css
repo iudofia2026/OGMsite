@@ -1445,6 +1445,23 @@ a:hover {
     line-height: 1.2;
     letter-spacing: 0.15em;
     text-transform: uppercase;
+    white-space: nowrap;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.ogm-brand {
+    font-family: var(--font-primary);
+    font-weight: var(--font-weight-black);
+    color: #000000;
+    -webkit-text-stroke: 1px var(--color-gold-primary);
+    text-stroke: 1px var(--color-gold-primary);
+    letter-spacing: 0.2em;
+    position: relative;
+    display: inline-block;
 }
 
 .age-verification-question {

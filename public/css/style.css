@@ -1377,6 +1377,8 @@ a:hover {
     z-index: 10000;
     opacity: 1;
     transition: opacity 0.3s ease-out;
+    will-change: opacity;
+    contain: strict;
 }
 
 .age-verification-background {
@@ -1389,36 +1391,10 @@ a:hover {
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
-    opacity: 0.06;
-    z-index: 1;
-    filter: blur(2px);
-}
-
-.age-verification-background::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('/images/ogm_full_square_logo.svg');
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
     opacity: 0.04;
-    filter: blur(4px) drop-shadow(0 0 20px rgba(212, 175, 55, 0.15));
-    animation: subtleGlow 6s ease-in-out infinite;
-}
-
-@keyframes subtleGlow {
-    0%, 100% {
-        opacity: 0.03;
-        transform: scale(1);
-    }
-    50% {
-        opacity: 0.05;
-        transform: scale(1.02);
-    }
+    z-index: 1;
+    will-change: opacity;
+    contain: layout style paint;
 }
 
 .age-verification-modal.hidden {
@@ -1434,6 +1410,7 @@ a:hover {
     padding: 3rem 2rem;
     max-width: 600px;
     width: 90%;
+    contain: layout style;
 }
 
 .age-verification-title {
@@ -1447,12 +1424,12 @@ a:hover {
     text-transform: uppercase;
     white-space: nowrap;
     text-align: center;
-    transition: transform 0.3s ease, letter-spacing 0.3s ease;
+    will-change: transform;
+    transition: transform 0.2s ease;
 }
 
 .age-verification-title:hover {
     transform: scale(1.02);
-    letter-spacing: 0.12em;
 }
 
 .ogm-brand {
@@ -1462,7 +1439,8 @@ a:hover {
     letter-spacing: 0.15em;
     position: relative;
     display: inline-block;
-    transition: transform 0.3s ease;
+    will-change: transform;
+    transition: transform 0.2s ease;
 }
 
 .ogm-brand:hover {
@@ -1476,7 +1454,8 @@ a:hover {
     margin-bottom: 2.5rem;
     font-weight: var(--font-weight-normal);
     letter-spacing: 0.05em;
-    transition: color 0.3s ease, transform 0.3s ease;
+    will-change: color, transform;
+    transition: color 0.2s ease, transform 0.2s ease;
     cursor: default;
 }
 
@@ -1491,6 +1470,7 @@ a:hover {
     justify-content: center;
     flex-wrap: wrap;
     margin-bottom: 2rem;
+    contain: layout style;
 }
 
 .age-btn {
@@ -1500,29 +1480,14 @@ a:hover {
     font-weight: var(--font-weight-medium);
     border: 1px solid var(--color-gold-primary);
     cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
     text-transform: uppercase;
     letter-spacing: 0.1em;
     min-width: 100px;
     background: transparent;
     color: var(--color-gold-primary);
-    position: relative;
-    overflow: hidden;
-}
-
-.age-btn::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
-    transition: left 0.5s ease;
-}
-
-.age-btn:hover::before {
-    left: 100%;
+    will-change: transform, background-color, color;
+    contain: layout style;
 }
 
 .age-btn-yes:hover {
@@ -1539,7 +1504,7 @@ a:hover {
 
 .age-verification-disclaimer {
     font-family: var(--font-secondary);
-    font-size: clamp(0.7rem, 1.5vw, 0.8rem);
+    font-size: clamp(0.65rem, 1.4vw, 0.75rem);
     color: var(--color-text-secondary);
     margin: 0;
     font-weight: var(--font-weight-normal);
@@ -1548,13 +1513,16 @@ a:hover {
     max-width: 300px;
     margin-left: auto;
     margin-right: auto;
-    transition: color 0.3s ease, opacity 0.3s ease;
+    will-change: color, opacity;
+    transition: color 0.2s ease, opacity 0.2s ease;
     cursor: default;
+    contain: layout style;
+    opacity: 0.6;
 }
 
 .age-verification-disclaimer:hover {
     color: var(--color-gold-primary);
-    opacity: 0.8;
+    opacity: 0.7;
 }
 
 .main-content-hidden {

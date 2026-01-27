@@ -42,6 +42,57 @@
 
     <div id="main-content" class="main-content-hidden">
         <%- body %>
+
+        <!-- Navigation Overlay -->
+        <nav id="nav-overlay" class="nav-overlay">
+            <div class="nav-container">
+                <button class="nav-close" aria-label="Close navigation">
+                    <span class="nav-close-line"></span>
+                    <span class="nav-close-line"></span>
+                </button>
+
+                <div class="nav-content">
+                    <div class="nav-logo">
+                        <img src="/images/ogm_full_square_logo.svg" alt="OGM" />
+                    </div>
+
+                    <ul class="nav-links">
+                        <li class="nav-item">
+                            <a href="#home" class="nav-link" data-nav="home">
+                                <span class="nav-text">Home</span>
+                                <span class="nav-indicator"></span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#about" class="nav-link" data-nav="about">
+                                <span class="nav-text">About</span>
+                                <span class="nav-indicator"></span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#products" class="nav-link" data-nav="products">
+                                <span class="nav-text">Products</span>
+                                <span class="nav-indicator"></span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#contact" class="nav-link" data-nav="contact">
+                                <span class="nav-text">Contact</span>
+                                <span class="nav-indicator"></span>
+                            </a>
+                        </li>
+                    </ul>
+
+                    <div class="nav-footer">
+                        <p class="nav-tagline">Premium Craft Beverages</p>
+                        <div class="nav-social">
+                            <a href="#" class="nav-social-link" aria-label="Instagram">Instagram</a>
+                            <a href="#" class="nav-social-link" aria-label="Twitter">Twitter</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
     </div>
 
     <!-- GSAP -->

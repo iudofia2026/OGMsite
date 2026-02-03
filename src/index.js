@@ -1,7 +1,6 @@
 const express = require('express');
 const path = require('path');
 const homeController = require('./controllers/homeController');
-const productsController = require('./controllers/productsController');
 const authRoutes = require('./routes/authRoutes');
 
 const app = express();
@@ -25,7 +24,6 @@ app.use(express.urlencoded({ extended: true }));
 
 // Routes
 app.get('/', homeController.getHomePage);
-app.get('/products', productsController.getProductsPage);
 
 // Authentication routes
 app.use('/api/auth', authRoutes);

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <meta name="description" content="OGM Premium Tequila Collection">
+    <meta name="keywords" content="tequila, premium beverages, OGM">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <!-- Remix Icon -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+
+    <!-- Products CSS -->
+    <link rel="stylesheet" href="/css/products.css">
+</head>
+<body>
+    <span id="background-color-popup"></span>
+<main>
+    <header id="header">
+        <a href="/" id="logo-container">
+            <img src="/images/ogm_full_square_logo.svg" alt="OGM Premium Tequila" class="header-logo" />
+        </a>
+
+        <!-- OGM Hamburger Menu -->
+        <label class="hamburger">
+            <input type="checkbox">
+            <svg viewBox="0 0 32 32">
+                <path class="line line-top-bottom" d="M27 10 13 10C10.8 10 9 8.2 9 6 9 3.5 10.8 2 13 2 15.2 2 17 3.8 17 6L17 26C17 28.2 18.8 30 21 30 23.2 30 25 28.2 25 26 25 23.8 23.2 22 21 22L7 22"></path>
+                <path class="line" d="M7 16 27 16"></path>
+            </svg>
+        </label>
+
+        <!-- OGM Navigation Overlay (Hidden by default) -->
+        <nav id="nav-overlay" class="nav-overlay">
+            <div class="nav-container">
+                <button class="nav-close" aria-label="Close navigation">
+                    <span class="nav-close-line"></span>
+                    <span class="nav-close-line"></span>
+                </button>
+
+                <div class="nav-content">
+                    <div class="nav-logo">
+                        <img src="/images/ogm_full_square_logo.svg" alt="OGM" />
+                    </div>
+
+                    <ul class="nav-links">
+                        <li class="nav-item">
+                            <a href="/" class="nav-link" data-nav="home">
+                                <span class="nav-text">Home</span>
+                                <span class="nav-indicator"></span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/#about" class="nav-link" data-nav="about">
+                                <span class="nav-text">About</span>
+                                <span class="nav-indicator"></span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/products" class="nav-link" data-nav="products">
+                                <span class="nav-text">Products</span>
+                                <span class="nav-indicator"></span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/#contact" class="nav-link" data-nav="contact">
+                                <span class="nav-text">Contact</span>
+                                <span class="nav-indicator"></span>
+                            </a>
+                        </li>
+                    </ul>
+
+                    <div class="nav-footer">
+                        <p class="nav-tagline">Premium Craft Beverages</p>
+                        <div class="nav-social">
+                            <a href="https://instagram.com" target="_blank" class="nav-social-link" aria-label="Instagram">
+                                <i class="ri-instagram-line"></i>
+                                <span>Instagram</span>
+                            </a>
+                            <a href="https://twitter.com" target="_blank" class="nav-social-link" aria-label="Twitter">
+                                <i class="ri-twitter-x-line"></i>
+                                <span>Twitter</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section id="headline-container">
+        <h1 id="title"><%= title %></h1>
+        <p id="subtext"><%= subtitle %></p>
+        <button id="call-to-action"><%= ctaText %></button>
+    </section>
+
+    <section id="bottle-images-and-info-container">
+        <div id="direction-button-container">
+            <span id="box-top" class="box"></span>
+            <span id="box-bottom" class="box"></span>
+            <button id="prev" class="direction-buttons">Prev<span id="background-color-prev"></span></button>
+            <button id="next" class="direction-buttons">Next<span id="background-color-next"></span></button>
+        </div>
+
+        <% products.forEach(function(product) { %>
+        <div data-color="<%= product.color %>" id="<%= product.id %>" class="image-and-info">
+            <img src="<%= product.image %>" alt="<%= product.name %>" srcset="">
+            <h3 class="bottle-type"><%= product.name %></h3>
+            <span class="price"><%= product.price %></span>
+            <button class="more-info-button"><i class="ri-add-line"></i></button>
+        </div>
+        <% }); %>
+    </section>
+
+    <section id="collection-container">
+        <img src="<%= products[0].image %>" alt="OGM Premium Collection" srcset="" id="bottle-collection-image">
+        <h3 id="collection-heading">Explore OGM Premium Collection</h3>
+        <p id="collection-text">Crafted with bold, natural flavors for those who seek experiences, not just drinks.</p>
+        <button id="read-more-button">Discover More</button>
+    </section>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/CSSRulePlugin.min.js"></script>
+<script src="/js/products.js"></script>
+</body>
+</html>

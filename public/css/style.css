@@ -1821,3 +1821,119 @@ a:hover {
 }
 
 /* Signup Form Section */
+
+/* Contact Section */
+.contact-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 2rem;
+    background: var(--color-background-primary);
+    position: relative;
+}
+
+.contact-container {
+    max-width: 800px;
+    width: 100%;
+    text-align: center;
+}
+
+.contact-header {
+    margin-bottom: 3rem;
+}
+
+.contact-title {
+    font-family: var(--font-primary);
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: var(--font-weight-normal);
+    color: var(--color-text-primary);
+    margin: 0 0 1rem 0;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.contact-subtitle {
+    font-family: var(--font-secondary);
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    color: var(--color-gold-primary);
+    margin: 0;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+}
+
+.contact-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.contact-text {
+    font-family: var(--font-secondary);
+    font-size: clamp(0.875rem, 2vw, 1rem);
+    color: var(--color-text-secondary);
+    max-width: 600px;
+    margin: 0;
+    line-height: 1.6;
+    letter-spacing: 0.05em;
+}
+
+.contact-social-links {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.contact-social-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-secondary);
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 1rem 1.5rem;
+    border: 1px solid var(--color-gold-primary);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+    will-change: transform, background, color;
+}
+
+.contact-social-link:hover {
+    background: var(--color-gold-primary);
+    color: var(--color-background-primary);
+    transform: translateY(-2px);
+}
+
+.contact-social-link i {
+    font-size: 1.25rem;
+}
+
+/* Mobile styles for contact section */
+@media (max-width: 767px) {
+    .contact-section {
+        padding: 3rem 1.5rem;
+        min-height: 60vh;
+    }
+
+    .contact-header {
+        margin-bottom: 2rem;
+    }
+
+    .contact-social-links {
+        gap: 1rem;
+    }
+
+    .contact-social-link {
+        padding: 0.875rem 1.25rem;
+        font-size: 0.75rem;
+    }
+
+    .contact-social-link i {
+        font-size: 1rem;
+    }
+}

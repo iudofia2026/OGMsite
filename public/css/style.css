@@ -766,6 +766,8 @@ a:hover {
     padding: 0;
     border: none;
     cursor: pointer;
+    display: inline-block;
+    text-decoration: none;
 }
 
 /* button styling */

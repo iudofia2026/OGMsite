@@ -231,7 +231,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (heroBtn) {
         heroBtn.addEventListener('click', (e) => {
             e.preventDefault();
-            const target = document.querySelector('#collection');
+            const target = document.querySelector('#products');
             if (target) {
                 target.scrollIntoView({
                     behavior: 'smooth',
@@ -243,7 +243,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (scrollArrow) {
         scrollArrow.addEventListener('click', () => {
-            const target = document.querySelector('#collection');
+            const target = document.querySelector('#products');
             if (target) {
                 target.scrollIntoView({
                     behavior: 'smooth',

@@ -44,10 +44,18 @@ function setupScrollAnimations() {
                 trigger: ".scroll-container",
                 start: "top top",
                 end: () => "+=" + getScrollLength(),
-                scrub: true,
+                scrub: 1, // Smoother scrubbing with slight delay
                 pin: ".sticky-container",
                 invalidateOnRefresh: true,
-                markers: false // Disable debug markers
+                markers: false, // Disable debug markers
+                onUpdate: self => {
+                    // Throttle updates using requestAnimationFrame
+                    if (!self._rafId) {
+                        self._rafId = requestAnimationFrame(() => {
+                            self._rafId = null;
+                        });
+                    }
+                }
             }
         });
 
@@ -59,7 +67,7 @@ function setupScrollAnimations() {
                 trigger: ".scroll-container",
                 start: "top top",
                 end: () => "+=" + getScrollLength(),
-                scrub: true,
+                scrub: 1, // Smoother scrubbing
                 invalidateOnRefresh: true,
                 markers: false // Disable debug markers
             }
@@ -91,7 +99,7 @@ function setupScrollAnimations() {
                 trigger: ".scroll-container",
                 start: "top top",
                 end: () => "+=" + getScrollLength(),
-                scrub: true,
+                scrub: 1, // Smoother scrubbing
                 pin: ".sticky-container",
                 invalidateOnRefresh: true,
                 markers: false // Disable debug markers
@@ -106,7 +114,7 @@ function setupScrollAnimations() {
                 trigger: ".scroll-container",
                 start: "top top",
                 end: () => "+=" + getScrollLength(),
-                scrub: true,
+                scrub: 1, // Smoother scrubbing
                 invalidateOnRefresh: true,
                 markers: false // Disable debug markers
             }
@@ -118,95 +126,104 @@ function setupScrollAnimations() {
 
 setupScrollAnimations();
 
-// BOTTLE ENTER / LEAVE ANIMATIONS
-document
-    .querySelectorAll(
-        ".section-1-l, .section-2-l, .section-3-l, .section-1-r, .section-2-r, .section-3-r"
-    )
-    .forEach((section) => {
+// BOTTLE ENTER / LEAVE ANIMATIONS - OPTIMIZED
+const bottleSections = document.querySelectorAll(
+    ".section-1-l, .section-2-l, .section-3-l, .section-1-r, .section-2-r, .section-3-r"
+);
+
+// Use IntersectionObserver instead of constant animations
+const bottleObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        const section = entry.target;
         const bottle = section.querySelector(".bottle");
         const bottleBack = section.querySelector(".bottle-back");
 
         if (!bottle || !bottleBack) return;
 
-        gsap.set(bottle, { y: 0, x: 100, autoAlpha: 0 });
-        gsap.set(bottleBack, { y: 0, x: 100, autoAlpha: 0 });
+        if (entry.isIntersecting) {
+            // Simplified entrance animation
+            gsap.to(bottle, {
+                x: 0,
+                y: 0,
+                autoAlpha: 0.75,
+                duration: 0.6,
+                ease: "power2.out",
+                force3D: true // GPU acceleration
+            });
+        }
+    });
+}, {
+    threshold: 0.5,
+    rootMargin: "0px"
+});
+
+bottleSections.forEach(section => {
+    const bottle = section.querySelector(".bottle");
+    const bottleBack = section.querySelector(".bottle-back");
+
+    if (!bottle || !bottleBack) return;
+
+    // Initial state
+    gsap.set(bottle, { y: 0, x: 50, autoAlpha: 0, force3D: true });
+    gsap.set(bottleBack, { y: 80, autoAlpha: 0, force3D: true });
+
+    // Add to observer
+    bottleObserver.observe(section);
+
+    // Simplified hover animations with debouncing
+    let hoverTimer;
+    section.addEventListener("mouseenter", () => {
+        clearTimeout(hoverTimer);
+        hoverTimer = setTimeout(() => {
+            gsap.killTweensOf([bottle, bottleBack]);
+
+            // Faster, simpler animation
+            gsap.to(bottle, {
+                y: 80,
+                x: 15,
+                rotationZ: 6,
+                autoAlpha: 0,
+                duration: 0.4,
+                ease: "power2.out",
+                force3D: true
+            });
+
+            gsap.to(bottleBack, {
+                y: 0,
+                rotationZ: 0,
+                autoAlpha: 0.75,
+                duration: 0.4,
+                ease: "power2.out",
+                force3D: true
+            });
+        }, 50); // Small delay to prevent rapid triggering
+    });
+
+    section.addEventListener("mouseleave", () => {
+        clearTimeout(hoverTimer);
+        gsap.killTweensOf([bottle, bottleBack]);
+
+        // Faster exit animation
+        gsap.to(bottleBack, {
+            y: 80,
+            rotationZ: -6,
+            autoAlpha: 0,
+            duration: 0.3,
+            ease: "power2.in",
+            force3D: true
+        });
 
         gsap.to(bottle, {
-            x: 0,
             y: 0,
-            autoAlpha: 0.75, /* 75% opacity */
-            duration: 0.8,
-            ease: "power3.out"
-        });
-
-        gsap.to(bottleBack, {
             x: 0,
-            y: 100
-        });
-
-        section.addEventListener("mouseenter", () => {
-            gsap.killTweensOf([bottle, bottleBack]);
-
-            const tl = gsap.timeline();
-
-            tl.to(bottle, {
-                y: 120,
-                x: 20,
-                rotationZ: 8,
-                autoAlpha: 0,
-                duration: 0.8,
-                ease: "power3.inOut"
-            });
-
-            tl.fromTo(
-                bottleBack,
-                {
-                    y: 80,
-                    scale: 0.95,
-                    rotationZ: -6,
-                    autoAlpha: 0
-                },
-                {
-                    y: 0,
-                    scale: 1,
-                    rotationZ: 0,
-                    autoAlpha: 0.75, /* 75% opacity */
-                    duration: 0.9,
-                    ease: "elastic.out(1, 0.6)"
-                },
-                "<+0.2"
-            );
-        });
-
-        section.addEventListener("mouseleave", () => {
-            gsap.killTweensOf([bottle, bottleBack]);
-
-            const tl = gsap.timeline();
-
-            tl.to(bottleBack, {
-                y: 80,
-                scale: 0.95,
-                rotationZ: -8,
-                autoAlpha: 0,
-                duration: 0.6,
-                ease: "power2.inOut"
-            });
-
-            tl.to(
-                bottle,
-                {
-                    y: 0,
-                    x: 0,
-                    rotationZ: 0,
-                    autoAlpha: 0.75, /* 75% opacity */
-                    duration: 0.7,
-                    ease: "power3.out"
-                },
-                "<+0.1"
-            );
+            rotationZ: 0,
+            autoAlpha: 0.75,
+            duration: 0.3,
+            ease: "power2.in",
+            force3D: true
         });
     });
+});
 
 let resizeTimer;
 window.addEventListener("resize", () => {

@@ -1945,8 +1945,18 @@ a:hover {
 }
 
 .instagram-button:hover {
-  background: #000;
+  background: linear-gradient(
+    135deg,
+    #d4a574 0%,
+    #c9956c 25%,
+    #b8860b 50%,
+    #daa520 75%,
+    #d4a574 100%
+  );
+  background-size: 200% 200%;
   transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(218, 165, 32, 0.5),
+              inset 0 0 10px rgba(255, 255, 255, 0.3);
 }
 
 .instagram-button:hover .button__icon {

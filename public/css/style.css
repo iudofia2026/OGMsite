@@ -1847,7 +1847,7 @@ a:hover {
     font-family: var(--font-primary);
     font-size: clamp(2rem, 5vw, 3rem);
     font-weight: var(--font-weight-normal);
-    color: var(--color-text-primary);
+    color: #FFFFFF;
     margin: 0 0 1rem 0;
     letter-spacing: 0.1em;
     text-transform: uppercase;
@@ -1856,7 +1856,7 @@ a:hover {
 .contact-subtitle {
     font-family: var(--font-secondary);
     font-size: clamp(1rem, 2vw, 1.25rem);
-    color: var(--color-gold-primary);
+    color: #FFD700;
     margin: 0;
     letter-spacing: 0.15em;
     text-transform: uppercase;
@@ -1872,7 +1872,7 @@ a:hover {
 .contact-text {
     font-family: var(--font-secondary);
     font-size: clamp(0.875rem, 2vw, 1rem);
-    color: var(--color-text-secondary);
+    color: #FFFFFF;
     max-width: 600px;
     margin: 0;
     line-height: 1.6;

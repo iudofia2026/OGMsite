@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Navigation from '@/components/Navigation';
 import InstagramButton from '@/components/InstagramButton';
 import ProductCard from '@/components/ProductCard';
+import ScrollingBottle from '@/components/ScrollingBottle';
 
 export default function Home() {
   const { site, products, about, navigation } = homeController.getHomeData();
@@ -12,25 +13,33 @@ export default function Home() {
       {/* Navigation */}
       <Navigation items={navigation} />
 
+      {/* Scrolling Bottle */}
+      <ScrollingBottle />
+
       {/* Hero Section */}
-      <section className="relative h-screen flex flex-col items-center justify-center">
+      <section id="hero" className="relative h-screen flex flex-col items-center justify-center">
         {/* Logo */}
-        <div className="z-10 text-center relative">
-          <Image
-            src="/images/ogm_full_square_logo.svg"
-            alt="OGM Premium Tequila"
-            width={400}
-            height={400}
-            className="w-80 md:w-[28rem] mx-auto transition-transform duration-500 hover:scale-105"
-            priority
-            style={{ padding: 0, marginBottom: 0 }}
-          />
-          <p className="font-goldenbook text-ogm-gold text-h2 tracking-widest uppercase">
-            {site.tagline}
-          </p>
-          <p className="font-raleway text-ogm-gold text-body mt-4 tracking-wider uppercase">
-            Coming This Spring
-          </p>
+        <div className="z-10 relative -ml-72 md:-ml-80 -mt-24">
+          <div className="flex items-end gap-0">
+            <Image
+              src="/images/ogm_full_square_logo.svg"
+              alt="OGM Premium Tequila"
+              width={400}
+              height={400}
+              className="w-[18.7rem] md:w-[24.2rem] transition-transform duration-500 hover:scale-105 mx-0"
+              priority
+              style={{ padding: 0, marginBottom: 0 }}
+            />
+            <p className="font-goldenbook text-ogm-gold text-h2 tracking-widest uppercase text-right leading-loose">
+              Premium<br />Reposado<br />Tequila
+            </p>
+          </div>
+          <div className="flex justify-center mt-4">
+            <p className="font-raleway text-ogm-gold text-subtitle tracking-[0.2em] uppercase relative inline-block transition-all duration-500 cursor-default group">
+              <span className="relative z-10">Coming This Spring</span>
+              <span className="absolute left-0 -bottom-1 w-0 h-[1px] bg-ogm-gold transition-all duration-500 group-hover:w-full"></span>
+            </p>
+          </div>
         </div>
       </section>
 
@@ -94,13 +103,17 @@ export default function Home() {
 
       {/* Contact Section */}
       <section id="contact" className="py-24 px-6 text-center relative">
-        <h2 className="font-goldenbook text-ogm-gold text-h1 mb-4">
-          Get in Touch
-        </h2>
-        <p className="font-raleway text-ogm-gold text-subtitle uppercase tracking-wider mb-8">
-          Follow us on Instagram
-        </p>
-        <InstagramButton />
+        <div className="flex items-center justify-center gap-12">
+          <div className="text-left">
+            <h2 className="font-goldenbook text-ogm-gold text-h1 mb-4">
+              Get in Touch
+            </h2>
+            <p className="font-raleway text-ogm-gold text-subtitle uppercase tracking-wider">
+              Follow us on Instagram
+            </p>
+          </div>
+          <InstagramButton />
+        </div>
       </section>
     </main>
   );

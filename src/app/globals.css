@@ -206,7 +206,9 @@ body {
   position: relative;
   display: grid;
   place-content: center;
-  transition: background 300ms, transform 200ms;
+  transition:
+    background 300ms,
+    transform 200ms;
   font-weight: 600;
 }
 

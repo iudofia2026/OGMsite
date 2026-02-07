@@ -2,12 +2,15 @@ import { homeController } from '@/controllers/home-controller';
 import Image from 'next/image';
 import VerticalBarsNoise from '@/components/VerticalBarsNoise';
 import ExploreButton from '@/components/ExploreButton';
+import Navigation from '@/components/Navigation';
 
 export default function Home() {
-  const { site, products, about } = homeController.getHomeData();
+  const { site, products, about, navigation } = homeController.getHomeData();
 
   return (
     <main className="min-h-screen relative">
+      {/* Navigation */}
+      <Navigation items={navigation} />
       {/* Full Page Animated Background */}
       <div className="fixed inset-0 -z-10">
         <VerticalBarsNoise

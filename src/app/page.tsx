@@ -1,8 +1,8 @@
 import { homeController } from '@/controllers/home-controller';
 import Image from 'next/image';
-import VerticalBarsNoise from '@/components/VerticalBarsNoise';
 import ExploreButton from '@/components/ExploreButton';
 import Navigation from '@/components/Navigation';
+import InstagramButton from '@/components/InstagramButton';
 
 export default function Home() {
   const { site, products, about, navigation } = homeController.getHomeData();
@@ -11,17 +11,6 @@ export default function Home() {
     <main className="min-h-screen relative">
       {/* Navigation */}
       <Navigation items={navigation} />
-      {/* Full Page Animated Background */}
-      <div className="fixed inset-0 -z-10">
-        <VerticalBarsNoise
-          backgroundColor="#141414"
-          lineColor="#6B5535"
-          barColor="#6B5535"
-          lineWidth={1}
-          animationSpeed={0.0005}
-          removeWaveLine={true}
-        />
-      </div>
 
       {/* Hero Section */}
       <section className="relative h-screen flex flex-col items-center justify-center">
@@ -126,14 +115,7 @@ export default function Home() {
         <p className="font-raleway text-ogm-gold text-subtitle uppercase tracking-wider mb-8">
           Follow us on Instagram
         </p>
-        <a
-          href={site.socialLinks.instagram}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-block px-8 py-3 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 text-white font-raleway tracking-widest uppercase rounded-full hover:shadow-gold-medium transition-all duration-300 hover:scale-105"
-        >
-          Instagram
-        </a>
+        <InstagramButton />
       </section>
     </main>
   );

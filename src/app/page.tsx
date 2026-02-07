@@ -1,22 +1,37 @@
 import { homeController } from '@/controllers/home-controller';
 import Image from 'next/image';
+import VerticalBarsNoise from '@/components/VerticalBarsNoise';
+import ExploreButton from '@/components/ExploreButton';
 
 export default function Home() {
   const { site, products, about } = homeController.getHomeData();
 
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen relative">
+      {/* Full Page Animated Background */}
+      <div className="fixed inset-0 -z-10">
+        <VerticalBarsNoise
+          backgroundColor="#141414"
+          lineColor="#6B5535"
+          barColor="#6B5535"
+          lineWidth={1}
+          animationSpeed={0.0005}
+          removeWaveLine={true}
+        />
+      </div>
+
       {/* Hero Section */}
       <section className="relative h-screen flex flex-col items-center justify-center">
         {/* Logo */}
-        <div className="z-10 text-center">
+        <div className="z-10 text-center relative">
           <Image
             src="/images/ogm_full_square_logo.svg"
             alt="OGM Premium Tequila"
             width={400}
             height={400}
-            className="w-64 md:w-96 mb-8"
+            className="w-80 md:w-[28rem] mx-auto"
             priority
+            style={{ padding: 0, marginBottom: 0 }}
           />
           <p className="font-goldenbook text-ogm-gold text-h2 tracking-widest uppercase">
             {site.tagline}
@@ -24,17 +39,12 @@ export default function Home() {
           <p className="font-raleway text-ogm-gold text-body mt-4 tracking-wider uppercase">
             Coming This Spring
           </p>
-          <a
-            href="#products"
-            className="inline-block mt-8 px-8 py-3 border border-ogm-gold text-ogm-gold font-raleway tracking-widest uppercase hover:bg-ogm-gold hover:text-white transition-colors duration-300"
-          >
-            Explore
-          </a>
+          <ExploreButton href="#products" />
         </div>
       </section>
 
       {/* Products Section */}
-      <section id="products" className="py-24 px-6">
+      <section id="products" className="py-24 px-6 relative">
         <div className="max-w-7xl mx-auto">
           <h2 className="font-goldenbook text-ogm-gold text-h1 text-center mb-16">
             Our Collection
@@ -59,7 +69,7 @@ export default function Home() {
                 >
                   {product.name}
                 </h3>
-                <p className="font-raleway text-ogm-gray600 mt-2 text-center">
+                <p className="font-raleway text-ogm-gray400 mt-2 text-center">
                   {product.description}
                 </p>
               </div>
@@ -69,7 +79,7 @@ export default function Home() {
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-24 px-6 bg-ogm-cream">
+      <section id="about" className="py-24 px-6 relative">
         <div className="max-w-6xl mx-auto">
           <h2 className="font-goldenbook text-ogm-gold text-h1 text-center mb-16">
             About OGM
@@ -83,7 +93,7 @@ export default function Home() {
                 } gap-8 items-center`}
               >
                 <div className={`flex-1 ${section.layout === 'text-left' ? 'md:text-right' : 'md:text-left'}`}>
-                  <p className="font-raleway text-body text-ogm-gray700 leading-relaxed">
+                  <p className="font-raleway text-body text-gray-300 leading-relaxed">
                     {section.content}
                   </p>
                 </div>
@@ -106,7 +116,7 @@ export default function Home() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-24 px-6 text-center">
+      <section id="contact" className="py-24 px-6 text-center relative">
         <h2 className="font-goldenbook text-white text-h1 mb-4">
           Get in Touch
         </h2>

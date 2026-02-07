@@ -1,0 +1,184 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =============================================================================
+   OGM BRAND - FONTS
+   ============================================================================= */
+
+/* Goldenbook Font Family */
+@font-face {
+  font-family: 'Goldenbook';
+  src: url('/fonts/Goldenbook-Light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Goldenbook';
+  src: url('/fonts/Goldenbook-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Goldenbook';
+  src: url('/fonts/Goldenbook-ExtraBold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Goldenbook';
+  src: url('/fonts/Goldenbook-Heavy.otf') format('opentype');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Goldenbook';
+  src: url('/fonts/Goldenbook-Black.otf') format('opentype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Raleway Font Family */
+@font-face {
+  font-family: 'Raleway';
+  src: url('/fonts/Raleway-Thin.ttf') format('truetype');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Raleway';
+  src: url('/fonts/Raleway-ExtraLight.ttf') format('truetype');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Raleway';
+  src: url('/fonts/Raleway-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Raleway';
+  src: url('/fonts/Raleway-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Raleway';
+  src: url('/fonts/Raleway-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Raleway';
+  src: url('/fonts/Raleway-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Raleway';
+  src: url('/fonts/Raleway-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Raleway';
+  src: url('/fonts/Raleway-ExtraBold.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Raleway';
+  src: url('/fonts/Raleway-Heavy.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* =============================================================================
+   OGM BRAND - CSS VARIABLES
+   ============================================================================= */
+
+:root {
+  /* Font Families */
+  --font-goldenbook: 'Goldenbook', 'Times New Roman', Georgia, serif;
+  --font-raleway: 'Raleway', 'Helvetica Neue', Arial, sans-serif;
+
+  /* Colors */
+  --color-white: #FFFFFF;
+  --color-gold: #D4AF37;
+  --color-gold-dark: #C9A227;
+  --color-gold-light: #F4E77C;
+
+  /* Backgrounds */
+  --background: #FFFFFF;
+  --foreground: #4A4A3E;
+}
+
+/* =============================================================================
+   BASE STYLES
+   ============================================================================= */
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: var(--font-raleway);
+  overflow-x: hidden;
+}
+
+/* =============================================================================
+   UTILITY CLASSES
+   ============================================================================= */
+
+@layer utilities {
+  .text-gold {
+    color: var(--color-gold);
+  }
+
+  .text-gold-dark {
+    color: var(--color-gold-dark);
+  }
+
+  .bg-gold {
+    background-color: var(--color-gold);
+  }
+
+  .font-goldenbook {
+    font-family: var(--font-goldenbook);
+  }
+
+  .font-raleway {
+    font-family: var(--font-raleway);
+  }
+}

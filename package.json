@@ -1,6 +1,7 @@
 {
   "name": "ogmsite",
   "version": "1.0.0",
+  "type": "module",
   "description": "A modern, premium tequila brand website built with Next.js.",
   "scripts": {
     "dev": "next dev",

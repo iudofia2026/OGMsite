@@ -12,8 +12,7 @@ export default function ExploreButton({ href }: ExploreButtonProps) {
       style={{
         color: 'transparent',
         WebkitTextStroke: '1px rgba(255, 255, 255, 0.6)',
-        textStroke: '1px rgba(255, 255, 255, 0.6)',
-      }}
+      } as React.CSSProperties}
     >
       <span className="relative z-10 block whitespace-nowrap">
         Explore
@@ -23,8 +22,7 @@ export default function ExploreButton({ href }: ExploreButtonProps) {
         style={{
           color: '#D4AF37',
           WebkitTextStroke: '1px #D4AF37',
-          textStroke: '1px #D4AF37',
-        }}
+        } as React.CSSProperties}
       >
         Explore
       </span>

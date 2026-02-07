@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import AgeVerification from "@/components/AgeVerification";
 
 export const metadata: Metadata = {
   title: "OGM - Premium Tequila",
@@ -19,6 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="antialiased text-gray-800" style={{ background: 'linear-gradient(135deg, #FFFFFF 0%, #F8F6F2 50%, #F9F1C8 100%)' }} suppressHydrationWarning>
+        <AgeVerification />
         {children}
       </body>
     </html>

@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
 
 interface NavigationProps {
   items: Array<{ label: string; href: string }>;
@@ -143,10 +144,12 @@ export default function Navigation({ items }: NavigationProps) {
                 transitionDelay: isOpen ? '0.1s' : '0s',
               }}
             >
-              <img
+              <Image
                 src="/images/ogm_full_square_logo.svg"
                 alt="OGM"
-                className="w-32 h-auto mx-auto block"
+                width={128}
+                height={128}
+                className="w-32 h-auto mx-auto"
               />
             </div>
 

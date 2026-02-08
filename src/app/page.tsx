@@ -4,6 +4,7 @@ import Navigation from '@/components/Navigation';
 import InstagramButton from '@/components/InstagramButton';
 import ProductCard from '@/components/ProductCard';
 import ScrollingBottle from '@/components/ScrollingBottle';
+import ComingThisSpring from '@/components/ComingThisSpring';
 
 const signatureStyles = `
   .signature-container {
@@ -191,13 +192,7 @@ export default function Home() {
             />
           </div>
           <div className="flex justify-center">
-            <p
-              className="font-raleway text-white text-subtitle tracking-[0.2em] uppercase relative inline-block transition-all duration-500 group breathing-shadow cursor-pointer"
-              onClick={() => typeof window !== 'undefined' && window.open('https://www.instagram.com/theogmlife/', '_blank')}
-            >
-              <span className="relative z-10">Coming This Spring</span>
-              <span className="absolute left-0 -bottom-1 w-0 h-[1px] bg-white transition-all duration-500 group-hover:w-full"></span>
-            </p>
+            <ComingThisSpring />
           </div>
         </div>
 

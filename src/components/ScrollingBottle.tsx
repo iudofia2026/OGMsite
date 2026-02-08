@@ -287,7 +287,7 @@ export default function ScrollingBottle({
       }}
     >
       <div
-        className="hero-bottle relative"
+        className="hero-bottle relative group cursor-pointer pointer-events-auto"
         style={{
           transform: 'translateX(420px) translateY(-30px)',
           transition: 'transform 0.1s ease-out',
@@ -315,13 +315,22 @@ export default function ScrollingBottle({
           className="relative"
           style={bottleStyle}
         >
+          {/* Front bottle image */}
           <Image
             src={currentBottleSrcRef.current}
             alt={bottleAlt}
             width={280}
             height={700}
-            className="w-full h-full object-contain"
+            className="w-full h-full object-contain transition-opacity duration-300 group-hover:opacity-0"
             priority
+          />
+          {/* Back bottle image - shown on hover */}
+          <Image
+            src="/images/OGM_Labels_Full Back.png"
+            alt={bottleAlt + " - Back"}
+            width={280}
+            height={700}
+            className="absolute inset-0 w-full h-full object-contain transition-opacity duration-300 opacity-0 group-hover:opacity-100"
           />
         </div>
       </div>

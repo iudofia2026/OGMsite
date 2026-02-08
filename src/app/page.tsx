@@ -41,7 +41,11 @@ export default function Home() {
               height={400}
               className="w-[18.7rem] md:w-[24.2rem] transition-transform duration-500 hover:scale-105 mx-0"
               priority
-              style={{ padding: 0, marginBottom: 0 }}
+              style={{
+                padding: 0,
+                marginBottom: 0,
+                clipPath: 'inset(25px 0 25px 0)'
+              }}
             />
           </div>
           <div className="flex justify-center mt-4">

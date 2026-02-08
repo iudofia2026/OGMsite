@@ -5,7 +5,7 @@ import React from 'react';
 export default function ComingThisSpring() {
   return (
     <p
-      className="font-raleway text-white text-subtitle tracking-[0.2em] uppercase relative inline-block transition-all duration-500 group breathing-shadow cursor-pointer"
+      className="font-ranade text-white text-subtitle tracking-[0.2em] uppercase relative inline-block transition-all duration-500 group breathing-shadow cursor-pointer"
       onClick={() => window.open('https://www.instagram.com/theogmlife/', '_blank')}
     >
       <span className="relative z-10">Coming This Spring</span>

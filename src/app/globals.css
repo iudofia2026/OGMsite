@@ -128,6 +128,7 @@
   /* Font Families */
   --font-goldenbook: 'Goldenbook', 'Times New Roman', Georgia, serif;
   --font-raleway: 'Raleway', 'Helvetica Neue', Arial, sans-serif;
+  --font-ranade: 'Ranade', 'Helvetica Neue', Arial, sans-serif;
 
   /* Colors */
   --color-white: #FFFFFF;
@@ -181,6 +182,10 @@ body {
 
   .font-raleway {
     font-family: var(--font-raleway);
+  }
+
+  .font-ranade {
+    font-family: var(--font-ranade);
   }
 }
 

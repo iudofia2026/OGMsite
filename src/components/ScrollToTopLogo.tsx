@@ -44,7 +44,7 @@ export default function ScrollToTopLogo() {
 
   return (
     <div
-      className={`fixed top-6 left-6 z-50 cursor-pointer transition-all duration-500 ease-out ${
+      className={`fixed top-6 left-8 z-50 cursor-pointer transition-all duration-500 ease-out ${
         isVisible
           ? 'translate-x-0 opacity-100 scale-100'
           : '-translate-x-20 opacity-0 scale-90'
@@ -55,17 +55,18 @@ export default function ScrollToTopLogo() {
       }}
     >
       <div className="group relative">
-        {/* Logo container with hover effects */}
-        <div className="bg-white/90 backdrop-blur-sm rounded-full p-3 shadow-lg transition-all duration-300 group-hover:shadow-xl group-hover:bg-white group-hover:scale-105">
-          <Image
-            src="/images/ogm_full_square_logo.svg"
-            alt="Scroll to top - OGM Logo"
-            width={40}
-            height={40}
-            className="w-10 h-10 transition-transform duration-300 group-hover:scale-110"
-            priority={false}
-          />
-        </div>
+        {/* Logo without background circle */}
+        <Image
+          src="/images/ogm_full_square_logo.svg"
+          alt="Scroll to top - OGM Logo"
+          width={60}
+          height={60}
+          className="w-15 h-15 transition-all duration-300 group-hover:scale-110 drop-shadow-lg group-hover:drop-shadow-xl"
+          priority={false}
+          style={{
+            filter: 'drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3))'
+          }}
+        />
 
         {/* Subtle golden glow effect on hover */}
         <div className="absolute inset-0 rounded-full bg-gradient-to-r from-yellow-400/20 to-yellow-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm scale-150 -z-10"></div>

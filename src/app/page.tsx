@@ -300,6 +300,13 @@ const signatureStyles = `
   #products {
     display: none !important;
   }
+
+  /* Hide about image on mobile only */
+  @media (max-width: 768px) {
+    .about-image-container {
+      display: none !important;
+    }
+  }
 `;
 
 export default function Home() {
@@ -550,7 +557,7 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              <div className="flex-1 flex justify-center">
+              <div className="flex-1 flex justify-center about-image-container">
                 <div className="relative w-64 h-80 md:w-80 md:h-96 overflow-hidden">
                   <Image
                     src="/images/about-images/about-3.jpg"

@@ -5,6 +5,7 @@ import InstagramButton from '@/components/InstagramButton';
 import ProductCard from '@/components/ProductCard';
 import ScrollingBottle from '@/components/ScrollingBottle';
 import ComingThisSpring from '@/components/ComingThisSpring';
+import ScrollToTopLogo from '@/components/ScrollToTopLogo';
 
 const signatureStyles = `
   .signature-container {
@@ -148,6 +149,9 @@ export default function Home() {
       {/* Navigation */}
       <Navigation items={navigation} />
 
+      {/* Scroll to Top Logo */}
+      <ScrollToTopLogo />
+
       {/* Scrolling Bottle */}
       <ScrollingBottle />
 
@@ -182,7 +186,7 @@ export default function Home() {
               alt="OGM Premium Tequila"
               width={400}
               height={400}
-              className="w-[22rem] md:w-[28rem] transition-transform duration-500 hover:scale-105 mx-0"
+              className="w-[22rem] md:w-[28rem] transition-transform duration-500 hover:scale-105 mx-0 logo-fade-in"
               priority
               style={{
                 padding: 0,

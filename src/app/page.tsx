@@ -356,7 +356,7 @@ export default function Home() {
             src="/images/ogm background.png"
             alt="OGM brand background"
             fill
-            className="object-cover object-top"
+            className="object-cover object-center"
             priority
             style={{ willChange: 'transform' }}
           />
@@ -426,7 +426,7 @@ export default function Home() {
             Small batch reposado tequila made with passion, served with pride
           </p>
         </div>
-        <div className="absolute right-[-10%] top-0 bottom-0 w-2/3 flex items-center justify-center">
+        <div className="absolute right-[-10%] top-0 bottom-0 w-2/3 flex items-center justify-center hidden md:flex">
           <Image
             src="/images/backgrounds/agave.png"
             alt="Agave"
@@ -437,7 +437,7 @@ export default function Home() {
       </section>
 
       <section id="ginger-lime-section" className="py-72 px-6 relative flex items-center overflow-hidden" style={{ backgroundColor: '#02BBB7', minHeight: '28rem' }}>
-        <div className="absolute left-[-10%] top-0 bottom-0 w-2/3 flex items-center justify-center">
+        <div className="absolute left-[-10%] top-0 bottom-0 w-2/3 flex items-center justify-center hidden md:flex">
           <Image
             src="/images/backgrounds/gingerlime.png"
             alt="Ginger Lime"
@@ -464,7 +464,7 @@ export default function Home() {
             Bold jalapeño-infused reposado tequila with a fiery finish
           </p>
         </div>
-        <div className="absolute right-[-10%] top-0 bottom-0 w-2/3 flex items-center justify-center">
+        <div className="absolute right-[-10%] top-0 bottom-0 w-2/3 flex items-center justify-center hidden md:flex">
           <Image
             src="/images/backgrounds/jalapeno.jpg"
             alt="Jalapeño"

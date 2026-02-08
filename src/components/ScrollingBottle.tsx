@@ -96,13 +96,20 @@ export default function ScrollingBottle({
 
     const handleScroll = () => {
       const scrollY = window.scrollY;
-      const stickPoint = 2225;
+      const isMobile = window.innerWidth <= 768;
+      const stickPoint = isMobile ? 2550 : 2225;
       // Desktop animation points
       const centerStart = 402;
       const centerEnd = 700;
       // Mobile animation points
       const mobileStart = 236;
       const mobileEnd = 636;
+      // Second mobile animation phase
+      const mobilePhase2Start = 1023;
+      const mobilePhase2End = 1371;
+      // Third mobile animation phase
+      const mobilePhase3Start = 1900;
+      const mobilePhase3End = 2150;
 
       if (scrollY >= stickPoint) {
         // Switch to absolute positioning and stick to the scroll position
@@ -122,7 +129,7 @@ export default function ScrollingBottle({
           const isMobile = window.innerWidth <= 768;
 
           if (isMobile) {
-            // Mobile animation: scrollY 236-636
+            // Mobile Phase 1: scrollY 236-636
             if (scrollY >= mobileStart && scrollY <= mobileEnd) {
               const progress = (scrollY - mobileStart) / (mobileEnd - mobileStart);
 
@@ -136,17 +143,57 @@ export default function ScrollingBottle({
               const endY = -30;
               const translateY = startY + (endY - startY) * progress;
 
-              // Scale: 1.0 to 1.2 (20% bigger)
-              const scale = 1 + (0.2 * progress);
+              // Scale: 1.0 to 1.35 (35% bigger)
+              const scale = 1 + (0.35 * progress);
+
+              bottle.style.transform = `translateX(${translateX}px) translateY(${translateY}px) scale(${scale})`;
+
+            } else if (scrollY >= mobilePhase2Start && scrollY <= mobilePhase2End) {
+              // Mobile Phase 2: scrollY 1023-1371 - move to center of left half
+              const progress = (scrollY - mobilePhase2Start) / (mobilePhase2End - mobilePhase2Start);
+
+              // Start: center of right half (100px), End: center of left half (-100px)
+              const startX = 100;
+              const endX = -100; // Center of left half of screen
+              const translateX = startX + (endX - startX) * progress;
+
+              // Vertical: stay at -30px
+              const translateY = -30;
+
+              // Scale: stay at 1.35
+              const scale = 1.35;
+
+              bottle.style.transform = `translateX(${translateX}px) translateY(${translateY}px) scale(${scale})`;
+
+            } else if (scrollY >= mobilePhase3Start && scrollY <= mobilePhase3End) {
+              // Mobile Phase 3: scrollY 1900-2150 - move back to center of right half
+              const progress = (scrollY - mobilePhase3Start) / (mobilePhase3End - mobilePhase3Start);
+
+              // Start: center of left half (-100px), End: center of right half (100px)
+              const startX = -100;
+              const endX = 100; // Center of right half of screen
+              const translateX = startX + (endX - startX) * progress;
+
+              // Vertical: stay at -30px
+              const translateY = -30;
+
+              // Scale: stay at 1.35
+              const scale = 1.35;
 
               bottle.style.transform = `translateX(${translateX}px) translateY(${translateY}px) scale(${scale})`;
 
             } else if (scrollY < mobileStart) {
-              // Before mobile animation
+              // Before first mobile animation
               bottle.style.transform = 'translateX(0px) translateY(120px) scale(1)';
-            } else if (scrollY > mobileEnd) {
-              // After mobile animation
-              bottle.style.transform = 'translateX(100px) translateY(-30px) scale(1.2)';
+            } else if (scrollY > mobileEnd && scrollY < mobilePhase2Start) {
+              // Between Phase 1 and 2 - stay at center-right
+              bottle.style.transform = 'translateX(100px) translateY(-30px) scale(1.35)';
+            } else if (scrollY > mobilePhase2End && scrollY < mobilePhase3Start) {
+              // Between Phase 2 and 3 - stay at center-left
+              bottle.style.transform = 'translateX(-100px) translateY(-30px) scale(1.35)';
+            } else if (scrollY > mobilePhase3End) {
+              // After third animation - stay at center-right
+              bottle.style.transform = 'translateX(100px) translateY(-30px) scale(1.35)';
             }
           } else {
             // Desktop animation: unchanged
@@ -259,7 +306,8 @@ export default function ScrollingBottle({
     // Function to determine which bottle should be shown based on current scroll position
     const getCurrentBottle = () => {
       const scrollY = window.scrollY;
-      const stickPoint = 2225;
+      const isMobile = window.innerWidth <= 768;
+      const stickPoint = isMobile ? 2550 : 2225;
 
       // If we're at or past the stick point, always show jalapeño
       if (scrollY >= stickPoint) {

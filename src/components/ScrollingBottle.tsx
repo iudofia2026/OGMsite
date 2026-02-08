@@ -97,8 +97,12 @@ export default function ScrollingBottle({
     const handleScroll = () => {
       const scrollY = window.scrollY;
       const stickPoint = 2225;
+      // Desktop animation points
       const centerStart = 402;
       const centerEnd = 700;
+      // Mobile animation points
+      const mobileStart = 236;
+      const mobileEnd = 636;
 
       if (scrollY >= stickPoint) {
         // Switch to absolute positioning and stick to the scroll position
@@ -115,23 +119,47 @@ export default function ScrollingBottle({
       if (wrapper) {
         const bottle = wrapper.querySelector('.hero-bottle') as HTMLElement;
         if (bottle) {
-          if (scrollY >= centerStart && scrollY <= centerEnd) {
-            // Calculate progress from 0 to 1
-            const progress = (scrollY - centerStart) / (centerEnd - centerStart);
+          const isMobile = window.innerWidth <= 768;
 
-            // Animate from right (380px) to center (0px)
-            const translateX = 380 - (380 * progress);
+          if (isMobile) {
+            // Mobile animation: scrollY 236-636
+            if (scrollY >= mobileStart && scrollY <= mobileEnd) {
+              const progress = (scrollY - mobileStart) / (mobileEnd - mobileStart);
 
-            // Scale from 1 to 1.15
-            const scale = 1 + (0.15 * progress);
+              // Start: center (0px), End: center of right half (25% from center = ~100px right)
+              const startX = 0;
+              const endX = 100; // Center of right half of screen
+              const translateX = startX + (endX - startX) * progress;
 
-            bottle.style.transform = `translateX(${translateX}px) translateY(-30px) scale(${scale})`;
-          } else if (scrollY < centerStart) {
-            // Before animation - at original position
-            bottle.style.transform = 'translateX(380px) translateY(-30px) scale(1)';
-          } else if (scrollY > centerEnd) {
-            // After animation - stay centered and enlarged
-            bottle.style.transform = 'translateX(0px) translateY(-30px) scale(1.15)';
+              // Vertical: start at 120px, end at -30px
+              const startY = 120;
+              const endY = -30;
+              const translateY = startY + (endY - startY) * progress;
+
+              // Scale: 1.0 to 1.2 (20% bigger)
+              const scale = 1 + (0.2 * progress);
+
+              bottle.style.transform = `translateX(${translateX}px) translateY(${translateY}px) scale(${scale})`;
+
+            } else if (scrollY < mobileStart) {
+              // Before mobile animation
+              bottle.style.transform = 'translateX(0px) translateY(120px) scale(1)';
+            } else if (scrollY > mobileEnd) {
+              // After mobile animation
+              bottle.style.transform = 'translateX(100px) translateY(-30px) scale(1.2)';
+            }
+          } else {
+            // Desktop animation: unchanged
+            if (scrollY >= centerStart && scrollY <= centerEnd) {
+              const progress = (scrollY - centerStart) / (centerEnd - centerStart);
+              const translateX = 380 - (380 * progress);
+              const scale = 1 + (0.15 * progress);
+              bottle.style.transform = `translateX(${translateX}px) translateY(-30px) scale(${scale})`;
+            } else if (scrollY < centerStart) {
+              bottle.style.transform = 'translateX(380px) translateY(-30px) scale(1)';
+            } else if (scrollY > centerEnd) {
+              bottle.style.transform = 'translateX(0px) translateY(-30px) scale(1.15)';
+            }
           }
         }
       }
@@ -334,12 +362,7 @@ export default function ScrollingBottle({
     };
   }, [isClient]);
 
-  const bottleStyle = {
-    width: '220px',
-    height: '550px', // Fixed height instead of auto
-    maxHeight: '70vh',
-    filter: 'drop-shadow(8px 8px 20px rgba(0, 0, 0, 0.15))',
-  };
+  // Removed bottleStyle object - now using Tailwind classes for responsive design
 
   // Don't render during SSR
   if (!isClient) return null;
@@ -360,15 +383,17 @@ export default function ScrollingBottle({
       <div
         className="hero-bottle relative group cursor-pointer pointer-events-auto bottle-reflection"
         style={{
-          transform: 'translateX(380px) translateY(-30px)',
+          transform: typeof window !== 'undefined' && window.innerWidth <= 768
+            ? 'translateX(0px) translateY(120px)'  // Mobile: centered horizontally, bit higher
+            : 'translateX(380px) translateY(-30px)', // Desktop: unchanged
           transition: 'transform 0.1s ease-out',
         }}
       >
         {/* Bottom layer - revealed during wipe */}
         <div
           ref={bottomBottleRef}
-          className="absolute top-0 left-0"
-          style={bottleStyle}
+          className="absolute top-0 left-0 w-[120px] h-[300px] md:w-[220px] md:h-[550px]"
+          style={{ filter: 'drop-shadow(4px 4px 12px rgba(0, 0, 0, 0.15))' }}
         >
           <Image
             src={bottleSrc}
@@ -383,8 +408,8 @@ export default function ScrollingBottle({
         {/* Top layer - wipes away to reveal bottom */}
         <div
           ref={topBottleRef}
-          className="relative"
-          style={bottleStyle}
+          className="relative w-[120px] h-[300px] md:w-[220px] md:h-[550px]"
+          style={{ filter: 'drop-shadow(4px 4px 12px rgba(0, 0, 0, 0.15))' }}
         >
           {/* Front bottle image */}
           <Image

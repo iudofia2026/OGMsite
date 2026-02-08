@@ -295,6 +295,11 @@ const signatureStyles = `
   .about-signature.visible .about-signature-image {
     clip-path: inset(0 0% 0 0);
   }
+
+  /* Hide products section */
+  #products {
+    display: none !important;
+  }
 `;
 
 export default function Home() {
@@ -367,7 +372,7 @@ export default function Home() {
         </div>
 
         {/* Logo */}
-        <div className="z-10 relative -mt-64">
+        <div className="z-10 relative -mt-[28rem] md:-mt-64">
           <div className="flex items-center justify-center gap-0">
             <Image
               src="/images/white_ogm_full_square_logo.svg"
@@ -383,7 +388,7 @@ export default function Home() {
               }}
             />
           </div>
-          <div className="flex justify-center">
+          <div className="flex justify-center -mt-4 md:mt-0">
             <ComingThisSpring />
           </div>
         </div>

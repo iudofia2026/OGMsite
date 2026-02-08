@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -21,6 +21,31 @@ export default function ScrollingBottle({
   const bottomBottleRef = useRef<HTMLDivElement>(null);
   const currentBottleSrcRef = useRef(bottleSrc);
   const isAnimatingRef = useRef(false);
+
+  // State for bottle positioning
+  const [bottlePosition, setBottlePosition] = useState<'fixed' | 'absolute'>('fixed');
+  const [bottleTop, setBottleTop] = useState(0);
+
+  // Handle scroll-based positioning
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      const stickPoint = 2315;
+
+      if (scrollY >= stickPoint) {
+        // Switch to absolute positioning and stick to the scroll position
+        setBottlePosition('absolute');
+        setBottleTop(stickPoint + (window.innerHeight / 2) - 275); // Center vertically at stick point
+      } else {
+        // Keep fixed positioning
+        setBottlePosition('fixed');
+        setBottleTop(0);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   useEffect(() => {
     const wrapper = wrapperRef.current;
@@ -97,6 +122,14 @@ export default function ScrollingBottle({
 
     // Function to determine which bottle should be shown based on current scroll position
     const getCurrentBottle = () => {
+      const scrollY = window.scrollY;
+      const stickPoint = 2315;
+
+      // If we're at or past the stick point, always show jalapeño
+      if (scrollY >= stickPoint) {
+        return '/images/OGM_Labels_Jalapeno_Full Front.png';
+      }
+
       const viewportHeight = window.innerHeight;
       const centerY = viewportHeight * 0.5;
 
@@ -193,13 +226,18 @@ export default function ScrollingBottle({
   return (
     <div
       ref={wrapperRef}
-      className="hero-bottle-wrapper fixed inset-0 pointer-events-none z-40 flex items-center justify-center"
-      style={{ opacity: 0 }}
+      className={`hero-bottle-wrapper pointer-events-none z-40 flex items-center justify-center ${
+        bottlePosition === 'fixed' ? 'fixed inset-0' : 'absolute left-0 right-0'
+      }`}
+      style={{
+        opacity: 0,
+        top: bottlePosition === 'absolute' ? `${bottleTop}px` : undefined
+      }}
     >
       <div
         className="hero-bottle relative"
         style={{
-          transform: 'translateX(380px) translateY(-30px)',
+          transform: 'translateX(420px) translateY(-30px)',
         }}
       >
         {/* Bottom layer - revealed during wipe */}

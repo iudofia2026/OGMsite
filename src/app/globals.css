@@ -155,6 +155,7 @@ body {
   background: var(--background);
   font-family: var(--font-raleway);
   overflow-x: hidden;
+  overscroll-behavior-y: none;
 }
 
 /* =============================================================================

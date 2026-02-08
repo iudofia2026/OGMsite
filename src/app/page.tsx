@@ -18,9 +18,22 @@ export default function Home() {
 
       {/* Hero Section */}
       <section id="hero" className="relative h-screen flex flex-col items-center justify-center">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/images/Saguaro-Superstition-Mountains-Lost-Dutchman-State-Park-Arizona_iStock-461071937_-scaled.png"
+            alt="Desert landscape with Saguaro cacti and mountains"
+            fill
+            className="object-cover"
+            priority
+          />
+          {/* Overlay for better text readability */}
+          <div className="absolute inset-0 bg-black bg-opacity-30"></div>
+        </div>
+
         {/* Logo */}
-        <div className="z-10 relative -ml-72 md:-ml-80 -mt-24">
-          <div className="flex items-center gap-0">
+        <div className="z-10 relative -mt-24">
+          <div className="flex items-center justify-center gap-0">
             <Image
               src="/images/ogm_full_square_logo.svg"
               alt="OGM Premium Tequila"
@@ -30,14 +43,11 @@ export default function Home() {
               priority
               style={{ padding: 0, marginBottom: 0 }}
             />
-            <p className="font-goldenbook text-ogm-gold text-h2 tracking-widest uppercase text-right leading-loose font-bold">
-              Premium<br />Reposado<br />Tequila
-            </p>
           </div>
           <div className="flex justify-center mt-4">
-            <p className="font-raleway text-ogm-gold text-subtitle tracking-[0.2em] uppercase relative inline-block transition-all duration-500 cursor-default group">
+            <p className="font-raleway text-white text-subtitle tracking-[0.2em] uppercase relative inline-block transition-all duration-500 cursor-default group">
               <span className="relative z-10">Coming This Spring</span>
-              <span className="absolute left-0 -bottom-1 w-0 h-[1px] bg-ogm-gold transition-all duration-500 group-hover:w-full"></span>
+              <span className="absolute left-0 -bottom-1 w-0 h-[1px] bg-white transition-all duration-500 group-hover:w-full"></span>
             </p>
           </div>
         </div>

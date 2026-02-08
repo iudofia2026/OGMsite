@@ -7,6 +7,62 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
+// Bottle reflection animation styles
+const bottleStyles = `
+  .bottle-reflection::before {
+    content: '';
+    position: absolute;
+    inset: -10%;
+    background: radial-gradient(
+      ellipse at 30% 20%,
+      rgba(255, 215, 0, 0.08) 0%,
+      transparent 50%
+    );
+    animation: studio-lighting 12s ease-in-out infinite;
+    pointer-events: none;
+    filter: blur(20px);
+    z-index: -1;
+  }
+
+  .bottle-reflection::after {
+    content: '';
+    position: absolute;
+    inset: -5%;
+    background: radial-gradient(
+      ellipse at 70% 80%,
+      rgba(255, 200, 100, 0.05) 0%,
+      transparent 40%
+    );
+    animation: fill-light 15s ease-in-out infinite;
+    animation-delay: -6s;
+    pointer-events: none;
+    filter: blur(15px);
+    z-index: -1;
+  }
+
+  @keyframes studio-lighting {
+    0%, 100% {
+      opacity: 0.3;
+      transform: translateX(0) translateY(0) scale(1);
+    }
+    50% {
+      opacity: 0.6;
+      transform: translateX(10px) translateY(-5px) scale(1.1);
+    }
+  }
+
+  @keyframes fill-light {
+    0%, 100% {
+      opacity: 0.2;
+      transform: translateX(0) translateY(0);
+    }
+    50% {
+      opacity: 0.5;
+      transform: translateX(-8px) translateY(5px);
+    }
+  }
+`;
+
 interface ScrollingBottleProps {
   bottleSrc?: string;
   bottleAlt?: string;
@@ -289,7 +345,9 @@ export default function ScrollingBottle({
   if (!isClient) return null;
 
   return (
-    <div
+    <>
+      <style dangerouslySetInnerHTML={{ __html: bottleStyles }} />
+      <div
       ref={wrapperRef}
       className={`hero-bottle-wrapper pointer-events-none z-40 flex items-center justify-center ${
         bottlePosition === 'fixed' ? 'fixed inset-0' : 'absolute left-0 right-0'
@@ -300,7 +358,7 @@ export default function ScrollingBottle({
       }}
     >
       <div
-        className="hero-bottle relative group cursor-pointer pointer-events-auto"
+        className="hero-bottle relative group cursor-pointer pointer-events-auto bottle-reflection"
         style={{
           transform: 'translateX(420px) translateY(-30px)',
           transition: 'transform 0.1s ease-out',
@@ -348,5 +406,6 @@ export default function ScrollingBottle({
         </div>
       </div>
     </div>
+    </>
   );
 }

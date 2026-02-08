@@ -31,6 +31,110 @@ const signatureStyles = `
       clip-path: inset(0 0% 0 0);
     }
   }
+
+  /* Gentle Background Zoom Animation */
+  .hero-background-wrapper {
+    animation: subtle-zoom 45s ease-in-out infinite;
+  }
+
+  @keyframes subtle-zoom {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.03);
+    }
+  }
+
+  /* Ambient Light Rays */
+  .light-ray {
+    position: absolute;
+    background: linear-gradient(
+      to bottom,
+      rgba(255, 215, 0, 0.03) 0%,
+      rgba(255, 215, 0, 0.01) 50%,
+      transparent 100%
+    );
+    filter: blur(30px);
+    pointer-events: none;
+    transform-origin: top center;
+  }
+
+  .ray-1 {
+    top: 0;
+    left: 5%;
+    width: 200px;
+    height: 100%;
+    animation: ray-drift-1 90s ease-in-out infinite;
+    opacity: 0.4;
+  }
+
+  .ray-2 {
+    top: 0;
+    right: 10%;
+    width: 180px;
+    height: 100%;
+    animation: ray-drift-2 75s ease-in-out infinite;
+    animation-delay: -30s;
+    opacity: 0.3;
+  }
+
+  .ray-3 {
+    top: 0;
+    left: 45%;
+    width: 150px;
+    height: 100%;
+    animation: ray-drift-3 80s ease-in-out infinite;
+    animation-delay: -50s;
+    opacity: 0.35;
+  }
+
+  @keyframes ray-drift-1 {
+    0%, 100% {
+      transform: translateX(0) rotate(-2deg);
+      opacity: 0.3;
+    }
+    50% {
+      transform: translateX(30px) rotate(2deg);
+      opacity: 0.5;
+    }
+  }
+
+  @keyframes ray-drift-2 {
+    0%, 100% {
+      transform: translateX(0) rotate(1deg);
+      opacity: 0.25;
+    }
+    50% {
+      transform: translateX(-25px) rotate(-1deg);
+      opacity: 0.4;
+    }
+  }
+
+  @keyframes ray-drift-3 {
+    0%, 100% {
+      transform: translateX(0) rotate(0deg);
+      opacity: 0.3;
+    }
+    50% {
+      transform: translateX(15px) rotate(1deg);
+      opacity: 0.45;
+    }
+  }
+
+  /* Text Shadow Breathing */
+  .breathing-shadow {
+    animation: shadow-breathe 8s ease-in-out infinite;
+  }
+
+  @keyframes shadow-breathe {
+    0%, 100% {
+      text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+    }
+    50% {
+      text-shadow: 0 0 30px rgba(255, 215, 0, 0.3), 0 0 40px rgba(255, 215, 0, 0.1);
+    }
+  }
 `;
 
 export default function Home() {
@@ -49,16 +153,24 @@ export default function Home() {
       {/* Hero Section */}
       <section id="hero" className="relative h-screen flex flex-col items-center justify-center">
         {/* Background Image */}
-        <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 z-0 hero-background-wrapper">
           <Image
             src="/images/ogm background.png"
             alt="OGM brand background"
             fill
             className="object-cover object-top"
             priority
+            style={{ willChange: 'transform' }}
           />
           {/* Overlay for better text readability */}
           <div className="absolute inset-0 bg-black bg-opacity-30"></div>
+        </div>
+
+        {/* Ambient Light Rays */}
+        <div className="absolute inset-0 z-3 pointer-events-none overflow-hidden">
+          <div className="light-ray ray-1"></div>
+          <div className="light-ray ray-2"></div>
+          <div className="light-ray ray-3"></div>
         </div>
 
         {/* Logo */}
@@ -79,7 +191,10 @@ export default function Home() {
             />
           </div>
           <div className="flex justify-center">
-            <p className="font-raleway text-white text-subtitle tracking-[0.2em] uppercase relative inline-block transition-all duration-500 cursor-default group">
+            <p
+              className="font-raleway text-white text-subtitle tracking-[0.2em] uppercase relative inline-block transition-all duration-500 group breathing-shadow cursor-pointer"
+              onClick={() => typeof window !== 'undefined' && window.open('https://www.instagram.com/theogmlife/', '_blank')}
+            >
               <span className="relative z-10">Coming This Spring</span>
               <span className="absolute left-0 -bottom-1 w-0 h-[1px] bg-white transition-all duration-500 group-hover:w-full"></span>
             </p>

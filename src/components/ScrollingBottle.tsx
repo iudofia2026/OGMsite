@@ -26,25 +26,67 @@ export default function ScrollingBottle({
   const [bottlePosition, setBottlePosition] = useState<'fixed' | 'absolute'>('fixed');
   const [bottleTop, setBottleTop] = useState(0);
 
-  // Handle scroll-based positioning
+  // Handle scroll-based positioning and centering animation
   useEffect(() => {
+    let animationId: number;
+
     const handleScroll = () => {
       const scrollY = window.scrollY;
-      const stickPoint = 2315;
+      const stickPoint = 2129;
+      const centerStart = 402;
+      const centerEnd = 700;
 
       if (scrollY >= stickPoint) {
         // Switch to absolute positioning and stick to the scroll position
         setBottlePosition('absolute');
-        setBottleTop(stickPoint + (window.innerHeight / 2) - 275); // Center vertically at stick point
+        setBottleTop(stickPoint + (window.innerHeight / 2) - 275);
       } else {
         // Keep fixed positioning
         setBottlePosition('fixed');
         setBottleTop(0);
       }
+
+      // Handle centering animation between scrollY 402-700
+      const wrapper = wrapperRef.current;
+      if (wrapper) {
+        const bottle = wrapper.querySelector('.hero-bottle') as HTMLElement;
+        if (bottle) {
+          if (scrollY >= centerStart && scrollY <= centerEnd) {
+            // Calculate progress from 0 to 1
+            const progress = (scrollY - centerStart) / (centerEnd - centerStart);
+
+            // Animate from right (420px) to center (0px)
+            const translateX = 420 - (420 * progress);
+
+            // Scale from 1 to 1.15
+            const scale = 1 + (0.15 * progress);
+
+            bottle.style.transform = `translateX(${translateX}px) translateY(-30px) scale(${scale})`;
+          } else if (scrollY < centerStart) {
+            // Before animation - at original position
+            bottle.style.transform = 'translateX(420px) translateY(-30px) scale(1)';
+          } else if (scrollY > centerEnd) {
+            // After animation - stay centered and enlarged
+            bottle.style.transform = 'translateX(0px) translateY(-30px) scale(1.15)';
+          }
+        }
+      }
     };
 
+    const smoothScroll = () => {
+      handleScroll();
+      animationId = requestAnimationFrame(smoothScroll);
+    };
+
+    smoothScroll();
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (animationId) {
+        cancelAnimationFrame(animationId);
+      }
+    };
   }, []);
 
   useEffect(() => {
@@ -123,7 +165,7 @@ export default function ScrollingBottle({
     // Function to determine which bottle should be shown based on current scroll position
     const getCurrentBottle = () => {
       const scrollY = window.scrollY;
-      const stickPoint = 2315;
+      const stickPoint = 2129;
 
       // If we're at or past the stick point, always show jalapeño
       if (scrollY >= stickPoint) {
@@ -238,6 +280,7 @@ export default function ScrollingBottle({
         className="hero-bottle relative"
         style={{
           transform: 'translateX(420px) translateY(-30px)',
+          transition: 'transform 0.1s ease-out',
         }}
       >
         {/* Bottom layer - revealed during wipe */}

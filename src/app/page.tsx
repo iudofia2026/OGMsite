@@ -54,8 +54,8 @@ export default function Home() {
       </section>
 
       {/* Tequila Type Sections */}
-      <section id="premium-section" className="py-80 px-6 relative" style={{ backgroundColor: '#C9A55B' }}>
-        <div className="max-w-4xl mx-auto text-center">
+      <section id="premium-section" className="py-60 px-6 relative flex items-center" style={{ backgroundColor: '#C9A55B' }}>
+        <div className="w-1/3">
           <h2 className="font-goldenbook text-white text-h1 mb-4">
             Premium Reposado
           </h2>
@@ -63,10 +63,11 @@ export default function Home() {
             Small batch reposado tequila made with passion, served with pride
           </p>
         </div>
+        <div className="w-2/3"></div>
       </section>
 
-      <section id="ginger-lime-section" className="py-80 px-6 relative" style={{ backgroundColor: '#02BBB7' }}>
-        <div className="max-w-4xl mx-auto text-center">
+      <section id="ginger-lime-section" className="py-60 px-6 relative flex items-center" style={{ backgroundColor: '#02BBB7' }}>
+        <div className="w-1/3">
           <h2 className="font-goldenbook text-white text-h1 mb-4">
             Ginger Lime
           </h2>
@@ -74,10 +75,11 @@ export default function Home() {
             Refreshing ginger lime reposado tequila with citrus notes
           </p>
         </div>
+        <div className="w-2/3"></div>
       </section>
 
-      <section id="jalapeno-section" className="py-80 px-6 relative" style={{ backgroundColor: '#CC071E' }}>
-        <div className="max-w-4xl mx-auto text-center">
+      <section id="jalapeno-section" className="py-60 px-6 relative flex items-center" style={{ backgroundColor: '#CC071E' }}>
+        <div className="w-1/3">
           <h2 className="font-goldenbook text-white text-h1 mb-4">
             Jalapeño Reposado
           </h2>
@@ -85,6 +87,7 @@ export default function Home() {
             Bold jalapeño-infused reposado tequila with a fiery finish
           </p>
         </div>
+        <div className="w-2/3"></div>
       </section>
 
       {/* Products Section */}

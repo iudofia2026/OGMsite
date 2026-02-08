@@ -54,7 +54,7 @@ export default function Home() {
             src="/images/ogm background.png"
             alt="OGM brand background"
             fill
-            className="object-cover"
+            className="object-cover object-top"
             priority
           />
           {/* Overlay for better text readability */}
@@ -62,14 +62,14 @@ export default function Home() {
         </div>
 
         {/* Logo */}
-        <div className="z-10 relative -mt-24">
+        <div className="z-10 relative -mt-64">
           <div className="flex items-center justify-center gap-0">
             <Image
               src="/images/ogm_full_square_logo.svg"
               alt="OGM Premium Tequila"
               width={400}
               height={400}
-              className="w-[18.7rem] md:w-[24.2rem] transition-transform duration-500 hover:scale-105 mx-0"
+              className="w-[22rem] md:w-[28rem] transition-transform duration-500 hover:scale-105 mx-0"
               priority
               style={{
                 padding: 0,
@@ -78,28 +78,28 @@ export default function Home() {
               }}
             />
           </div>
-          <div className="flex justify-center mt-4">
+          <div className="flex justify-center">
             <p className="font-raleway text-white text-subtitle tracking-[0.2em] uppercase relative inline-block transition-all duration-500 cursor-default group">
               <span className="relative z-10">Coming This Spring</span>
               <span className="absolute left-0 -bottom-1 w-0 h-[1px] bg-white transition-all duration-500 group-hover:w-full"></span>
             </p>
           </div>
+        </div>
 
-          {/* Animated Signature */}
-          <div className="flex justify-center mt-6">
-            <div className="signature-container opacity-0 animate-fade-in">
-              <div className="signature-wrapper">
-                <Image
-                  src="/images/OGM_signature-wht.svg"
-                  alt="OGM Signature"
-                  width={160}
-                  height={125}
-                  className="signature-image"
-                  style={{
-                    filter: 'drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3))'
-                  }}
-                />
-              </div>
+        {/* Animated Signature */}
+        <div className="z-10 absolute bottom-16 left-0 right-0 flex justify-center">
+          <div className="signature-container opacity-0 animate-fade-in">
+            <div className="signature-wrapper">
+              <Image
+                src="/images/OGM_signature-wht.svg"
+                alt="OGM Signature"
+                width={160}
+                height={125}
+                className="signature-image"
+                style={{
+                  filter: 'drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3))'
+                }}
+              />
             </div>
           </div>
         </div>

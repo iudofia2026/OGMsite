@@ -66,7 +66,7 @@ export default function Home() {
         <div className="w-2/3"></div>
       </section>
 
-      <section id="ginger-lime-section" className="py-60 px-6 relative flex items-center" style={{ backgroundColor: '#02BBB7' }}>
+      <section id="ginger-lime-section" className="py-72 px-6 relative flex items-center" style={{ backgroundColor: '#02BBB7' }}>
         <div className="w-1/3">
           <h2 className="font-goldenbook text-white text-h1 mb-4">
             Ginger Lime

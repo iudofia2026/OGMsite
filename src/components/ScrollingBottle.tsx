@@ -32,7 +32,7 @@ export default function ScrollingBottle({
 
     const handleScroll = () => {
       const scrollY = window.scrollY;
-      const stickPoint = 2129;
+      const stickPoint = 2225;
       const centerStart = 402;
       const centerEnd = 700;
 
@@ -165,7 +165,7 @@ export default function ScrollingBottle({
     // Function to determine which bottle should be shown based on current scroll position
     const getCurrentBottle = () => {
       const scrollY = window.scrollY;
-      const stickPoint = 2129;
+      const stickPoint = 2225;
 
       // If we're at or past the stick point, always show jalapeño
       if (scrollY >= stickPoint) {
@@ -191,7 +191,7 @@ export default function ScrollingBottle({
         return '/images/OGM_Labels_Jalapeno_Full Front.png';
       }
 
-      // Default to premium bottle if not in any colored section
+      // Always default to premium bottle if not in any colored section (including top of page)
       return '/images/OGM_Labels_Premium_Full Front.png';
     };
 
@@ -212,6 +212,16 @@ export default function ScrollingBottle({
         const correctBottle = getCurrentBottle();
         immediateTransition(correctBottle);
       }
+    });
+
+    // Specific trigger for top of page to ensure premium bottle
+    ScrollTrigger.create({
+      trigger: 'body',
+      start: 'top top',
+      end: 'top+=100',
+      refreshPriority: 11,
+      onEnter: () => immediateTransition('/images/OGM_Labels_Premium_Full Front.png'),
+      onEnterBack: () => immediateTransition('/images/OGM_Labels_Premium_Full Front.png'),
     });
 
     // Also add specific triggers for each section for redundancy

@@ -17,117 +17,178 @@ export default function ScrollingBottle({
   bottleAlt = 'OGM Premium Tequila Bottle',
 }: ScrollingBottleProps) {
   const wrapperRef = useRef<HTMLDivElement>(null);
-  const bottleRef = useRef<HTMLDivElement>(null);
+  const topBottleRef = useRef<HTMLDivElement>(null);
+  const bottomBottleRef = useRef<HTMLDivElement>(null);
+  const currentBottleSrcRef = useRef(bottleSrc);
+  const isAnimatingRef = useRef(false);
 
   useEffect(() => {
     const wrapper = wrapperRef.current;
-    const bottle = bottleRef.current;
+    const topBottle = topBottleRef.current;
+    const bottomBottle = bottomBottleRef.current;
 
-    if (!wrapper || !bottle) return;
+    if (!wrapper || !topBottle || !bottomBottle) return;
 
     // Clear any existing ScrollTriggers
     ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
 
-    // Initial load animation - fade in the bottle
+    // Initial load animation
     gsap.fromTo(
       wrapper,
       { opacity: 0, scale: 0.8 },
       { opacity: 1, scale: 1, duration: 1.5, ease: 'power3.out', delay: 0.5 }
     );
 
-    // Set up responsive scroll animations
-    const mm = gsap.matchMedia();
+    // Wipe transition function
+    const transitionBottle = (newSrc: string) => {
+      if (newSrc === currentBottleSrcRef.current || isAnimatingRef.current) return;
 
-    mm.add(
-      '(min-width: 769px)',
-      () => {
-        // Desktop scroll animations
+      isAnimatingRef.current = true;
+      const oldSrc = currentBottleSrcRef.current;
 
-        // Phase 1: Hero to Products - bottle scales down and rotates
-        const tl1 = gsap.timeline({
-          scrollTrigger: {
-            trigger: '#hero',
-            start: 'top top',
-            endTrigger: '#products',
-            end: 'top center',
-            scrub: 1,
-          },
-        });
+      // Get img elements
+      const topImg = topBottle.querySelector('img') as HTMLImageElement;
+      const bottomImg = bottomBottle.querySelector('img') as HTMLImageElement;
 
-        tl1.to(bottle, {
-          scale: 0.85,
-          y: 50,
-          ease: 'none',
-        });
+      if (!topImg || !bottomImg) {
+        isAnimatingRef.current = false;
+        return;
+      }
 
-        // Phase 2: Products section - bottle shifts left
-        const tl2 = gsap.timeline({
-          scrollTrigger: {
-            trigger: '#products',
-            start: 'top center',
-            end: 'bottom center',
-            scrub: 1,
-          },
-        });
+      // Set up the layers for wipe - OLD on top (wipes away), NEW on bottom (revealed)
+      topImg.src = oldSrc;  // Old bottle on top
+      bottomImg.src = newSrc; // New bottle on bottom (destination)
 
-        tl2.to(bottle, {
-          scale: 0.75,
-          x: -150,
-          ease: 'none',
-        });
+      // Ensure both are fully visible
+      gsap.set([topBottle, bottomBottle], { clearProps: 'clipPath' });
 
-        // Phase 3: About section - bottle shifts right
-        const tl3 = gsap.timeline({
-          scrollTrigger: {
-            trigger: '#about',
-            start: 'top center',
-            end: 'bottom center',
-            scrub: 1,
-          },
-        });
-
-        tl3.to(bottle, {
-          scale: 0.7,
-          x: 150,
-          ease: 'none',
-        });
-
-        // Phase 4: Contact section - bottle centers and fades
-        const tl4 = gsap.timeline({
-          scrollTrigger: {
-            trigger: '#contact',
-            start: 'top center',
-            end: 'center center',
-            scrub: 1,
-          },
-        });
-
-        tl4.to(bottle, {
-          rotate: 0,
-          scale: 0.6,
-          x: 0,
-          opacity: 0.5,
-          ease: 'none',
-        });
-      },
-      wrapper
-    );
-
-    // Mobile - simple fade in, no scroll animation
-    mm.add('(max-width: 768px)', () => {
-      gsap.to(wrapper, {
-        opacity: 1,
-        duration: 1,
-        delay: 0.3,
+      // Animate the wipe - old bottle wipes away revealing new bottle
+      gsap.to(topBottle, {
+        clipPath: 'inset(100% 0 0 0)',
+        duration: 0.5,
+        ease: 'power2.inOut',
+        onComplete: () => {
+          currentBottleSrcRef.current = newSrc;
+          // Reset top layer to show new bottle for next transition
+          topImg.src = newSrc;
+          gsap.set(topBottle, { clearProps: 'clipPath' });
+          isAnimatingRef.current = false;
+        },
       });
+    };
+
+    // Create scroll triggers with minimal debouncing for fast scrolling
+    let triggerTimeout: NodeJS.Timeout;
+    const debouncedTransition = (newSrc: string) => {
+      clearTimeout(triggerTimeout);
+      triggerTimeout = setTimeout(() => transitionBottle(newSrc), 5); // Very minimal delay
+    };
+
+    // Immediate transition for critical updates
+    const immediateTransition = (newSrc: string) => {
+      clearTimeout(triggerTimeout);
+      transitionBottle(newSrc);
+    };
+
+    // Get sections once
+    const premiumSection = document.querySelector('#premium-section');
+    const gingerLimeSection = document.querySelector('#ginger-lime-section');
+    const jalapenoSection = document.querySelector('#jalapeno-section');
+
+    // Function to determine which bottle should be shown based on current scroll position
+    const getCurrentBottle = () => {
+      const viewportHeight = window.innerHeight;
+      const centerY = viewportHeight * 0.5;
+
+      // Check each section from top to bottom
+      const premiumRect = premiumSection?.getBoundingClientRect();
+      const gingerLimeRect = gingerLimeSection?.getBoundingClientRect();
+      const jalapenoRect = jalapenoSection?.getBoundingClientRect();
+
+      // Check if center of viewport is within each section
+      if (premiumRect && premiumRect.top <= centerY && premiumRect.bottom >= centerY) {
+        return '/images/OGM_Labels_Premium_Full Front.png';
+      }
+      if (gingerLimeRect && gingerLimeRect.top <= centerY && gingerLimeRect.bottom >= centerY) {
+        return '/images/OGM_Labels_Ginger Lime_Full Front.png';
+      }
+      if (jalapenoRect && jalapenoRect.top <= centerY && jalapenoRect.bottom >= centerY) {
+        return '/images/OGM_Labels_Jalapeno_Full Front.png';
+      }
+
+      // Default to premium bottle if not in any colored section
+      return '/images/OGM_Labels_Premium_Full Front.png';
+    };
+
+    // Single scroll trigger that handles everything
+    ScrollTrigger.create({
+      trigger: 'body',
+      start: 'top top',
+      end: 'bottom bottom',
+      refreshPriority: 10,
+      fastScrollEnd: 5,
+      anticipatePin: 1,
+      scrub: false,
+      onUpdate: () => {
+        const correctBottle = getCurrentBottle();
+        immediateTransition(correctBottle);
+      },
+      onRefresh: () => {
+        const correctBottle = getCurrentBottle();
+        immediateTransition(correctBottle);
+      }
     });
+
+    // Also add specific triggers for each section for redundancy
+    if (premiumSection) {
+      ScrollTrigger.create({
+        trigger: premiumSection,
+        start: 'top center',
+        end: 'bottom center',
+        refreshPriority: 9,
+        fastScrollEnd: true,
+        onEnter: () => immediateTransition('/images/OGM_Labels_Premium_Full Front.png'),
+        onEnterBack: () => immediateTransition('/images/OGM_Labels_Premium_Full Front.png'),
+      });
+    }
+
+    if (gingerLimeSection) {
+      ScrollTrigger.create({
+        trigger: gingerLimeSection,
+        start: 'top center',
+        end: 'bottom center',
+        refreshPriority: 8,
+        fastScrollEnd: true,
+        onEnter: () => immediateTransition('/images/OGM_Labels_Ginger Lime_Full Front.png'),
+        onEnterBack: () => immediateTransition('/images/OGM_Labels_Ginger Lime_Full Front.png'),
+      });
+    }
+
+    if (jalapenoSection) {
+      ScrollTrigger.create({
+        trigger: jalapenoSection,
+        start: 'top center',
+        end: 'bottom center',
+        refreshPriority: 7,
+        fastScrollEnd: true,
+        onEnter: () => immediateTransition('/images/OGM_Labels_Jalapeno_Full Front.png'),
+        onEnterBack: () => immediateTransition('/images/OGM_Labels_Jalapeno_Full Front.png'),
+      });
+    }
 
     // Cleanup
     return () => {
-      mm.revert();
+      clearTimeout(triggerTimeout);
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
   }, []);
+
+  const bottleStyle = {
+    width: '220px',
+    height: '550px', // Fixed height instead of auto
+    maxHeight: '70vh',
+    filter: 'drop-shadow(8px 8px 20px rgba(0, 0, 0, 0.15))',
+  };
 
   return (
     <div
@@ -136,24 +197,42 @@ export default function ScrollingBottle({
       style={{ opacity: 0 }}
     >
       <div
-        ref={bottleRef}
         className="hero-bottle relative"
         style={{
-          width: '240px',
-          height: 'auto',
-          maxHeight: '70vh',
-          filter: 'drop-shadow(8px 8px 20px rgba(0, 0, 0, 0.15))',
-          transform: 'translateX(480px) translateY(-30px)',
+          transform: 'translateX(380px) translateY(-30px)',
         }}
       >
-        <Image
-          src={bottleSrc}
-          alt={bottleAlt}
-          width={280}
-          height={700}
-          className="w-full h-auto object-contain"
-          priority
-        />
+        {/* Bottom layer - revealed during wipe */}
+        <div
+          ref={bottomBottleRef}
+          className="absolute top-0 left-0"
+          style={bottleStyle}
+        >
+          <Image
+            src={bottleSrc}
+            alt={bottleAlt}
+            width={280}
+            height={700}
+            className="w-full h-full object-contain"
+            priority
+          />
+        </div>
+
+        {/* Top layer - wipes away to reveal bottom */}
+        <div
+          ref={topBottleRef}
+          className="relative"
+          style={bottleStyle}
+        >
+          <Image
+            src={currentBottleSrcRef.current}
+            alt={bottleAlt}
+            width={280}
+            height={700}
+            className="w-full h-full object-contain"
+            priority
+          />
+        </div>
       </div>
     </div>
   );

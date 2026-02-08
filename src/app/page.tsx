@@ -20,7 +20,7 @@ export default function Home() {
       <section id="hero" className="relative h-screen flex flex-col items-center justify-center">
         {/* Logo */}
         <div className="z-10 relative -ml-72 md:-ml-80 -mt-24">
-          <div className="flex items-end gap-0">
+          <div className="flex items-center gap-0">
             <Image
               src="/images/ogm_full_square_logo.svg"
               alt="OGM Premium Tequila"
@@ -30,7 +30,7 @@ export default function Home() {
               priority
               style={{ padding: 0, marginBottom: 0 }}
             />
-            <p className="font-goldenbook text-ogm-gold text-h2 tracking-widest uppercase text-right leading-loose">
+            <p className="font-goldenbook text-ogm-gold text-h2 tracking-widest uppercase text-right leading-loose font-bold">
               Premium<br />Reposado<br />Tequila
             </p>
           </div>
@@ -40,6 +40,40 @@ export default function Home() {
               <span className="absolute left-0 -bottom-1 w-0 h-[1px] bg-ogm-gold transition-all duration-500 group-hover:w-full"></span>
             </p>
           </div>
+        </div>
+      </section>
+
+      {/* Tequila Type Sections */}
+      <section id="premium-section" className="py-80 px-6 relative" style={{ backgroundColor: '#C9A55B' }}>
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="font-goldenbook text-white text-h1 mb-4">
+            Premium Reposado
+          </h2>
+          <p className="font-raleway text-white text-body leading-relaxed">
+            Small batch reposado tequila made with passion, served with pride
+          </p>
+        </div>
+      </section>
+
+      <section id="ginger-lime-section" className="py-80 px-6 relative" style={{ backgroundColor: '#02BBB7' }}>
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="font-goldenbook text-white text-h1 mb-4">
+            Ginger Lime
+          </h2>
+          <p className="font-raleway text-white text-body leading-relaxed">
+            Refreshing ginger lime reposado tequila with citrus notes
+          </p>
+        </div>
+      </section>
+
+      <section id="jalapeno-section" className="py-80 px-6 relative" style={{ backgroundColor: '#CC071E' }}>
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="font-goldenbook text-white text-h1 mb-4">
+            Jalapeño Reposado
+          </h2>
+          <p className="font-raleway text-white text-body leading-relaxed">
+            Bold jalapeño-infused reposado tequila with a fiery finish
+          </p>
         </div>
       </section>
 

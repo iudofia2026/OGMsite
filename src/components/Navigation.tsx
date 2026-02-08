@@ -8,36 +8,48 @@ interface NavigationProps {
 }
 
 export default function Navigation({ items }: NavigationProps) {
+  const [isClient, setIsClient] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
   const overlayRef = useRef<HTMLDivElement>(null);
 
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   const openNav = () => {
     setIsOpen(true);
     setIsAnimating(true);
-    document.body.style.overflow = 'hidden';
+    if (isClient) {
+      document.body.style.overflow = 'hidden';
+    }
   };
 
   const closeNav = () => {
     setIsOpen(false);
     setTimeout(() => setIsAnimating(false), 500);
-    document.body.style.overflow = '';
+    if (isClient) {
+      document.body.style.overflow = '';
+    }
   };
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     closeNav();
 
-    setTimeout(() => {
-      const targetElement = document.querySelector(href);
-      if (targetElement) {
-        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    }, 500);
+    if (isClient) {
+      setTimeout(() => {
+        const targetElement = document.querySelector(href);
+        if (targetElement) {
+          targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 500);
+    }
   };
 
   // Handle click outside overlay to close
   useEffect(() => {
+    if (!isClient) return;
     const handleClickOutside = (e: MouseEvent) => {
       if (overlayRef.current && e.target === overlayRef.current) {
         closeNav();
@@ -60,7 +72,7 @@ export default function Navigation({ items }: NavigationProps) {
       document.removeEventListener('mousedown', handleClickOutside);
       document.removeEventListener('keydown', handleEscape);
     };
-  }, [isOpen]);
+  }, [isOpen, isClient]);
 
   return (
     <>

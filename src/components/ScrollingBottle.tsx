@@ -23,11 +23,19 @@ export default function ScrollingBottle({
   const isAnimatingRef = useRef(false);
 
   // State for bottle positioning
+  const [isClient, setIsClient] = useState(false);
   const [bottlePosition, setBottlePosition] = useState<'fixed' | 'absolute'>('fixed');
   const [bottleTop, setBottleTop] = useState(0);
 
+  // Client-side hydration
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   // Handle scroll-based positioning and centering animation
   useEffect(() => {
+    if (!isClient) return;
+
     let animationId: number;
 
     const handleScroll = () => {
@@ -87,9 +95,11 @@ export default function ScrollingBottle({
         cancelAnimationFrame(animationId);
       }
     };
-  }, []);
+  }, [isClient]);
 
   useEffect(() => {
+    if (!isClient) return;
+
     const wrapper = wrapperRef.current;
     const topBottle = topBottleRef.current;
     const bottomBottle = bottomBottleRef.current;
@@ -266,7 +276,7 @@ export default function ScrollingBottle({
       clearTimeout(triggerTimeout);
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
-  }, []);
+  }, [isClient]);
 
   const bottleStyle = {
     width: '220px',
@@ -274,6 +284,9 @@ export default function ScrollingBottle({
     maxHeight: '70vh',
     filter: 'drop-shadow(8px 8px 20px rgba(0, 0, 0, 0.15))',
   };
+
+  // Don't render during SSR
+  if (!isClient) return null;
 
   return (
     <div

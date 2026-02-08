@@ -142,27 +142,6 @@ export default function Home() {
         <div className="w-2/3"></div>
       </section>
 
-      {/* Products Section */}
-      <section id="products" className="py-24 px-6 relative">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="font-goldenbook text-ogm-gold text-h1 text-center mb-4">
-            Our Collection
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-            {products.map((product) => (
-              <ProductCard
-                key={product.id}
-                name={product.name}
-                imageFront={product.imageFront}
-                imageBack={product.imageBack}
-                titleColor={product.titleColor}
-                description={product.description}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* About Section */}
       <section id="about" className="py-24 px-6 relative">
         <div className="max-w-6xl mx-auto">
@@ -195,6 +174,27 @@ export default function Home() {
                   </div>
                 )}
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Products Section */}
+      <section id="products" className="py-24 px-6 relative">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="font-goldenbook text-ogm-gold text-h1 text-center mb-4">
+            Our Collection
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+            {products.map((product) => (
+              <ProductCard
+                key={product.id}
+                name={product.name}
+                imageFront={product.imageFront}
+                imageBack={product.imageBack}
+                titleColor={product.titleColor}
+                description={product.description}
+              />
             ))}
           </div>
         </div>

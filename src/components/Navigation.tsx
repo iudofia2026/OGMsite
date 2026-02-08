@@ -206,7 +206,7 @@ export default function Navigation({ items }: NavigationProps) {
               }}
             >
               <Image
-                src="/images/ogm_full_square_logo.svg"
+                src="/images/original_ogm_full_square_logo.svg"
                 alt="OGM"
                 width={128}
                 height={128}

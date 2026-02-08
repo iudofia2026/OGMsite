@@ -55,15 +55,17 @@ const signatureStyles = `
     width: 400px;
     min-width: 400px;
     overflow: visible;
+    transition: opacity 0.4s ease-in-out;
   }
 
   .signature-hover-text div {
     clip-path: inset(0 100% 0 0);
-    transition: clip-path 0.8s ease-out;
+    transition: clip-path 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    display: block;
   }
 
   .signature-hover-text div:nth-child(2) {
-    transition-delay: 0.3s;
+    transition-delay: 0.4s;
   }
 
   .signature-wrapper:hover .signature-hover-text {
@@ -72,6 +74,11 @@ const signatureStyles = `
 
   .signature-wrapper:hover .signature-hover-text div {
     clip-path: inset(0 0% 0 0);
+  }
+
+  .signature-wrapper:not(:hover) .signature-hover-text div {
+    clip-path: inset(0 100% 0 0);
+    transition: clip-path 0.6s ease-in;
   }
 
   .signature-wrapper:hover .signature-image {
@@ -186,6 +193,84 @@ const signatureStyles = `
       text-shadow: 0 0 30px rgba(255, 215, 0, 0.3), 0 0 40px rgba(255, 215, 0, 0.1);
     }
   }
+
+  /* Minimalist Parallax Effects */
+  .parallax-slow {
+    transition: transform 0.3s ease-out;
+    will-change: transform;
+  }
+
+  .parallax-medium {
+    transition: transform 0.3s ease-out;
+    will-change: transform;
+  }
+
+  .parallax-fast {
+    transition: transform 0.3s ease-out;
+    will-change: transform;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .parallax-slow:hover {
+      transform: translateY(-8px);
+    }
+
+    .parallax-medium:hover {
+      transform: translateY(-12px);
+    }
+
+    .parallax-fast:hover {
+      transform: translateY(-16px);
+    }
+  }
+
+  /* Mini Instagram Button Style for Link */
+  .instagram-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(
+      45deg,
+      #f09433 0%,
+      #e6683c 25%,
+      #dc2743 50%,
+      #cc2366 75%,
+      #bc1888 100%
+    );
+    color: white;
+    text-decoration: none;
+    font-family: 'Raleway', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .instagram-link:hover {
+    background: linear-gradient(
+      135deg,
+      #d4a574 0%,
+      #c9956c 25%,
+      #b8860b 50%,
+      #daa520 75%,
+      #d4a574 100%
+    );
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(218, 165, 32, 0.4);
+    color: white;
+  }
+
+  .instagram-link-icon {
+    width: 20px;
+    height: 20px;
+    margin-bottom: 2px;
+  }
 `;
 
 export default function Home() {
@@ -260,7 +345,7 @@ export default function Home() {
                 height={125}
                 className="signature-image"
                 style={{
-                  filter: 'drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3))'
+                  filter: 'drop-shadow(1px 2px 3px rgba(0, 0, 0, 0.8))'
                 }}
               />
               <div className="signature-hover-text">
@@ -348,12 +433,12 @@ export default function Home() {
                 </p>
               </div>
               <div className="flex-1 flex justify-center">
-                <div className="relative w-64 h-80 md:w-80 md:h-96">
+                <div className="relative w-64 h-80 md:w-80 md:h-96 overflow-hidden">
                   <Image
                     src="/images/about-images/about-1.jpg"
                     alt="About OGM"
                     fill
-                    className="object-cover rounded-lg shadow-gold-medium"
+                    className="object-cover shadow-gold-medium parallax-slow"
                   />
                 </div>
               </div>
@@ -370,12 +455,12 @@ export default function Home() {
                 </p>
               </div>
               <div className="flex-1 flex justify-center">
-                <div className="relative w-64 h-80 md:w-80 md:h-96">
+                <div className="relative w-64 h-80 md:w-80 md:h-96 overflow-hidden">
                   <Image
                     src="/images/about-images/about-2.jpg"
                     alt="Crafted with Purpose"
                     fill
-                    className="object-cover rounded-lg shadow-gold-medium"
+                    className="object-cover shadow-gold-medium parallax-medium"
                   />
                 </div>
               </div>
@@ -384,17 +469,17 @@ export default function Home() {
             {/* Third group: Remaining text with third image */}
             <div className="flex flex-col md:flex-row gap-8 items-center">
               <div className="flex-1 md:text-right">
-                <p className="font-raleway text-body text-gray-700 leading-relaxed">
-                  {about[4].content}
+                <p className="font-raleway text-3xl text-gray-700 leading-relaxed">
+                  OGM is for the <strong>modern explorer</strong>, the <strong>dreamer</strong>—the one who knows life tastes best when it's <strong>real</strong>. Raise a glass, and write your story with <strong>OGM</strong>.
                 </p>
               </div>
               <div className="flex-1 flex justify-center">
-                <div className="relative w-64 h-80 md:w-80 md:h-96">
+                <div className="relative w-64 h-80 md:w-80 md:h-96 overflow-hidden">
                   <Image
                     src="/images/about-images/about-3.jpg"
                     alt="Your Story"
                     fill
-                    className="object-cover rounded-lg shadow-gold-medium"
+                    className="object-cover shadow-gold-medium parallax-fast"
                   />
                 </div>
               </div>

@@ -23,7 +23,7 @@ export default function ProductPage() {
           }
         });
 
-        swiper.on('slideChange', function(sld) {
+        swiper.on('slideChange', function(sld: any) {
           document.body.setAttribute('data-sld', sld.realIndex);
         });
       } else {

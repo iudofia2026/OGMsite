@@ -4,8 +4,12 @@ import Navigation from '@/components/Navigation';
 import InstagramButton from '@/components/InstagramButton';
 import ProductCard from '@/components/ProductCard';
 import ScrollingBottle from '@/components/ScrollingBottle';
+import ComingThisSpring from '@/components/ComingThisSpring';
+import ScrollToTopLogo from '@/components/ScrollToTopLogo';
 
 const signatureStyles = `
+  @import url('https://api.fontshare.com/v2/css?f[]=comico@400&display=swap');
+
   .signature-container {
     animation: signatureFadeIn 0.5s ease-out 1.2s forwards;
   }
@@ -17,7 +21,7 @@ const signatureStyles = `
   }
 
   .signature-wrapper {
-    overflow: hidden;
+    overflow: visible;
     position: relative;
   }
 
@@ -30,6 +34,53 @@ const signatureStyles = `
     to {
       clip-path: inset(0 0% 0 0);
     }
+  }
+
+  .signature-hover-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Comico', cursive;
+    font-weight: 400;
+    font-size: 20px;
+    color: white;
+    text-align: center;
+    line-height: 1.4;
+    opacity: 0;
+    pointer-events: none;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
+    z-index: 10;
+    white-space: nowrap;
+    width: 400px;
+    min-width: 400px;
+    overflow: visible;
+  }
+
+  .signature-hover-text div {
+    clip-path: inset(0 100% 0 0);
+    transition: clip-path 0.8s ease-out;
+  }
+
+  .signature-hover-text div:nth-child(2) {
+    transition-delay: 0.3s;
+  }
+
+  .signature-wrapper:hover .signature-hover-text {
+    opacity: 1;
+  }
+
+  .signature-wrapper:hover .signature-hover-text div {
+    clip-path: inset(0 0% 0 0);
+  }
+
+  .signature-wrapper:hover .signature-image {
+    opacity: 0.2;
+  }
+
+  .signature-image {
+    transition: opacity 0.4s ease-in-out;
+    opacity: 1;
   }
 
   /* Gentle Background Zoom Animation */
@@ -147,6 +198,9 @@ export default function Home() {
       {/* Navigation */}
       <Navigation items={navigation} />
 
+      {/* Scroll to Top Logo */}
+      <ScrollToTopLogo />
+
       {/* Scrolling Bottle */}
       <ScrollingBottle />
 
@@ -177,11 +231,11 @@ export default function Home() {
         <div className="z-10 relative -mt-64">
           <div className="flex items-center justify-center gap-0">
             <Image
-              src="/images/ogm_full_square_logo.svg"
+              src="/images/white_ogm_full_square_logo.svg"
               alt="OGM Premium Tequila"
               width={400}
               height={400}
-              className="w-[22rem] md:w-[28rem] transition-transform duration-500 hover:scale-105 mx-0"
+              className="w-[22rem] md:w-[28rem] transition-transform duration-500 hover:scale-105 mx-0 logo-fade-in"
               priority
               style={{
                 padding: 0,
@@ -191,20 +245,14 @@ export default function Home() {
             />
           </div>
           <div className="flex justify-center">
-            <p
-              className="font-raleway text-white text-subtitle tracking-[0.2em] uppercase relative inline-block transition-all duration-500 group breathing-shadow cursor-pointer"
-              onClick={() => typeof window !== 'undefined' && window.open('https://www.instagram.com/theogmlife/', '_blank')}
-            >
-              <span className="relative z-10">Coming This Spring</span>
-              <span className="absolute left-0 -bottom-1 w-0 h-[1px] bg-white transition-all duration-500 group-hover:w-full"></span>
-            </p>
+            <ComingThisSpring />
           </div>
         </div>
 
         {/* Animated Signature */}
         <div className="z-10 absolute bottom-16 left-0 right-0 flex justify-center">
           <div className="signature-container opacity-0 animate-fade-in">
-            <div className="signature-wrapper">
+            <div className="signature-wrapper cursor-pointer">
               <Image
                 src="/images/OGM_signature-wht.svg"
                 alt="OGM Signature"
@@ -215,6 +263,10 @@ export default function Home() {
                   filter: 'drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3))'
                 }}
               />
+              <div className="signature-hover-text">
+                <div>woman founded</div>
+                <div>woman owned</div>
+              </div>
             </div>
           </div>
         </div>
@@ -285,32 +337,68 @@ export default function Home() {
             My Story
           </h2>
           <div className="space-y-16">
-            {about.map((section, index) => (
-              <div
-                key={section.id}
-                className={`flex flex-col ${
-                  section.layout === 'text-right' ? 'md:flex-row-reverse' : 'md:flex-row'
-                } gap-8 items-center`}
-              >
-                <div className={`flex-1 ${section.layout === 'text-left' ? 'md:text-right' : 'md:text-left'}`}>
-                  <p className="font-raleway text-body text-gray-700 leading-relaxed">
-                    {section.content}
-                  </p>
-                </div>
-                {section.image && (
-                  <div className="flex-1 flex justify-center">
-                    <div className="relative w-64 h-80 md:w-80 md:h-96">
-                      <Image
-                        src={section.image}
-                        alt={section.title}
-                        fill
-                        className="object-cover rounded-lg shadow-gold-medium"
-                      />
-                    </div>
-                  </div>
-                )}
+            {/* First group: First two paragraphs with first image */}
+            <div className="flex flex-col md:flex-row gap-8 items-center">
+              <div className="flex-1 md:text-right">
+                <p className="font-raleway text-body text-gray-700 leading-relaxed mb-6">
+                  {about[0].content}
+                </p>
+                <p className="font-raleway text-body text-gray-700 leading-relaxed">
+                  {about[1].content}
+                </p>
               </div>
-            ))}
+              <div className="flex-1 flex justify-center">
+                <div className="relative w-64 h-80 md:w-80 md:h-96">
+                  <Image
+                    src="/images/about-images/about-1.jpg"
+                    alt="About OGM"
+                    fill
+                    className="object-cover rounded-lg shadow-gold-medium"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Second group: Next two paragraphs with second image */}
+            <div className="flex flex-col md:flex-row-reverse gap-8 items-center">
+              <div className="flex-1 md:text-left">
+                <p className="font-raleway text-body text-gray-700 leading-relaxed mb-6">
+                  {about[2].content}
+                </p>
+                <p className="font-raleway text-body text-gray-700 leading-relaxed">
+                  {about[3].content}
+                </p>
+              </div>
+              <div className="flex-1 flex justify-center">
+                <div className="relative w-64 h-80 md:w-80 md:h-96">
+                  <Image
+                    src="/images/about-images/about-2.jpg"
+                    alt="Crafted with Purpose"
+                    fill
+                    className="object-cover rounded-lg shadow-gold-medium"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Third group: Remaining text with third image */}
+            <div className="flex flex-col md:flex-row gap-8 items-center">
+              <div className="flex-1 md:text-right">
+                <p className="font-raleway text-body text-gray-700 leading-relaxed">
+                  {about[4].content}
+                </p>
+              </div>
+              <div className="flex-1 flex justify-center">
+                <div className="relative w-64 h-80 md:w-80 md:h-96">
+                  <Image
+                    src="/images/about-images/about-3.jpg"
+                    alt="Your Story"
+                    fill
+                    className="object-cover rounded-lg shadow-gold-medium"
+                  />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>

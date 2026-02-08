@@ -11,11 +11,56 @@ export default function Navigation({ items }: NavigationProps) {
   const [isClient, setIsClient] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [menuColor, setMenuColor] = useState('#D4AF37');
   const overlayRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setIsClient(true);
   }, []);
+
+  // Change hamburger color based on scroll position
+  useEffect(() => {
+    if (!isClient) return;
+
+    const handleScroll = () => {
+      const premiumSection = document.getElementById('premium-section');
+      const gingerLimeSection = document.getElementById('ginger-lime-section');
+      const jalapenoSection = document.getElementById('jalapeno-section');
+      const scrollY = window.scrollY;
+
+      let color = '#D4AF37'; // default gold
+
+      const checkSection = (sectionId: string, sectionColor: string) => {
+        const section = document.getElementById(sectionId);
+        if (section) {
+          const rect = section.getBoundingClientRect();
+          const sectionTop = rect.top + scrollY;
+          const sectionBottom = rect.bottom + scrollY;
+          // Use hamburger button position (top-8 = 32px) as reference
+          const hamburgerY = scrollY + 32;
+          return hamburgerY >= sectionTop && hamburgerY <= sectionBottom;
+        }
+        return false;
+      };
+
+      if (checkSection('premium-section', '#FFFFFF')) {
+        color = '#FFFFFF';
+      } else if (checkSection('ginger-lime-section', '#FFFFFF')) {
+        color = '#FFFFFF';
+      } else if (checkSection('jalapeno-section', '#FFFFFF')) {
+        color = '#FFFFFF';
+      }
+
+      setMenuColor(color);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Initial check
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [isClient]);
 
   const openNav = () => {
     setIsOpen(true);
@@ -94,13 +139,13 @@ export default function Navigation({ items }: NavigationProps) {
             d="M27 10 13 10C10.8 10 9 8.2 9 6 9 3.5 10.8 2 13 2 15.2 2 17 3.8 17 6L17 26C17 28.2 18.8 30 21 30 23.2 30 25 28.2 25 26 25 23.8 23.2 22 21 22L7 22"
             style={{
               fill: 'none',
-              stroke: '#D4AF37',
+              stroke: menuColor,
               strokeWidth: 2,
               strokeLinecap: 'round',
               strokeLinejoin: 'round',
               strokeDasharray: isOpen ? '20 300' : '12 63',
               strokeDashoffset: isOpen ? '-32.42' : '0',
-              transition: 'stroke-dasharray 600ms cubic-bezier(0.4, 0, 0.2, 1), stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1)',
+              transition: 'stroke-dasharray 600ms cubic-bezier(0.4, 0, 0.2, 1), stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1), stroke 300ms ease-out',
             }}
           />
           <path
@@ -108,10 +153,11 @@ export default function Navigation({ items }: NavigationProps) {
             d="M7 16 27 16"
             style={{
               fill: 'none',
-              stroke: '#D4AF37',
+              stroke: menuColor,
               strokeWidth: 2,
               strokeLinecap: 'round',
               strokeLinejoin: 'round',
+              transition: 'stroke 300ms ease-out',
             }}
           />
         </svg>
@@ -132,7 +178,10 @@ export default function Navigation({ items }: NavigationProps) {
           {/* Close Button */}
           <button
             onClick={closeNav}
-            className="absolute top-8 right-8 w-10 h-10 bg-transparent border-none cursor-pointer z-[10000] transition-all duration-300 hover:scale-110 hover:rotate-90 active:scale-95"
+            className="absolute top-8 right-8 w-10 h-10 bg-transparent border-none cursor-pointer z-[10000] active:scale-95"
+            style={{ transition: 'transform 300ms ease-out' }}
+            onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.1) rotate(15deg)'}
+            onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1) rotate(0deg)'}
             aria-label="Close navigation"
           >
             <span

@@ -7,7 +7,7 @@ export default function ProductLayout({
     <html lang="en">
       <head>
         <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css" />
-        <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+        <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js" async></script>
       </head>
       <body style={{
         margin: 0,

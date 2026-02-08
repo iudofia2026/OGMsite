@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
+import Image from 'next/image';
 
 export default function ProductPage() {
   useEffect(() => {
@@ -44,7 +45,7 @@ export default function ProductPage() {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" />
             </svg>
           </a>
-          <img className="logo" src="https://cdn.shopify.com/s/files/1/0689/1443/files/CLOSCA-LOGO-WEB-BLACK_130x@2x.png?v=1559116993" alt="Logo" />
+          <Image className="logo" src="https://cdn.shopify.com/s/files/1/0689/1443/files/CLOSCA-LOGO-WEB-BLACK_130x@2x.png?v=1559116993" alt="Logo" width={116} height={40} />
           <div className="header-menu">
             <a href="#">Mask</a>
             <a href="#">Helmet</a>
@@ -74,7 +75,7 @@ export default function ProductPage() {
                 </div>
                 <div className="main-content">
                   <div className="main-content__title">In 20 years, there could be more plastic in our oceans than fish.</div>
-                  <div className="main-content__subtitle">Plastic pollution injures more than 100.000 marine animals every year.It takes around 450 years for one plastic bottle to decompose.</div>
+                  <div className="main-content__subtitle">Plastic pollution injures more than 100,000 marine animals every year. It takes around 450 years for one plastic bottle to decompose.</div>
                   <div className="more-menu">
                     Shop Now
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" strokeWidth="1.7" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
@@ -88,8 +89,8 @@ export default function ProductPage() {
               </div>
               <div className="center">
                 <div className="right-side__img">
-                  <img className="bottle-bg" src="https://images.unsplash.com/photo-1505118380757-91f5f5632de0?q=80&w=2902&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" />
-                  <img className="bottle-img" src="https://www.designforfinland.com/product-images/Closca_Bottle_Wave_Antarctica_450ml_Close.png/2083089000004207012/1100x1100" alt="" />
+                  <Image className="bottle-bg" src="https://images.unsplash.com/photo-1505118380757-91f5f5632de0?q=80&w=2902&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Beach background" width={320} height={450} />
+                  <Image className="bottle-img" src="https://www.designforfinland.com/product-images/Closca_Bottle_Wave_Antarctica_450ml_Close.png/2083089000004207012/1100x1100" alt="Antarctica bottle" width={200} height={400} />
                 </div>
               </div>
             </div>
@@ -101,7 +102,7 @@ export default function ProductPage() {
                   <h2 className="main-subtitle">€ 39.90</h2>
                 </div>
                 <div className="main-content">
-                  <div className="main-content__title">The Earth's area affected by desertification is approx 11 times India's size.</div>
+                  <div className="main-content__title">The Earth&apos;s area affected by desertification is approx 11 times India&apos;s size.</div>
                   <div className="main-content__subtitle">The Savannas act as a carbon sink, absorbing CO2 from the atmosphere and helping to maintain the balance of global temperatures.</div>
                   <div className="more-menu">
                     Shop Now
@@ -116,8 +117,8 @@ export default function ProductPage() {
               </div>
               <div className="center">
                 <div className="right-side__img">
-                  <img className="bottle-bg" src="https://images.unsplash.com/photo-1613109526778-27605f1f27d2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80" alt="" />
-                  <img className="bottle-img" src="https://fnac.sa/cdn/shop/files/Closca_Bottle_Wave_Sahara_600ml_Close.png?v=1703675684" alt="" />
+                  <Image className="bottle-bg" src="https://images.unsplash.com/photo-1613109526778-27605f1f27d2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80" alt="Savanna background" width={320} height={450} />
+                  <Image className="bottle-img" src="https://fnac.sa/cdn/shop/files/Closca_Bottle_Wave_Sahara_600ml_Close.png?v=1703675684" alt="Sahara bottle" width={200} height={400} />
                 </div>
               </div>
             </div>
@@ -129,7 +130,7 @@ export default function ProductPage() {
                   <h2 className="main-subtitle">€ 39.90</h2>
                 </div>
                 <div className="main-content">
-                  <div className="main-content__title">Glaciers contain 75% of the World's freshwater.</div>
+                  <div className="main-content__title">Glaciers contain 75% of the World&apos;s freshwater.</div>
                   <div className="main-content__subtitle">The effects of melting ice glaciers are biodiversity loss, the rising of the sea level and the deficiency of freshwater, among others.</div>
                   <div className="more-menu">
                     Shop Now
@@ -144,8 +145,8 @@ export default function ProductPage() {
               </div>
               <div className="center">
                 <div className="right-side__img">
-                  <img className="bottle-bg" src="https://www.discover-the-world.com/app/uploads/2018/05/chile-patagonia-calving-glacier-is-1150x863-c-default.jpg" alt="" />
-                  <img className="bottle-img" src="https://gomagcdn.ro/domains/alty.ro/files/product/original/sticla-reutilizabila-apa-closca-glacier-copie-848-7049.png" alt="" />
+                  <Image className="bottle-bg" src="https://www.discover-the-world.com/app/uploads/2018/05/chile-patagonia-calving-glacier-is-1150x863-c-default.jpg" alt="Glacier background" width={320} height={450} />
+                  <Image className="bottle-img" src="https://gomagcdn.ro/domains/alty.ro/files/product/original/sticla-reutilizabila-apa-closca-glacier-copie-848-7049.png" alt="Glacier bottle" width={200} height={400} />
                 </div>
               </div>
             </div>
@@ -172,8 +173,8 @@ export default function ProductPage() {
               </div>
               <div className="center">
                 <div className="right-side__img">
-                  <img className="bottle-bg" src="https://images.unsplash.com/photo-1546500840-ae38253aba9b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=3260&q=80" alt="" />
-                  <img className="bottle-img" src="https://fnac.sa/cdn/shop/files/Closca_Bottle_Wave_Arizona_600ml_Close.png?v=1703675684&width=1946" alt="" />
+                  <Image className="bottle-bg" src="https://images.unsplash.com/photo-1546500840-ae38253aba9b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=3260&q=80" alt="Coral background" width={320} height={450} />
+                  <Image className="bottle-img" src="https://fnac.sa/cdn/shop/files/Closca_Bottle_Wave_Arizona_600ml_Close.png?v=1703675684&width=1946" alt="Arizona bottle" width={200} height={400} />
                 </div>
               </div>
             </div>

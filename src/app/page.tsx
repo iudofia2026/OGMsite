@@ -21,8 +21,8 @@ export default function Home() {
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/Saguaro-Superstition-Mountains-Lost-Dutchman-State-Park-Arizona_iStock-461071937_-scaled.png"
-            alt="Desert landscape with Saguaro cacti and mountains"
+            src="/images/ogm background.png"
+            alt="OGM brand background"
             fill
             className="object-cover"
             priority

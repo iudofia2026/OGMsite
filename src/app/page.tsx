@@ -1,5 +1,8 @@
+'use client';
+
 import { homeController } from '@/controllers/home-controller';
 import Image from 'next/image';
+import { useEffect, useState } from 'react';
 import Navigation from '@/components/Navigation';
 import InstagramButton from '@/components/InstagramButton';
 import ProductCard from '@/components/ProductCard';
@@ -271,10 +274,61 @@ const signatureStyles = `
     height: 20px;
     margin-bottom: 2px;
   }
+
+  /* Lightweight About Signature Animation */
+  .about-signature {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease-out;
+  }
+
+  .about-signature.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .about-signature-image {
+    clip-path: inset(0 100% 0 0);
+    transition: clip-path 3s ease-out;
+  }
+
+  .about-signature.visible .about-signature-image {
+    clip-path: inset(0 0% 0 0);
+  }
 `;
 
 export default function Home() {
   const { site, products, about, navigation } = homeController.getHomeData();
+  const [signatureVisible, setSignatureVisible] = useState(false);
+
+  useEffect(() => {
+    let ticking = false;
+
+    const handleScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const signature = document.querySelector('.about-signature');
+          if (signature && !signatureVisible) {
+            const rect = signature.getBoundingClientRect();
+            const windowHeight = window.innerHeight;
+
+            if (rect.top < windowHeight * 0.8) {
+              setSignatureVisible(true);
+            }
+          }
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // Check on mount
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [signatureVisible]);
 
   return (
     <>
@@ -470,8 +524,26 @@ export default function Home() {
             <div className="flex flex-col md:flex-row gap-8 items-center">
               <div className="flex-1 md:text-right">
                 <p className="font-raleway text-3xl text-gray-700 leading-relaxed">
-                  OGM is for the <strong>modern explorer</strong>, the <strong>dreamer</strong>—the one who knows life tastes best when it's <strong>real</strong>. Raise a glass, and write your story with <strong>OGM</strong>.
+                  OGM is for the <strong>modern explorer</strong>, the <strong>dreamer</strong>—the one who knows life tastes best when it&apos;s <strong>real</strong>. Raise a glass, and write your story with <strong>OGM</strong>.
                 </p>
+
+                {/* Black Signature */}
+                <div className="mt-12 flex justify-center">
+                  <div className={`about-signature ${signatureVisible ? 'visible' : ''}`}>
+                    <div className="signature-wrapper">
+                      <Image
+                        src="/images/OGM_signature-blk.svg"
+                        alt="OGM Signature"
+                        width={160}
+                        height={125}
+                        className="about-signature-image"
+                        style={{
+                          filter: 'drop-shadow(1px 2px 3px rgba(0, 0, 0, 0.2))'
+                        }}
+                      />
+                    </div>
+                  </div>
+                </div>
               </div>
               <div className="flex-1 flex justify-center">
                 <div className="relative w-64 h-80 md:w-80 md:h-96 overflow-hidden">

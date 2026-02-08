@@ -119,8 +119,8 @@ export default function ScrollingBottle({
             // Calculate progress from 0 to 1
             const progress = (scrollY - centerStart) / (centerEnd - centerStart);
 
-            // Animate from right (420px) to center (0px)
-            const translateX = 420 - (420 * progress);
+            // Animate from right (380px) to center (0px)
+            const translateX = 380 - (380 * progress);
 
             // Scale from 1 to 1.15
             const scale = 1 + (0.15 * progress);
@@ -128,7 +128,7 @@ export default function ScrollingBottle({
             bottle.style.transform = `translateX(${translateX}px) translateY(-30px) scale(${scale})`;
           } else if (scrollY < centerStart) {
             // Before animation - at original position
-            bottle.style.transform = 'translateX(420px) translateY(-30px) scale(1)';
+            bottle.style.transform = 'translateX(380px) translateY(-30px) scale(1)';
           } else if (scrollY > centerEnd) {
             // After animation - stay centered and enlarged
             bottle.style.transform = 'translateX(0px) translateY(-30px) scale(1.15)';
@@ -165,11 +165,11 @@ export default function ScrollingBottle({
     // Clear any existing ScrollTriggers
     ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
 
-    // Initial load animation
+    // Initial load animation - slide in from right with delay
     gsap.fromTo(
       wrapper,
-      { opacity: 0, y: 20 },
-      { opacity: 1, y: 0, duration: 1, ease: 'power2.out', delay: 0.5 }
+      { opacity: 0, x: 100 },
+      { opacity: 1, x: 0, duration: 1.2, ease: 'power2.out', delay: 0.8 }
     );
 
     // Wipe transition function
@@ -360,7 +360,7 @@ export default function ScrollingBottle({
       <div
         className="hero-bottle relative group cursor-pointer pointer-events-auto bottle-reflection"
         style={{
-          transform: 'translateX(420px) translateY(-30px)',
+          transform: 'translateX(380px) translateY(-30px)',
           transition: 'transform 0.1s ease-out',
         }}
       >

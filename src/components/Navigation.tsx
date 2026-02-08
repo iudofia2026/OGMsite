@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useCallback } from 'react';
 import Image from 'next/image';
 
 interface NavigationProps {
@@ -70,13 +70,13 @@ export default function Navigation({ items }: NavigationProps) {
     }
   };
 
-  const closeNav = () => {
+  const closeNav = useCallback(() => {
     setIsOpen(false);
     setTimeout(() => setIsAnimating(false), 500);
     if (isClient) {
       document.body.style.overflow = '';
     }
-  };
+  }, [isClient]);
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
@@ -117,7 +117,7 @@ export default function Navigation({ items }: NavigationProps) {
       document.removeEventListener('mousedown', handleClickOutside);
       document.removeEventListener('keydown', handleEscape);
     };
-  }, [isOpen, isClient]);
+  }, [isOpen, isClient, closeNav]);
 
   return (
     <>

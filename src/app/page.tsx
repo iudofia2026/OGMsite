@@ -149,6 +149,7 @@ export default function Home() {
       {/* Navigation */}
       <Navigation items={navigation} />
 
+
       {/* Scroll to Top Logo */}
       <ScrollToTopLogo />
 
@@ -179,14 +180,14 @@ export default function Home() {
         </div>
 
         {/* Logo */}
-        <div className="z-10 relative -mt-64">
+        <div className="z-10 relative -mt-[26rem]">
           <div className="flex items-center justify-center gap-0">
             <Image
               src="/images/ogm_full_square_logo.svg"
               alt="OGM Premium Tequila"
               width={400}
               height={400}
-              className="w-[22rem] md:w-[28rem] transition-transform duration-500 hover:scale-105 mx-0 logo-fade-in"
+              className="w-[18rem] md:w-[22rem] transition-transform duration-500 hover:scale-105 mx-0 logo-fade-in"
               priority
               style={{
                 padding: 0,
@@ -195,9 +196,12 @@ export default function Home() {
               }}
             />
           </div>
-          <div className="flex justify-center">
-            <ComingThisSpring />
-          </div>
+        </div>
+
+
+        {/* Coming This Spring - Above signature */}
+        <div className="z-10 absolute bottom-80 left-0 right-0 flex justify-center">
+          <ComingThisSpring />
         </div>
 
         {/* Animated Signature */}
@@ -218,6 +222,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+
 
       {/* Tequila Type Sections */}
       <section id="premium-section" className="py-60 px-6 relative flex items-center overflow-hidden" style={{ backgroundColor: '#C9A55B', minHeight: '24rem' }}>

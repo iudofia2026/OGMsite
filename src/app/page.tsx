@@ -98,12 +98,16 @@ const signatureStyles = `
     animation: subtle-zoom 45s ease-in-out infinite;
   }
 
+  .hero-background-wrapper.paused {
+    animation-play-state: paused;
+  }
+
   @keyframes subtle-zoom {
     0%, 100% {
       transform: scale(1);
     }
     50% {
-      transform: scale(1.03);
+      transform: scale(1.1);
     }
   }
 
@@ -342,6 +346,26 @@ export default function Home() {
     };
   }, [signatureVisible]);
 
+  // Pause hero background animation when page is not visible
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      const heroBackground = document.querySelector('.hero-background-wrapper');
+      if (heroBackground) {
+        if (document.hidden) {
+          heroBackground.classList.add('paused');
+        } else {
+          heroBackground.classList.remove('paused');
+        }
+      }
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
+  }, []);
+
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: signatureStyles }} />
@@ -358,14 +382,17 @@ export default function Home() {
       {/* Hero Section */}
       <section id="hero" className="relative h-screen flex flex-col items-center justify-center">
         {/* Background Image */}
-        <div className="absolute inset-0 z-0 hero-background-wrapper">
+        <div className="absolute inset-0 z-0 hero-background-wrapper" style={{ backgroundColor: '#2a2a2a' }}>
           <Image
             src="/images/ogm background.png"
             alt="OGM brand background"
             fill
             className="object-cover object-center"
             priority
+            sizes="100vw"
             style={{ willChange: 'transform' }}
+            placeholder="blur"
+            blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
           />
           {/* Overlay for better text readability */}
           <div className="absolute inset-0 bg-black bg-opacity-30"></div>
@@ -473,7 +500,7 @@ export default function Home() {
         </div>
         <div className="absolute right-[-10%] top-0 bottom-0 w-2/3 flex items-center justify-center hidden md:flex">
           <Image
-            src="/images/backgrounds/jalapeno.jpg"
+            src="/images/backgrounds/jalapeno.png"
             alt="Jalapeño"
             fill
             className="object-contain p-8"

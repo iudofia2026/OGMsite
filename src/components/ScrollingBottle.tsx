@@ -97,7 +97,7 @@ export default function ScrollingBottle({
     const handleScroll = () => {
       const scrollY = window.scrollY;
       const isMobile = window.innerWidth <= 768;
-      const stickPoint = isMobile ? 1640 : 2225;
+      const stickPoint = isMobile ? 1700 : 2225;
       // Desktop animation points
       const centerStart = 402;
       const centerEnd = 700;
@@ -114,10 +114,7 @@ export default function ScrollingBottle({
       if (scrollY >= stickPoint) {
         // Switch to absolute positioning and stick to the scroll position
         setBottlePosition('absolute');
-        const stickyTop = isMobile
-          ? scrollY - 50  // Follow scroll position with small offset for mobile
-          : stickPoint + (window.innerHeight / 2) - 275;
-        setBottleTop(stickyTop);
+        setBottleTop(stickPoint + (window.innerHeight / 2) - 275);
       } else {
         // Keep fixed positioning
         setBottlePosition('fixed');
@@ -310,7 +307,7 @@ export default function ScrollingBottle({
     const getCurrentBottle = () => {
       const scrollY = window.scrollY;
       const isMobile = window.innerWidth <= 768;
-      const stickPoint = isMobile ? 1640 : 2225;
+      const stickPoint = isMobile ? 1700 : 2225;
 
       // If we're at or past the stick point, always show jalapeño
       if (scrollY >= stickPoint) {

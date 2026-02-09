@@ -1,12 +1,18 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import LoadingScreen from './LoadingScreen';
 
-const AGE_VERIFICATION_KEY = 'ogm_age_verified';
-const AGE_VERIFICATION_ANSWER_KEY = 'ogm_age_answer';
+interface AgeVerificationProps {
+  onComplete?: () => void;
+}
 
-export default function AgeVerification() {
+export default function AgeVerification({ onComplete }: AgeVerificationProps) {
+  // Development toggle - check environment variable
+  const enableLoadingScreen = process.env.NEXT_PUBLIC_ENABLE_LOADING_SCREEN !== 'false';
+
   const [isClient, setIsClient] = useState(false);
+  const [isLoading, setIsLoading] = useState(enableLoadingScreen);
   const [isVisible, setIsVisible] = useState(false);
   const [isUnderage, setIsUnderage] = useState(false);
 
@@ -18,52 +24,38 @@ export default function AgeVerification() {
     // Only run on client side
     if (!isClient) return;
 
-    // Check if user has already verified
-    try {
-      const verified = localStorage.getItem(AGE_VERIFICATION_KEY);
-      const answer = localStorage.getItem(AGE_VERIFICATION_ANSWER_KEY);
-
-      if (verified === 'true' && answer === 'yes') {
-        // User verified and of age - don't show modal
-        setIsVisible(false);
-        return;
-      } else if (verified === 'true' && answer === 'no') {
-        // User verified but underage - show underage message
-        setIsUnderage(true);
-        setIsVisible(true);
-        document.body.style.overflow = 'hidden';
-      } else {
-        // First visit - show modal
-        setIsVisible(true);
-        document.body.style.overflow = 'hidden';
-      }
-    } catch (e) {
-      // localStorage might be disabled - show modal anyway
+    // Always show the age verification modal on every visit
+    // But only after loading is complete
+    if (!isLoading) {
       setIsVisible(true);
       document.body.style.overflow = 'hidden';
     }
-  }, [isClient]);
+  }, [isClient, isLoading]);
+
+  const handleLoadingComplete = () => {
+    setIsLoading(false);
+  };
 
   const handleYes = () => {
-    try {
-      localStorage.setItem(AGE_VERIFICATION_KEY, 'true');
-      localStorage.setItem(AGE_VERIFICATION_ANSWER_KEY, 'yes');
-    } catch (e) {}
     setIsVisible(false);
     document.body.style.overflow = '';
+    // Call the completion callback
+    onComplete?.();
   };
 
   const handleNo = () => {
-    try {
-      localStorage.setItem(AGE_VERIFICATION_KEY, 'true');
-      localStorage.setItem(AGE_VERIFICATION_ANSWER_KEY, 'no');
-    } catch (e) {}
     setIsUnderage(true);
   };
 
   // Don't render anything during SSR
   if (!isClient) return null;
 
+  // Show loading screen first
+  if (isLoading) {
+    return <LoadingScreen onComplete={handleLoadingComplete} />;
+  }
+
+  // Don't render age verification if not visible
   if (!isVisible) return null;
 
   return (

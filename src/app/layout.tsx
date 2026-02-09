@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import AgeVerification from "@/components/AgeVerification";
+import AppWrapper from "@/components/AppWrapper";
 
 export const metadata: Metadata = {
   title: "OGM - Premium Tequila",
@@ -21,10 +21,15 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <link href="https://api.fontshare.com/v2/css?f[]=ranade@400,500,600,700&display=swap" rel="stylesheet" />
+        {/* Preload critical images */}
+        <link rel="preload" as="image" href="/images/ogm background.png" />
+        <link rel="preload" as="image" href="/images/white_ogm_full_square_logo.svg" />
+        <link rel="preload" as="image" href="/images/OGM_signature-wht.svg" />
       </head>
       <body className="antialiased text-gray-800" style={{ background: 'linear-gradient(135deg, #FFFFFF 0%, #F8F6F2 50%, #F9F1C8 100%)' }} suppressHydrationWarning>
-        <AgeVerification />
-        {children}
+        <AppWrapper>
+          {children}
+        </AppWrapper>
       </body>
     </html>
   );

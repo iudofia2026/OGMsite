@@ -415,8 +415,8 @@ export default function Home() {
                 }}
               />
               <div className="signature-hover-text">
-                <div>woman founded</div>
-                <div>woman owned</div>
+                <div>female founded</div>
+                <div>female owned</div>
               </div>
             </div>
           </div>
@@ -424,7 +424,7 @@ export default function Home() {
       </section>
 
       {/* Tequila Type Sections */}
-      <section id="premium-section" className="py-60 px-6 relative flex items-center overflow-hidden" style={{ backgroundColor: '#C9A55B', minHeight: '24rem' }}>
+      <section id="premium-section" className="py-24 md:py-60 px-6 relative flex items-center overflow-hidden" style={{ backgroundColor: '#C9A55B', minHeight: '24rem' }}>
         <div className="w-1/3 z-10">
           <h2 className="font-goldenbook text-white text-h1 mb-4">
             Premium Reposado
@@ -443,7 +443,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="ginger-lime-section" className="py-72 px-6 relative flex items-center overflow-hidden" style={{ backgroundColor: '#02BBB7', minHeight: '28rem' }}>
+      <section id="ginger-lime-section" className="py-24 md:py-72 px-6 relative flex items-center overflow-hidden" style={{ backgroundColor: '#02BBB7', minHeight: '28rem' }}>
         <div className="absolute left-[-10%] top-0 bottom-0 w-2/3 flex items-center justify-center hidden md:flex">
           <Image
             src="/images/backgrounds/gingerlime.png"
@@ -462,7 +462,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="jalapeno-section" className="py-60 px-6 relative flex items-center overflow-hidden" style={{ backgroundColor: '#CC071E', minHeight: '24rem' }}>
+      <section id="jalapeno-section" className="py-24 md:py-60 px-6 relative flex items-center overflow-hidden" style={{ backgroundColor: '#CC071E', minHeight: '24rem' }}>
         <div className="w-1/3 z-10">
           <h2 className="font-goldenbook text-white text-h1 mb-4">
             Jalapeño Reposado

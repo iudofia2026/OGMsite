@@ -1,3 +1,5 @@
+@import url('https://api.fontshare.com/v2/css?f[]=melodrama@400,500,600,700&f[]=crimson-pro@200,300,400,500&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -129,6 +131,8 @@
   --font-goldenbook: 'Goldenbook', 'Times New Roman', Georgia, serif;
   --font-raleway: 'Raleway', 'Helvetica Neue', Arial, sans-serif;
   --font-ranade: 'Ranade', 'Helvetica Neue', Arial, sans-serif;
+  --font-melodrama: 'Melodrama', serif;
+  --font-crimson-pro: 'Crimson Pro', serif;
 
   /* Colors */
   --color-white: #FFFFFF;
@@ -187,6 +191,14 @@ body {
   .font-ranade {
     font-family: var(--font-ranade);
   }
+
+  .font-melodrama {
+    font-family: var(--font-melodrama);
+  }
+
+  .font-crimson-pro {
+    font-family: var(--font-crimson-pro);
+  }
 }
 
 /* =============================================================================
@@ -217,6 +229,29 @@ body {
     transform 200ms;
   font-weight: 600;
   box-shadow: 0 0 15px rgba(218, 165, 32, 0.4);
+  flex-shrink: 0;
+}
+
+/* Mobile specific adjustments for contact section */
+@media (max-width: 768px) {
+  #contact {
+    padding: 0 !important;
+  }
+
+  #contact .flex {
+    flex-direction: column !important;
+    gap: 2rem !important;
+    align-items: center !important;
+  }
+
+  #contact .text-left {
+    text-align: center !important;
+  }
+
+  .instagram-button {
+    width: 100px;
+    height: 100px;
+  }
 }
 
 .instagram-button .button__text {

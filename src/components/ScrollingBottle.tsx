@@ -111,14 +111,20 @@ export default function ScrollingBottle({
       const mobilePhase3Start = 1320;
       const mobilePhase3End = 1500;
 
+      const bottleStartPoint = isMobile ? 0 : 805; // Desktop: bottle starts at scrollY 805
+
       if (scrollY >= stickPoint) {
         // Switch to absolute positioning and stick to the scroll position
         setBottlePosition('absolute');
         setBottleTop(stickPoint + (window.innerHeight / 2) - 275);
-      } else {
-        // Keep fixed positioning
+      } else if (scrollY >= bottleStartPoint) {
+        // Desktop: from scrollY 805-2224, bottle is fixed and travels with you
         setBottlePosition('fixed');
         setBottleTop(0);
+      } else {
+        // Desktop: before scrollY 805, bottle is positioned on page at 805px
+        setBottlePosition('absolute');
+        setBottleTop(805 + (window.innerHeight / 2) - 275);
       }
 
       // Handle centering animation between scrollY 402-700
@@ -196,17 +202,8 @@ export default function ScrollingBottle({
               bottle.style.transform = 'translateX(100px) translateY(-30px) scale(1.35)';
             }
           } else {
-            // Desktop animation: unchanged
-            if (scrollY >= centerStart && scrollY <= centerEnd) {
-              const progress = (scrollY - centerStart) / (centerEnd - centerStart);
-              const translateX = 380 - (380 * progress);
-              const scale = 1 + (0.15 * progress);
-              bottle.style.transform = `translateX(${translateX}px) translateY(-30px) scale(${scale})`;
-            } else if (scrollY < centerStart) {
-              bottle.style.transform = 'translateX(380px) translateY(-30px) scale(1)';
-            } else if (scrollY > centerEnd) {
-              bottle.style.transform = 'translateX(0px) translateY(-30px) scale(1.15)';
-            }
+            // Desktop animation: keep bottle centered and scaled always
+            bottle.style.transform = 'translateX(0px) translateY(-30px) scale(1.15)';
           }
         }
       }
@@ -433,7 +430,7 @@ export default function ScrollingBottle({
         style={{
           transform: typeof window !== 'undefined' && window.innerWidth <= 768
             ? 'translateX(0px) translateY(120px)'  // Mobile: centered horizontally, bit higher
-            : 'translateX(380px) translateY(-30px)', // Desktop: unchanged
+            : 'translateX(0px) translateY(-30px) scale(1.15)', // Desktop: start centered and scaled (scrollY 805 position)
           transition: 'transform 0.1s ease-out',
         }}
       >

@@ -18,7 +18,15 @@ export default function ComingThisSpring() {
   return (
     <p
       className="font-ranade text-white text-subtitle tracking-[0.2em] uppercase relative inline-block transition-all duration-500 group breathing-shadow cursor-pointer"
-      onClick={() => window.open('https://www.instagram.com/theogmlife/', '_blank')}
+      onClick={() => {
+        const premiumSection = document.querySelector('#premium-section');
+        if (premiumSection) {
+          premiumSection.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      }}
     >
       <span className="relative z-10">
         {showText ? (

@@ -48,6 +48,8 @@ const config: Config = {
       fontFamily: {
         goldenbook: ['var(--font-goldenbook)', 'Times New Roman', 'Georgia', 'serif'],
         raleway: ['var(--font-raleway)', 'Helvetica Neue', 'Arial', 'sans-serif'],
+        melodrama: ['Melodrama', 'serif'],
+        'crimson-pro': ['Crimson Pro', 'serif'],
       },
       fontSize: {
         hero: ['clamp(4rem, 12vw, 12rem)', { lineHeight: '0.9', letterSpacing: '0.05em' }],

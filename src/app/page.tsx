@@ -311,6 +311,7 @@ const signatureStyles = `
       display: none !important;
     }
   }
+
 `;
 
 export default function Home() {
@@ -413,13 +414,14 @@ export default function Home() {
               alt="OGM Premium Tequila"
               width={400}
               height={400}
-              className="w-[22rem] md:w-[28rem] transition-transform duration-500 hover:scale-105 mx-0 logo-fade-in"
+              className="w-[22rem] md:w-[28rem] transition-transform duration-500 hover:scale-105 mx-0 logo-fade-in cursor-pointer"
               priority
               style={{
                 padding: 0,
                 marginBottom: 0,
                 clipPath: 'inset(25px 0 25px 0)'
               }}
+              onClick={() => window.open('https://www.instagram.com/theogmlife/', '_blank')}
             />
           </div>
           <div className="flex justify-center -mt-4 md:mt-0">
@@ -451,12 +453,12 @@ export default function Home() {
       </section>
 
       {/* Tequila Type Sections */}
-      <section id="premium-section" className="py-24 md:py-60 px-6 relative flex items-center overflow-hidden" style={{ backgroundColor: '#C9A55B', minHeight: '24rem' }}>
-        <div className="w-1/3 z-10">
-          <h2 className="font-goldenbook text-white text-h1 mb-4">
+      <section id="premium-section" className="py-32 md:py-60 px-6 relative flex items-center overflow-hidden" style={{ backgroundColor: '#C9A55B', minHeight: '24rem' }}>
+        <div className="w-1/2 md:w-1/3 z-10 flex flex-col md:items-center md:justify-center text-center">
+          <h2 className="font-melodrama text-white text-h1 mb-4">
             Premium Reposado
           </h2>
-          <p className="font-raleway text-white text-body leading-relaxed">
+          <p className="font-crimson-pro font-light text-white leading-relaxed" style={{ fontSize: 'clamp(1.1rem, 2.8vw, 1.4rem)' }}>
             Small batch reposado tequila made with passion, served with pride
           </p>
         </div>
@@ -470,7 +472,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="ginger-lime-section" className="py-24 md:py-72 px-6 relative flex items-center overflow-hidden" style={{ backgroundColor: '#02BBB7', minHeight: '28rem' }}>
+      <section id="ginger-lime-section" className="py-32 md:py-72 px-6 relative flex items-center overflow-hidden" style={{ backgroundColor: '#02BBB7', minHeight: '28rem' }}>
         <div className="absolute left-[-10%] top-0 bottom-0 w-2/3 flex items-center justify-center hidden md:flex">
           <Image
             src="/images/backgrounds/gingerlime.png"
@@ -479,22 +481,22 @@ export default function Home() {
             className="object-contain p-8"
           />
         </div>
-        <div className="w-1/3 z-10 ml-auto">
-          <h2 className="font-goldenbook text-white text-h1 mb-4">
+        <div className="w-1/2 md:w-1/3 z-10 ml-auto flex flex-col md:items-center md:justify-center text-center">
+          <h2 className="font-melodrama text-white text-h1 mb-4">
             Ginger Lime
           </h2>
-          <p className="font-raleway text-white text-body leading-relaxed">
+          <p className="font-crimson-pro font-light text-white leading-relaxed" style={{ fontSize: 'clamp(1.1rem, 2.8vw, 1.4rem)' }}>
             Refreshing ginger lime reposado tequila with citrus notes
           </p>
         </div>
       </section>
 
-      <section id="jalapeno-section" className="py-24 md:py-60 px-6 relative flex items-center overflow-hidden" style={{ backgroundColor: '#CC071E', minHeight: '24rem' }}>
-        <div className="w-1/3 z-10">
-          <h2 className="font-goldenbook text-white text-h1 mb-4">
+      <section id="jalapeno-section" className="py-32 md:py-60 px-6 relative flex items-center overflow-hidden" style={{ backgroundColor: '#CC071E', minHeight: '24rem' }}>
+        <div className="w-1/2 md:w-1/3 z-10 flex flex-col md:items-center md:justify-center text-center">
+          <h2 className="font-melodrama text-white text-h1 mb-4">
             Jalapeño Reposado
           </h2>
-          <p className="font-raleway text-white text-body leading-relaxed">
+          <p className="font-crimson-pro font-light text-white leading-relaxed" style={{ fontSize: 'clamp(1.1rem, 2.8vw, 1.4rem)' }}>
             Bold jalapeño-infused reposado tequila with a fiery finish
           </p>
         </div>
@@ -511,17 +513,17 @@ export default function Home() {
       {/* About Section */}
       <section id="about" className="py-24 px-6 relative">
         <div className="max-w-6xl mx-auto">
-          <h2 className="font-goldenbook text-ogm-gold text-h1 text-center mb-8">
+          <h2 className="font-melodrama text-ogm-gold text-h1 text-center mb-8">
             My Story
           </h2>
           <div className="space-y-16">
             {/* First group: First two paragraphs with first image */}
             <div className="flex flex-col md:flex-row gap-8 items-center">
               <div className="flex-1 md:text-right">
-                <p className="font-raleway text-body text-gray-700 leading-relaxed mb-6">
+                <p className="font-crimson-pro font-light text-gray-700 leading-relaxed mb-6" style={{ fontSize: 'clamp(1.1rem, 2.8vw, 1.4rem)' }}>
                   {about[0].content}
                 </p>
-                <p className="font-raleway text-body text-gray-700 leading-relaxed">
+                <p className="font-crimson-pro font-light text-gray-700 leading-relaxed" style={{ fontSize: 'clamp(1.1rem, 2.8vw, 1.4rem)' }}>
                   {about[1].content}
                 </p>
               </div>
@@ -540,10 +542,10 @@ export default function Home() {
             {/* Second group: Next two paragraphs with second image */}
             <div className="flex flex-col md:flex-row-reverse gap-8 items-center">
               <div className="flex-1 md:text-left">
-                <p className="font-raleway text-body text-gray-700 leading-relaxed mb-6">
+                <p className="font-crimson-pro font-light text-gray-700 leading-relaxed mb-6" style={{ fontSize: 'clamp(1.1rem, 2.8vw, 1.4rem)' }}>
                   {about[2].content}
                 </p>
-                <p className="font-raleway text-body text-gray-700 leading-relaxed">
+                <p className="font-crimson-pro font-light text-gray-700 leading-relaxed" style={{ fontSize: 'clamp(1.1rem, 2.8vw, 1.4rem)' }}>
                   {about[3].content}
                 </p>
               </div>
@@ -562,8 +564,8 @@ export default function Home() {
             {/* Third group: Remaining text with third image */}
             <div className="flex flex-col md:flex-row gap-8 items-center">
               <div className="flex-1 md:text-right">
-                <p className="font-raleway text-3xl text-gray-700 leading-relaxed">
-                  OGM is for the <strong>modern explorer</strong>, the <strong>dreamer</strong>—the one who knows life tastes best when it&apos;s <strong>real</strong>. Raise a glass, and write your story with <strong>OGM</strong>.
+                <p className="font-crimson-pro font-light text-gray-700 leading-relaxed" style={{ fontSize: 'clamp(1.8rem, 4.5vw, 2.5rem)' }}>
+                  OGM is for the <span className="font-medium">modern explorer</span>, the <span className="font-medium">dreamer</span>—the one who knows life tastes best when it&apos;s <span className="font-medium">real</span>. Raise a glass, and write your story with <span className="font-medium">OGM</span>.
                 </p>
 
                 {/* Black Signature */}
@@ -624,10 +626,10 @@ export default function Home() {
       <section id="contact" className="py-24 px-6 text-center relative">
         <div className="flex items-center justify-center gap-12">
           <div className="text-left">
-            <h2 className="font-goldenbook text-ogm-gold text-h1 mb-4">
+            <h2 className="font-melodrama text-ogm-gold text-h1 mb-4">
               Get in Touch
             </h2>
-            <p className="font-raleway text-ogm-gold text-subtitle uppercase tracking-wider">
+            <p className="font-crimson-pro font-light text-ogm-gold text-subtitle uppercase tracking-wider">
               Follow us on Instagram
             </p>
           </div>

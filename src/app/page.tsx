@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import Navigation from '@/components/Navigation';
 import InstagramButton from '@/components/InstagramButton';
+import EmailButton from '@/components/EmailButton';
 import ProductCard from '@/components/ProductCard';
 import ScrollingBottle from '@/components/ScrollingBottle';
 import ComingThisSpring from '@/components/ComingThisSpring';
@@ -630,9 +631,10 @@ export default function Home() {
               Get in Touch
             </h2>
             <p className="font-crimson-pro font-light text-ogm-gold text-subtitle uppercase tracking-wider">
-              Follow us on Instagram
+              Reach out
             </p>
           </div>
+          <EmailButton />
           <InstagramButton />
         </div>
       </section>

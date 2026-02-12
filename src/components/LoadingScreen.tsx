@@ -26,23 +26,33 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
   const [loadingStage, setLoadingStage] = useState('Initializing');
 
   useEffect(() => {
-    let currentProgress = 0;
-    const stages = [
-      { name: 'Initializing', weight: 5 },
-      { name: 'Loading fonts', weight: 10 },
-      { name: 'Loading images', weight: 40 },
-      { name: 'Loading styles', weight: 15 },
-      { name: 'Loading components', weight: 20 },
-      { name: 'Finalizing', weight: 10 }
-    ];
+    let targetProgress = 0;
+    let currentDisplayProgress = 0;
+    let animationFrameId: number | null = null;
 
-    let stageIndex = 0;
-    let stageProgress = 0;
+    // Smooth increment animation - gradually moves display progress toward target
+    const animateProgress = () => {
+      if (currentDisplayProgress < targetProgress) {
+        // Increment by 1 each frame for smooth counting
+        currentDisplayProgress += 1;
+        setPercentage(currentDisplayProgress);
+        animationFrameId = requestAnimationFrame(animateProgress);
+      } else {
+        // Animation complete, clear the ref
+        animationFrameId = null;
+      }
+    };
 
-    const updateProgress = (newProgress: number, stage?: string) => {
-      currentProgress = Math.min(newProgress, 100);
-      setPercentage(Math.floor(currentProgress));
+    // Start animating toward target
+    const updateProgress = (newTarget: number, stage?: string) => {
+      const oldTarget = targetProgress;
+      targetProgress = Math.min(newTarget, 100);
       if (stage) setLoadingStage(stage);
+
+      // Start animation if not already running and we haven't reached target
+      if (animationFrameId === null && currentDisplayProgress < targetProgress) {
+        animationFrameId = requestAnimationFrame(animateProgress);
+      }
     };
 
     // Track document ready state
@@ -61,15 +71,15 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
       try {
         updateProgress(15, 'Loading fonts');
         await document.fonts.ready;
-        updateProgress(25, 'Fonts loaded');
+        updateProgress(30, 'Fonts loaded');
       } catch (e) {
-        updateProgress(25, 'Fonts loaded');
+        updateProgress(30, 'Fonts loaded');
       }
     };
 
     // Track image loading including critical preloads
     const trackImages = () => {
-      updateProgress(30, 'Loading images');
+      updateProgress(40, 'Loading images');
 
       // Critical images that need to be preloaded
       const criticalImages = [
@@ -110,7 +120,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
 
       return new Promise<void>((resolve) => {
         if (allImagePromises.length === 0) {
-          updateProgress(70, 'Images loaded');
+          updateProgress(75, 'Images loaded');
           resolve();
           return;
         }
@@ -118,11 +128,11 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
         allImagePromises.forEach((promise) => {
           promise.then(() => {
             loadedImages++;
-            const progress = 30 + (loadedImages / totalImages) * 40;
+            const progress = 40 + (loadedImages / totalImages) * 35;
             updateProgress(progress, 'Loading images');
 
             if (loadedImages === totalImages) {
-              updateProgress(70, 'Images loaded');
+              updateProgress(75, 'Images loaded');
               resolve();
             }
           });
@@ -130,21 +140,21 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
 
         // Timeout fallback
         setTimeout(() => {
-          updateProgress(70, 'Images loaded');
+          updateProgress(75, 'Images loaded');
           resolve();
-        }, 8000); // Increased timeout for large images
+        }, 8000);
       });
     };
 
     // Track CSS loading
     const trackStyles = () => {
-      updateProgress(75, 'Loading styles');
+      updateProgress(80, 'Loading styles');
       const stylesheets = document.querySelectorAll('link[rel="stylesheet"]');
       let loadedStylesheets = 0;
       const totalStylesheets = Math.max(stylesheets.length, 1);
 
       if (stylesheets.length === 0) {
-        updateProgress(85, 'Styles loaded');
+        updateProgress(92, 'Styles loaded');
         return Promise.resolve();
       }
 
@@ -153,12 +163,12 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
           return new Promise<void>((styleResolve) => {
             if ((stylesheet as HTMLLinkElement).sheet) {
               loadedStylesheets++;
-              updateProgress(75 + (loadedStylesheets / totalStylesheets) * 10, 'Loading styles');
+              updateProgress(80 + (loadedStylesheets / totalStylesheets) * 12, 'Loading styles');
               styleResolve();
             } else {
               const onLoad = () => {
                 loadedStylesheets++;
-                updateProgress(75 + (loadedStylesheets / totalStylesheets) * 10, 'Loading styles');
+                updateProgress(80 + (loadedStylesheets / totalStylesheets) * 12, 'Loading styles');
                 styleResolve();
               };
               stylesheet.addEventListener('load', onLoad, { once: true });
@@ -168,13 +178,13 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
         });
 
         Promise.all(stylePromises).then(() => {
-          updateProgress(85, 'Styles loaded');
+          updateProgress(92, 'Styles loaded');
           resolve();
         });
 
         // Timeout fallback
         setTimeout(() => {
-          updateProgress(85, 'Styles loaded');
+          updateProgress(92, 'Styles loaded');
           resolve();
         }, 3000);
       });
@@ -190,12 +200,12 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
         if (document.readyState === 'loading') {
           await new Promise<void>((resolve) => {
             document.addEventListener('DOMContentLoaded', () => {
-              updateProgress(20, 'DOM ready');
+              updateProgress(10, 'DOM ready');
               resolve();
             }, { once: true });
           });
         } else {
-          updateProgress(20, 'DOM ready');
+          updateProgress(10, 'DOM ready');
         }
 
         // Track fonts
@@ -210,19 +220,19 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
         // Track styles
         await trackStyles();
 
-        // Final steps
-        updateProgress(90, 'Finalizing');
-        await new Promise(resolve => setTimeout(resolve, 200));
+        // Final steps with visible increments
+        updateProgress(95, 'Finalizing');
+        await new Promise(resolve => setTimeout(resolve, 150));
 
-        updateProgress(95, 'Almost ready');
-        await new Promise(resolve => setTimeout(resolve, 100));
+        updateProgress(98, 'Almost ready');
+        await new Promise(resolve => setTimeout(resolve, 150));
 
         updateProgress(100, 'Complete');
 
         // Small delay at 100%
         setTimeout(() => {
           onComplete();
-        }, 300);
+        }, 400);
 
       } catch (error) {
         console.warn('Loading tracking error:', error);
@@ -243,47 +253,39 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
     // Cleanup
     return () => {
       document.removeEventListener('readystatechange', checkDocumentReady);
+      if (animationFrameId !== null) {
+        cancelAnimationFrame(animationFrameId);
+      }
     };
   }, [onComplete]);
 
   return (
     <div className="fixed inset-0 bg-white flex flex-col items-center justify-center z-[10001]">
-      {/* Subtle background pattern */}
-      <div
-        className="absolute inset-0 opacity-[0.02]"
-        style={{
-          backgroundImage: 'url(/images/ogm_full_square_logo.svg)',
-          backgroundSize: '200px 200px',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-        }}
-      />
-
       {/* Loading content */}
       <div className="relative z-10 text-center">
         {/* Percentage counter */}
         <div className="mb-8">
           <span
-            className="font-mono text-[clamp(3rem,8vw,6rem)] font-light text-black tracking-wider"
+            className="font-cormorant text-[clamp(3rem,8vw,6rem)] font-light text-black tracking-wider"
             style={{ fontVariantNumeric: 'tabular-nums' }}
           >
             {percentage.toString().padStart(3, '0')}
           </span>
-          <span className="font-mono text-[clamp(2rem,5vw,4rem)] font-light text-gray-400 ml-1">
+          <span className="font-cormorant text-[clamp(2rem,5vw,4rem)] font-light text-gold ml-1">
             %
           </span>
         </div>
 
         {/* Progress bar */}
-        <div className="w-64 h-[1px] bg-gray-200 mx-auto">
+        <div className="w-64 h-[1px] bg-black/10 mx-auto">
           <div
-            className="h-full bg-black transition-all duration-150 ease-out"
+            className="h-full bg-gold transition-all duration-150 ease-out"
             style={{ width: `${percentage}%` }}
           />
         </div>
 
         {/* Loading stage text */}
-        <p className="font-ranade text-sm text-gray-500 mt-6 tracking-[0.2em] uppercase">
+        <p className="font-cormorant text-sm text-gold mt-6 tracking-[0.3em] uppercase">
           {loadingStage}
         </p>
       </div>

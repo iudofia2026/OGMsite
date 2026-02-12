@@ -248,7 +248,7 @@ export default function Navigation({ items }: NavigationProps) {
               }}
             >
               <p className="font-raleway text-[clamp(0.875rem,2vw,1rem)] text-gray-500 tracking-[0.2em] uppercase mb-6">
-                Premium Craft Beverages
+                Premium Crafted Tequila
               </p>
               <div className="flex gap-8 justify-center items-center">
                 <button
